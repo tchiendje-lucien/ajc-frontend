@@ -14,6 +14,7 @@ import { ManagementRhComponent } from './components/servicesComponents/managemen
 import { AuditRhComponent } from './components/servicesComponents/audit-rh/audit-rh.component';
 import { FiscalityAdministrativeComponent } from './components/servicesComponents/fiscality-administrative/fiscality-administrative.component';
 import { TrainingComponent } from './components/servicesComponents/training/training.component';
+import { ContactUsFormComponent } from './components/subComponents/contact-us-form/contact-us-form.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { TrainingComponent } from './components/servicesComponents/training/trai
     ManagementRhComponent,
     AuditRhComponent,
     FiscalityAdministrativeComponent,
-    TrainingComponent
+    TrainingComponent,
+    ContactUsFormComponent,
   ],
   imports: [
     BrowserModule,

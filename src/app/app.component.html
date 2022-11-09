@@ -5,15 +5,24 @@
 >
   <div class="container d-flex align-items-center">
     <h5 class="logo me-auto">
-      <a href="index.html">AFRIKA JOB’S & CONSULTING</a>
+      <a href="/">AFRIKA JOB’S & CONSULTING</a>
     </h5>
     <!-- Uncomment below if you prefer to use an image logo -->
     <!-- <a href="index.html" class="logo me-auto"><img src="./assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
     <nav id="navbar" class="navbar order-last order-lg-0">
       <ul>
-        <li><a class="nav-link scrollto" routerLink="/">Acceuil</a></li>
-        <li><a class="nav-link scrollto" routerLink="qui-sommes-nous">Qui sommes nous?</a></li>
+        <li><a class="nav-link scrollto" href="/">Acceuil</a></li>
+        <li class="dropdown">
+          <a
+            ><span>Qui sommes nous?</span> <i class="bi bi-chevron-down"></i
+          ></a>
+          <ul>
+            <li><a routerLink="nos-services/placement-du-personnel">Notre vision</a></li>
+            <li><a routerLink="nos-services/management-des-rh">Nos missions</a></li>
+            <li><a routerLink="nos-services/audit-des-rh">Notre équipe</a></li>
+          </ul>
+        </li>
         <li class="dropdown">
           <a
             ><span>Nos services</span> <i class="bi bi-chevron-down"></i

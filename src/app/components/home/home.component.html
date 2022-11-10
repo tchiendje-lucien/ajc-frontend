@@ -1,36 +1,95 @@
 <main id="main">
   <!-- ======= Hero Section ======= -->
-  <section id="hero" class="clearfix">
-    <div class="container d-flex h-100">
-      <div
-        class="row justify-content-center align-self-center"
-        data-aos="fade-up"
-      >
+  <section id="about" style="height: 550px;">
+    <div
+      id="carouselExampleCaptions"
+      class="carousel slide"
+      data-bs-ride="carousel"
+    >
+      <div class="carousel-indicators">
+        <button
+          type="button"
+          data-bs-target="#carouselExampleCaptions"
+          data-bs-slide-to="0"
+          class="active"
+          aria-current="true"
+          aria-label="Slide 1"
+        ></button>
+        <button
+          type="button"
+          data-bs-target="#carouselExampleCaptions"
+          data-bs-slide-to="1"
+          aria-label="Slide 2"
+        ></button>
+        <button
+          type="button"
+          data-bs-target="#carouselExampleCaptions"
+          data-bs-slide-to="2"
+          aria-label="Slide 3"
+        ></button>
+      </div>
+      <div class="carousel-inner">
         <div
-          class="col-lg-6 intro-info order-lg-first order-last"
-          data-aos="zoom-in"
-          data-aos-delay="100"
+          class="carousel-item active"
+          style="
+            background-image: url('./assets/img/web1.jpg');
+            height: 63vh;
+          "
         >
-          <h2>Rapid Solutions<br />for Your <span>Business!</span></h2>
-          <div>
-            <a href="#about" class="btn-get-started scrollto">Get Started</a>
+          <div class="carousel-caption">
+            <h5>First slide label</h5>
+            <p>Some representative placeholder content for the first slide.</p>
           </div>
         </div>
-
         <div
-          class="col-lg-6 intro-img order-lg-last order-first"
-          data-aos="zoom-out"
-          data-aos-delay="200"
+          class="carousel-item"
+          style="
+            background-image: url('./assets/img/portfolio-details-1.jpg');
+            height: 63vh;
+          "
         >
-          <img src="./assets/img/intro-img.svg" alt="" class="img-fluid" />
+          <div class="carousel-caption">
+            <h5>Second slide label</h5>
+            <p>Some representative placeholder content for the second slide.</p>
+          </div>
+        </div>
+        <div
+          class="carousel-item"
+          style="
+            background-image: url('./assets/img/web3.jpg');
+            height: 63vh;
+          "
+        >
+          <div class="carousel-caption">
+            <h5>Third slide label</h5>
+            <p>Some representative placeholder content for the third slide.</p>
+          </div>
         </div>
       </div>
+      <button
+        class="carousel-control-prev"
+        type="button"
+        data-bs-target="#carouselExampleCaptions"
+        data-bs-slide="prev"
+      >
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button
+        class="carousel-control-next"
+        type="button"
+        data-bs-target="#carouselExampleCaptions"
+        data-bs-slide="next"
+      >
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
     </div>
   </section>
   <!-- ======= About Section ======= -->
   <section id="about" class="about">
-    <div class="container" data-aos="fade-up">
-      <div class="row">
+    <div class="container" data-aos="fade-up" style="margin-top: -75px;">
+      <div class="row mb-5">
         <div class="col-lg-5 col-md-6">
           <div class="about-img" data-aos="fade-right" data-aos-delay="100">
             <img src="./assets/img/about-img.jpg" alt="" />
@@ -266,50 +325,6 @@
         </div>
       </div>
     </div>
-
-    <!-- <div class="container">
-      <div class="row counters" data-aos="fade-up" data-aos-delay="100">
-        <div class="col-lg-3 col-6 text-center">
-          <span
-            data-purecounter-start="0"
-            data-purecounter-end="232"
-            data-purecounter-duration="1"
-            class="purecounter"
-          ></span>
-          <p>Clients</p>
-        </div>
-
-        <div class="col-lg-3 col-6 text-center">
-          <span
-            data-purecounter-start="0"
-            data-purecounter-end="421"
-            data-purecounter-duration="1"
-            class="purecounter"
-          ></span>
-          <p>Projects</p>
-        </div>
-
-        <div class="col-lg-3 col-6 text-center">
-          <span
-            data-purecounter-start="0"
-            data-purecounter-end="1453"
-            data-purecounter-duration="1"
-            class="purecounter"
-          ></span>
-          <p>Hours Of Support</p>
-        </div>
-
-        <div class="col-lg-3 col-6 text-center">
-          <span
-            data-purecounter-start="0"
-            data-purecounter-end="48"
-            data-purecounter-duration="1"
-            class="purecounter"
-          ></span>
-          <p>Hard Workers</p>
-        </div>
-      </div>
-    </div> -->
   </section>
   <!-- End Why Us Section -->
 

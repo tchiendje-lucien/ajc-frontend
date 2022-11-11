@@ -11,7 +11,8 @@
 body {
   background: #fff;
   color: #444;
-  font-family: "Open Sans", sans-serif;
+  /* font-family: "Open Sans", sans-serif; */
+  font-family: "Didact Gothic",sans-serif;
 }
 
 a {
@@ -31,6 +32,8 @@ a:focus {
 p {
   padding: 0;
   margin: 0 0 30px 0;
+  text-align: justify;
+  text-justify: inter-word;
 }
 
 h1,
@@ -39,11 +42,23 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Montserrat", sans-serif;
+  /* font-family: "Montserrat", sans-serif; */
+  font-family: "Didact Gothic",sans-serif;
   font-weight: 400;
   margin: 0 0 20px 0;
   padding: 0;
+  text-align: justify;
+  text-justify: inter-word;
 }
+
+/*--------------------------------------------------------------
+# Carousel
+--------------------------------------------------------------*/
+
+/* #carouselExampleCaptions
+{
+    height:100%;
+} */
 
 /*--------------------------------------------------------------
 # Back to top button
@@ -186,7 +201,8 @@ h6 {
   align-items: center;
   justify-content: space-between;
   padding: 10px 0 10px 24px;
-  font-family: "Montserrat", sans-serif;
+  /* font-family: "Montserrat", sans-serif; */
+  font-family: "Didact Gothic",sans-serif;
   text-transform: uppercase;
   font-size: 14px;
   font-weight: 600;
@@ -450,7 +466,8 @@ h6 {
 
 #hero .intro-info .btn-get-started,
 #hero .intro-info .btn-services {
-  font-family: "Montserrat", sans-serif;
+  /* font-family: "Montserrat", sans-serif; */
+  font-family: "Didact Gothic",sans-serif;
   font-size: 13px;
   font-weight: 600;
   text-transform: uppercase;
@@ -484,7 +501,8 @@ section {
   text-align: center;
   font-weight: 700;
   position: relative;
-  font-family: "Montserrat", sans-serif;
+  /* font-family: "Montserrat", sans-serif; */
+  font-family: "Didact Gothic",sans-serif;
 }
 
 .section-header p {
@@ -511,7 +529,7 @@ section {
 /* About Us Section
 --------------------------------*/
 #about {
-  padding: 80px 0;
+  padding: 60px 0 0 0;
 }
 
 #about .about-content {
@@ -520,7 +538,8 @@ section {
 
 #about .about-content h2 {
   color: #413e66;
-  font-family: "Montserrat", sans-serif;
+  /* font-family: "Montserrat", sans-serif; */
+  font-family: "Didact Gothic",sans-serif;
   font-weight: 700;
 }
 
@@ -589,7 +608,7 @@ section {
 /* Services Section
 --------------------------------*/
 #services {
-  padding: 60px 0 40px 0;
+  padding: 20px 0 40px 0;
 }
 
 #services .box {
@@ -684,7 +703,8 @@ section {
 }
 
 #why-us .counters span {
-  font-family: "Montserrat", sans-serif;
+  /* font-family: "Montserrat", sans-serif; */
+  font-family: "Didact Gothic",sans-serif;
   font-weight: bold;
   font-size: 48px;
   display: block;
@@ -694,7 +714,8 @@ section {
 #why-us .counters p {
   padding: 0;
   margin: 0 0 20px 0;
-  font-family: "Montserrat", sans-serif;
+  /* font-family: "Montserrat", sans-serif; */
+  font-family: "Didact Gothic",sans-serif;
   font-size: 14px;
   color: #8a87b6;
 }
@@ -726,7 +747,8 @@ section {
 }
 
 #call-to-action .cta-btn {
-  font-family: "Montserrat", sans-serif;
+  /* font-family: "Montserrat", sans-serif; */
+  font-family: "Didact Gothic",sans-serif;
   font-weight: 700;
   font-size: 16px;
   letter-spacing: 1px;
@@ -1358,7 +1380,10 @@ section {
 #footer {
   padding: 0 0 30px 0;
   font-size: 14px;
-  background: #fff;
+  /* background: #fff; */
+  background-color: #d2d5db ;
+  height: 250px;
+
 }
 
 #footer .footer-top {
@@ -1375,7 +1400,8 @@ section {
   margin: 0 0 20px 0;
   padding: 2px 0 2px 0;
   line-height: 1;
-  font-family: "Montserrat", sans-serif;
+  /* font-family: "Montserrat", sans-serif; */
+  font-family: "Didact Gothic",sans-serif;
   color: #413e66;
   font-weight: 400;
   letter-spacing: 3px;
@@ -1386,7 +1412,8 @@ section {
   font-size: 13px;
   line-height: 24px;
   margin-bottom: 0;
-  font-family: "Montserrat", sans-serif;
+  /* font-family: "Montserrat", sans-serif; */
+  font-family: "Didact Gothic",sans-serif;
   color: #535074;
 }
 

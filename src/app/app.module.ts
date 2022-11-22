@@ -15,6 +15,10 @@ import { AuditRhComponent } from './components/servicesComponents/audit-rh/audit
 import { FiscalityAdministrativeComponent } from './components/servicesComponents/fiscality-administrative/fiscality-administrative.component';
 import { TrainingComponent } from './components/servicesComponents/training/training.component';
 import { ContactUsFormComponent } from './components/subComponents/contact-us-form/contact-us-form.component';
+import { LoginComponent } from './components/candidat/login/login.component';
+import { RegisterComponent } from './components/candidat/register/register.component';
+import { SetcvComponent } from './components/candidat/setcv/setcv.component';
+
 
 @NgModule({
   declarations: [
@@ -29,6 +33,9 @@ import { ContactUsFormComponent } from './components/subComponents/contact-us-fo
     FiscalityAdministrativeComponent,
     TrainingComponent,
     ContactUsFormComponent,
+    LoginComponent,
+    RegisterComponent,
+    SetcvComponent,
   ],
   imports: [
     BrowserModule,

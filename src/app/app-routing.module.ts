@@ -8,6 +8,9 @@ import { ManagementRhComponent } from './components/servicesComponents/managemen
 import { AuditRhComponent } from './components/servicesComponents/audit-rh/audit-rh.component';
 import { FiscalityAdministrativeComponent } from './components/servicesComponents/fiscality-administrative/fiscality-administrative.component';
 import { TrainingComponent } from './components/servicesComponents/training/training.component';
+import { LoginComponent } from "./components/candidat/login/login.component";
+import { RegisterComponent } from "./components/candidat/register/register.component";
+import { SetcvComponent } from "./components/candidat/setcv/setcv.component";
 
 const appRoutes: Routes = [
   // {
@@ -52,6 +55,18 @@ const appRoutes: Routes = [
   {
     path: "nos-services/traning",
     component: TrainingComponent,
+  },
+    {
+    path: "candidat/login",
+    component: LoginComponent,
+  },
+   {
+    path: "candidat/registrecanditate",
+    component: RegisterComponent,
+  },
+   {
+    path: "candidat/setcv",
+    component: SetcvComponent,
   },
 ];
 

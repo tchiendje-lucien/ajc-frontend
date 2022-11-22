@@ -1,0 +1,44 @@
+<div class="container ma_div">
+  <div class="row border rounded-5">
+    <div class="col-md-6 mt-2 mb-2 border-end">
+      <div class="mb-3 row">
+        <h2>Vous êtes déjà inscrit</h2>
+        <p> Si vous êtes déjà inscrit au service en ligne de Afrika Job's and Consulting, connecter vous avec vos
+          identifiants</p>
+      </div>
+      <form [formGroup]="loginForm" (ngSubmit)="onConnexion()">
+        <div class="mb-3 row">
+          <label for="user" class="col-sm-4 col-form-label">Adresse email</label>
+          <div class="col-sm-8">
+            <input type="text" class="form-control" name="user" id="user" formControlName="user">
+          </div>
+        </div>
+        <div class="mb-3 row">
+          <label for="pwd" class="col-sm-4 col-form-label">Mot de passe</label>
+          <div class="col-sm-8">
+            <input type="password" class="form-control" name="pwd" id="pwd" formControlName="pwd">
+          </div>
+        </div>
+        <div class="row">
+          <a href="#">Mot de passe oublier ?</a>
+        </div>
+        <div class="mb-3 row justify-content-center">
+          <button type="submit" class="btn btn-primary btn-sm col-md-3">Connexion</button>
+        </div>
+      </form>
+      {{loginForm.value | json}}
+    </div>
+
+    <div class="col-md-6 ">
+      <div class="mb-3 row">
+        <h2>Vous n'êtes pas encore inscrit</h2>
+        <p> Si vous n'êtes pas encore inscrit, inscriver vous en rempliçant le formulaire et beneficier gratuitement des
+          services en ligne de Afrika Job's and Consulting</p>
+      </div>
+      <div class="mb-3 row justify-content-center">
+        <button type="button" class="btn btn-primary btn-sm col-md-3" [routerLink]="['/candidat/registrecanditate']"
+          routerLinkActive="router-link-active">Enregister vous</button>
+      </div>
+    </div>
+  </div>
+</div>

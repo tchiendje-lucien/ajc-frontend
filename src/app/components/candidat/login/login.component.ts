@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { RegisterService } from 'src/app/services/candidat/register.service';
 
 @Component({
@@ -11,8 +11,9 @@ import { RegisterService } from 'src/app/services/candidat/register.service';
 export class LoginComponent implements OnInit {
 
    loginForm: FormGroup
-
-  constructor(private fb:FormBuilder, private registerservice:RegisterService) { }
+   candidat;
+  constructor(private fb:FormBuilder, private registerservice:RegisterService,
+    private router: Router) { }
 
   ngOnInit() {
      
@@ -32,19 +33,45 @@ export class LoginComponent implements OnInit {
     console.log(this.loginForm)
       
       let user = {        
-         "email": this.loginForm.value.user ,
+         "email": this.loginForm.value.user,
          "password": this.loginForm.value.pwd
       }
 
       this.registerservice.connexion_candidat(user)
       .subscribe((response) => {
-          console.log(response.headers.get('Authorization'))
+          //console.log(response)
+          //console.log(response.headers.get('Authorization'))
            let jwt=response.headers.get('Authorization');
-           this.registerservice.saveToken(jwt);
+           this.registerservice.saveToken(jwt);  
+           console.log(jwt) 
+           
+         //  this.candidatconnect();         
+           //this.router.navigate(['/candidat/setcv']);
+
         },err=>{
       console.log(err)
     }) 
   }
+
+
+
+    candidatconnect(){
+         let user = {        
+         "email": this.loginForm.value.user,
+         "password": this.loginForm.value.pwd
+      }
+
+         this.registerservice.load_candidat(user)
+         .subscribe(data=>{
+            this.candidat=data
+            console.log(this.candidat)
+            this.router.navigate(['/candidat/setcv']);
+                      //this.registerservice.candidatserv=this.candidat
+          }),err=>{ console.log(err)}
+  }
+
+
+  
 
   isAdmin(){
     return this.registerservice.isAdmin()
@@ -54,6 +81,7 @@ export class LoginComponent implements OnInit {
     return this.registerservice.isCandidat()
   }
 
-  
+
+
 
 }

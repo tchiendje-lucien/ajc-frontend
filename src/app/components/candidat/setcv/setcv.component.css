@@ -1,6 +1,37 @@
+
+
 .ma_div
 {
+   padding: 100px;
 
-    padding: 100px;
+}
 
+.alignaction {
+   text-align: center; 
+   font-size: medium;  
+}
+
+.curseur{
+    cursor: pointer;
+}
+
+.col-center{
+  margin:0 auto;
+}
+
+input.ng-invalid.ng-touched{
+   border: red 1px solid;
+}
+textarea.ng-invalid.ng-touched{
+   border: red 1px solid;
+} 
+ng-select.ng-invalid.ng-touched{
+   border: red 1px solid;
+} 
+
+.champok{
+   color: green;
+}
+.champmonok{
+   color: red;
 }

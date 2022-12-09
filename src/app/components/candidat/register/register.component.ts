@@ -12,19 +12,24 @@ import { RegisterService } from 'src/app/services/candidat/register.service';
 export class RegisterComponent implements OnInit {
 
   registerform: FormGroup
-  canditat;
+  candidat;
+  messageconfirmpassword
   
   constructor( private fb:FormBuilder, private candidatservice: RegisterService,
     private router: Router,private route:ActivatedRoute, private registerserve: RegisterService) { }
 
   ngOnInit() {
        this.registerform = this.fb.group({
+           oid : '',
            nom : ["", Validators.required],
-           prenom : "",
-           email : "",
-           password : "",
-           civilite : ""
+           prenom : ["", Validators.required],
+           email : ["", Validators.required],
+           password : ["", Validators.required],
+           password1 : ["", Validators.required],
+           civilite : ["", Validators.required]
        })
+
+  
 
   }
 
@@ -32,19 +37,34 @@ export class RegisterComponent implements OnInit {
   onRegisterCandidat(){
     
     // this.router.navigate(['/candidat/setcv']);
+    let registered = this.registerform.value
+    if(registered.password!=registered.password1){
 
-      this.candidatservice.add_candidat(this.registerform.value)
-      .subscribe((response) => {
-          alert("Succès enregitrement")
-           this.registerserve.candidatserv = response
-           this.router.navigate(['/candidat/setcv']);
-         //  this.router.navigate(['/candidat/login']);
-          //console.log(response)
+      this.messageconfirmpassword = "Les mots de passe sont diferent "
 
-      },err=>{
-      console.log(err)
-    }) 
+    }else{
+          this.messageconfirmpassword =""
+
+                this.candidatservice.add_candidat(this.registerform.value)
+          .subscribe((response) => {
+              alert("Succès enregitrement")
+              this.registerserve.candidatserv = response
+              this.router.navigate(['/candidat/setcv']);
+            //  this.router.navigate(['/candidat/login']);
+              //console.log(response)
+
+          },err=>{
+          console.log(err)
+        }) 
+
+    }
+
   }
+
+  onVerifInitPasse(){
+     this.messageconfirmpassword =""
+  }
+
 
   goToConnexion() {
     

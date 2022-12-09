@@ -18,6 +18,8 @@ import { ContactUsFormComponent } from './components/subComponents/contact-us-fo
 import { LoginComponent } from './components/candidat/login/login.component';
 import { RegisterComponent } from './components/candidat/register/register.component';
 import { SetcvComponent } from './components/candidat/setcv/setcv.component';
+import { NgSelectModule } from '@ng-select/ng-select';
+
 
 
 @NgModule({
@@ -43,6 +45,7 @@ import { SetcvComponent } from './components/candidat/setcv/setcv.component';
     FormsModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    NgSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

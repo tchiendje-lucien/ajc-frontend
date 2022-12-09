@@ -1,0 +1,8 @@
+.ma_div{
+    padding: 100px;
+}
+
+
+input.ng-invalid.ng-touched{
+   border: red 1px solid;
+}

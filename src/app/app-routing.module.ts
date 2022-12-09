@@ -11,7 +11,7 @@ import { TrainingComponent } from "./components/servicesComponents/training/trai
 import { MaintenanceComponent } from "./components/errorsComponents/maintenance/maintenance.component";
 import { RegisterComponent } from "./components/entrepriseComponents/register/register.component";
 import { AuthService } from "./services/guards/auth/auth.service";
-import { LoginComponent } from "./components/entrepriseComponents/login/login.component";
+import { LoginComponent } from "./components/candidat/login/login.component";
 import { ForgotPasswordComponent } from "./components/entrepriseComponents/forgot-password/forgot-password.component";
 import { CreateOffreComponent } from "./components/entrepriseComponents/create-offre/create-offre.component";
 import { FindProfilesComponent } from "./components/candidat/find-profiles/find-profiles.component";
@@ -29,6 +29,8 @@ import { UpdateMyPublicationsComponent } from './components/entrepriseComponents
 import { AskProfileComponent } from './components/entrepriseComponents/ask-profile/ask-profile.component';
 import { MesProfilsComponent } from './components/entrepriseComponents/mes-profils/mes-profils.component';
 import { UpdateAskProfileComponent } from './components/entrepriseComponents/update-ask-profile/update-ask-profile.component';
+import { SetcvComponent } from './components/candidat/setcv/setcv.component';
+import { LoginEntrepriseComponent } from './components/entrepriseComponents/login-entreprise/login-entreprise.component';
 
 const appRoutes: Routes = [
   // {
@@ -122,7 +124,7 @@ const appRoutes: Routes = [
   },
   {
     path: "entreprise/login",
-    component: LoginComponent,
+    component: LoginEntrepriseComponent,
   },
   {
     path: "entreprise/forgot-password",
@@ -171,7 +173,18 @@ const appRoutes: Routes = [
   {
     path: "entreprise/edit-ask-profile/:askProfile_oid",
     canActivate: [AuthService],
-    component: UpdateAskProfileComponent,
+    component: UpdateAskProfileComponent,},
+    {
+    path: "candidat/login",
+    component: LoginComponent,
+  },
+   {
+    path: "candidat/registrecanditate",
+    component: RegisterComponent,
+  },
+   {
+    path: "candidat/setcv",
+    component: SetcvComponent
   },
 ];
 

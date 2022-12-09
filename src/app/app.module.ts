@@ -21,7 +21,6 @@ import { SearchProfileComponent } from "./components/entrepriseComponents/search
 import { NgSelectModule } from "@ng-select/ng-select";
 import { Ng2SearchPipeModule } from "ng2-search-filter";
 import { NgxPaginationModule } from "ngx-pagination";
-import { LoginComponent } from './components/entrepriseComponents/login/login.component';
 import { ForgotPasswordComponent } from './components/entrepriseComponents/forgot-password/forgot-password.component';
 import { CreateOffreComponent } from './components/entrepriseComponents/create-offre/create-offre.component';
 import { FindProfilesComponent } from './components/candidat/find-profiles/find-profiles.component';
@@ -40,6 +39,10 @@ import { UpdateMyPublicationsComponent } from './components/entrepriseComponents
 import { AskProfileComponent } from './components/entrepriseComponents/ask-profile/ask-profile.component';
 import { MesProfilsComponent } from './components/entrepriseComponents/mes-profils/mes-profils.component';
 import { UpdateAskProfileComponent } from './components/entrepriseComponents/update-ask-profile/update-ask-profile.component';
+import { SetcvComponent } from './components/candidat/setcv/setcv.component';
+import { LoginEntrepriseComponent } from './components/entrepriseComponents/login-entreprise/login-entreprise.component';
+import { LoginComponent } from "./components/candidat/login/login.component";
+
 
 @NgModule({
   declarations: [
@@ -75,6 +78,10 @@ import { UpdateAskProfileComponent } from './components/entrepriseComponents/upd
     AskProfileComponent,
     MesProfilsComponent,
     UpdateAskProfileComponent,
+    LoginEntrepriseComponent,
+    RegisterComponent,
+    SetcvComponent,
+    LoginEntrepriseComponent,
   ],
   imports: [
     BrowserModule,
@@ -85,6 +92,7 @@ import { UpdateAskProfileComponent } from './components/entrepriseComponents/upd
     NgSelectModule,
     Ng2SearchPipeModule,
     NgxPaginationModule,
+    NgSelectModule
   ],
   providers: [    {
     provide: HTTP_INTERCEPTORS,

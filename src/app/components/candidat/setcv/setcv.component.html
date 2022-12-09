@@ -1,0 +1,526 @@
+<div class="container ma_div">
+  <div class="row border">
+
+    <div class="row w-50 col-center mt-2">
+      <h3>Déposé votre CV en 6 étapes</h3>
+    </div>
+
+
+    <div class="accordion mt-1 mb-3 ml-3 mr-3" id="accordionPanelsStayOpenExample">
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse"
+            data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
+            aria-controls="panelsStayOpen-collapseOne">
+            <div class="row">
+              <div class="col-1"><i class="fa fa-check-circle" aria-hidden="true"
+                  [ngClass]="identiteForm.valid ? 'champok': 'champmonok'"></i></div>
+              <div class="col-md-auto">Renseignement personnel</div>
+            </div>
+
+          </button>
+        </h2>
+
+        <form [formGroup]=" identiteForm" (ngSubmit)="onEditIdentiteCandidat()">
+
+          <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show"
+            aria-labelledby="panelsStayOpen-headingOne">
+            <div class="accordion-body">
+
+
+              <div class="row">
+                <div class="form-group mb-3 col-md-8 mt-3">
+                  <div class="form-check form-check-inline col-md-1">
+                    <input class="form-check-input" type="radio" name="civilite" id="monsieur" value="Monsieur"
+                      formControlName="civilite">
+                    <label class="form-check-label" for="monsieur">M.</label>
+                  </div>
+                  <div class="form-check form-check-inline col-md-2">
+                    <input class="form-check-input" type="radio" name="civilite" id="madame" value="Madame"
+                      formControlName="civilite">
+                    <label class="form-check-label" for="madame">Mdme</label>
+                  </div>
+                  <div class="form-check form-check-inline col-md-1 ">
+                    <input class="form-check-input" type="radio" name="civilite" id="mademoiselle" value="Mademoiselle"
+                      formControlName="civilite">
+                    <label class="form-check-label" for="mademoiselle">Mlle</label>
+                  </div>
+                </div>
+                <div class="form-group col-md-6" hidden>
+                  <label for="nom">Oid</label>
+                  <input type="text" class="form-control" id="oid" placeholder="oid" name="oid" formControlName="oid">
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group col-md-6">
+                  <label for="nom">Nom du candidat</label>
+                  <input type="text" class="form-control" id="nom" placeholder="nom du candidat" name="nom"
+                    formControlName="nom">
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="prenom">Prénom du candidat</label>
+                  <input type="text" class="form-control" id="prenom" placeholder="prenom du candidat" name="prenom"
+                    formControlName="prenom">
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group col-md-3">
+                  <label for="datenaissance">Date de naissance</label>
+                  <input type="date" class="form-control" id="datenaissance" placeholder="aaaa-mm-jj"
+                    name="datenaissance" formControlName="datenaissance">
+                </div>
+                <div class="form-group col-md-3">
+                  <label for="lieumaissance">Lieu de naissance</label>
+                  <input type="text" class="form-control" id="lieumaissance" placeholder="lieu de naissance"
+                    name="lieumaissance" formControlName="lieumaissance">
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="email">Adresse email</label>
+                  <input type="email" class="form-control" id="email" name="email" formControlName="email">
+                </div>
+              </div>
+              <div class="row">
+                <!-- <div class="form-group col-md-3">
+                  <label for="pays">Pays</label>
+                  <input type="text" class="form-control" id="pays" placeholder="pays" name="pays"
+                    formControlName="pays">
+                </div> -->
+
+                <div class="form-group col-md-3">
+                  <label for="pays">Pays de residence</label>
+                  <ng-select formControlName="pays">
+                    <ng-option *ngFor="let pays of listePays" [value]="pays">{{pays}}</ng-option>
+                  </ng-select>
+                </div>
+
+                <div class="form-group col-md-3">
+                  <label for="ville">Ville de residence</label>
+                  <input type="text" class="form-control" id="ville" placeholder="ville" name="ville"
+                    formControlName="ville">
+                </div>
+                <div class="form-group col-md-3">
+                  <label for="telephone1">Telephone mobile</label>
+                  <input type="tel" class="form-control" id="telephone1" placeholder="telephone1" name="telephone1"
+                    formControlName="telephone1">
+                </div>
+                <div class="form-group col-md-3">
+                  <label for="telephone2">Telephone fixe</label>
+                  <input type="tel" class="form-control" id="telephone2" placeholder="telephone2" name="telephone2"
+                    formControlName="telephone2">
+                </div>
+              </div>
+
+              <div class=" row col-md-12 justify-content-end mt-2">
+                <button type="submit" class="btn btn-primary btn-sm col-md-2"
+                  [disabled]="!identiteForm.valid">Enregistrer</button>
+              </div>
+            </div>
+
+          </div>
+
+        </form>
+
+      </div>
+
+
+      <!-- ///////// les Comptences -->
+
+
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false"
+            aria-controls="panelsStayOpen-collapseTwo">
+            <div class="row">
+              <div class="col-1"><i class="fa fa-check-circle" aria-hidden="true"
+                  [ngClass]="competence !=0 ? 'champok': 'champmonok'"></i></div>
+              <div class="col-md-auto">Competences</div>
+            </div>
+
+          </button>
+        </h2>
+        <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse"
+          aria-labelledby="panelsStayOpen-headingTwo">
+          <div class="accordion-body">
+
+            <form [formGroup]="competenceForm" (ngSubmit)="onSaveCompetence()">
+              <div class="row" hidden>
+                <div class="form-group col-md-4">
+                  <label for="oid">Oid</label>
+                  <input type="number" class="form-control" id="oid" placeholder="oid de competence" name="oid"
+                    formControlName="oid">
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group col-md-4">
+                  <label for="domaine">Domaine</label>
+                  <input type="text" class="form-control" id="domaine" placeholder="domaine de competence"
+                    name="domaine" formControlName="domaine">
+                </div>
+                <div class="form-group col-md-8">
+                  <label for="detail">Detail du domaine</label>
+                  <textarea class="form-control" id="detail" rows="5" formControlName="detail" name="detail"
+                    placeholder="Detail domaine de competence"></textarea>
+                </div>
+              </div>
+
+              <div class="row col-md-12 justify-content-end">
+                <button type="submit" class="btn btn-primary btn-sm col-md-2 mt-2 mb-2"
+                  [disabled]="!competenceForm.valid">Enregistrer</button>
+              </div>
+
+            </form>
+
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Domaine</th>
+                  <th scope="col">Detail</th>
+                  <th scope="col" class="alignaction"><i class="fa fa-plus-square-o curseur" aria-hidden="true"
+                      (click)="onRazComepetence()"></i>
+                  </th>
+                </tr>
+              </thead>
+              <tbody *ngIf="competence">
+                <tr *ngFor="let c of competence; let i = index;">
+                  <th scope="row">{{c.oid}}</th>
+                  <td>{{c.domaine}}</td>
+                  <td>{{c.detail}}</td>
+                  <td class="alignaction"><i class="fa fa-pencil-square-o curseur" aria-hidden="true"
+                      (click)="onEditComepetence(i)"></i>
+                    <i class="fa fa-trash-o curseur" style="margin-left: 25px;" aria-hidden="true"
+                      (click)="onDellCompetence(i)"></i>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Scolarite ///////////////////////////////////////////// -->
+
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="panelsStayOpen-headingThree">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false"
+            aria-controls="panelsStayOpen-collapseThree">
+            <div class="row">
+              <div class="col-1"><i class="fa fa-check-circle" aria-hidden="true"
+                  [ngClass]="scolarite!='' ? 'champok': 'champmonok'"></i></div>
+              <div class="col-md-auto">colarité</div>
+            </div>
+          </button>
+        </h2>
+        <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse"
+          aria-labelledby="panelsStayOpen-headingThree">
+          <div class="accordion-body">
+
+            <form [formGroup]="scolariteForm" (ngSubmit)="onSaveScolarite()">
+              <div class="row">
+                <div class="form-group col-md-4" hidden>
+                  <label for="oid">Oid</label>
+                  <input type="number" class="form-control" id="oid" placeholder="oid de scolarite" name="oid"
+                    formControlName="oid">
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group col-md-4">
+                  <label for="datedebut">Date début</label>
+                  <input type="date" class="form-control" id="datedebut" name="datedebut" formControlName="datedebut">
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="datefin">Date fin</label>
+                  <input type="date" class="form-control" id="datefin" name="datefin" formControlName="datefin">
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group col-md-4">
+                  <label for="pays">Domaine de formation</label>
+                  <ng-select formControlName="domaine">
+                    <ng-option *ngFor="let niv of listdomaineformation" [value]="niv">{{niv}}</ng-option>
+                  </ng-select>
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="specialite">Specialité</label>
+                  <input type="text" class="form-control" id="specialite" placeholder="Specialité de scolarite"
+                    name="specialite" formControlName="specialite">
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="pays">Niveau</label>
+                  <ng-select formControlName="niveau">
+                    <ng-option *ngFor="let niv of listniveau" [value]="niv">{{niv}}</ng-option>
+                  </ng-select>
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group col-md-4">
+                  <label for="pays">Pays</label>
+                  <ng-select formControlName="pays">
+                    <ng-option *ngFor="let pays of listePays" [value]="pays">{{pays}}</ng-option>
+                  </ng-select>
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="ville">Ville</label>
+                  <input type="text" class="form-control" id="ville" placeholder="ville de scolarite" name="ville"
+                    formControlName="ville">
+                </div>
+              </div>
+              <div class="row col-md-12 justify-content-end">
+                <button type="submit" class="btn btn-primary btn-sm col-md-2 mt-2 mb-2"
+                  [disabled]="!scolariteForm.valid">Enregistrer</button>
+              </div>
+            </form>
+
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Début</th>
+                  <th scope="col">Fin</th>
+                  <th scope="col">Domaine</th>
+                  <th scope="col">Specialité</th>
+                  <th scope="col">Niveau</th>
+                  <th scope="col">Pays</th>
+                  <th scope="col">Ville</th>
+                  <th scope="col" class="alignaction"><i class="fa fa-plus-square-o curseur" aria-hidden="true"
+                      (click)="onRazScolarite()"></i>
+                  </th>
+                </tr>
+              </thead>
+              <tbody *ngIf="scolarite">
+                <tr *ngFor="let s of scolarite; let i = index;">
+                  <th scope="row">{{s.oid}}</th>
+                  <td>{{s.datedebut}}</td>
+                  <td>{{s.datefin}}</td>
+                  <td>{{s.domaine}}</td>
+                  <td>{{s.specialite}}</td>
+                  <td>{{s.niveau}}</td>
+                  <td>{{s.pays}}</td>
+                  <td>{{s.ville}}</td>
+                  <td class="alignaction"><i class="fa fa-pencil-square-o curseur" aria-hidden="true"
+                      (click)="onEditScolarite(i)"></i>
+                    <i class="fa fa-trash-o curseur" style="margin-left: 25px;" aria-hidden="true"
+                      (click)="onDellScolarite(i)"></i>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- ///////////////////////// Experience pro /////////////////////////////////// -->
+
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="panelsStayOpen-headingFour">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="false"
+            aria-controls="panelsStayOpen-collapseFour">
+            <div class="row">
+              <div class="col-1"><i class="fa fa-check-circle" aria-hidden="true"
+                  [ngClass]="Experience!='' ? 'champok': 'champmonok'"></i></div>
+              <div class="col-md-auto">Experience professionnelle</div>
+            </div>
+          </button>
+        </h2>
+        <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse"
+          aria-labelledby="panelsStayOpen-headingFour">
+          <div class="accordion-body">
+
+            <form [formGroup]="experienceForm" (ngSubmit)="onSaveExperience()">
+              <div class="row">
+                <div class="form-group col-md-4" hidden>
+                  <label for="oid">Oid</label>
+                  <input type="number" class="form-control" id="oid" placeholder="oid de scolarite" name="oid"
+                    formControlName="oid">
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group col-md-4">
+                  <label for="datedebut">Date début</label>
+                  <input type="date" class="form-control" id="datedebut" name="datedebut" formControlName="datedebut">
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="datefin">Date fin</label>
+                  <input type="date" class="form-control" id="datefin" name="datefin" formControlName="datefin">
+                </div>
+                <div class="form-group col-md-3">
+                  <label for="duree">Durée(en moi)</label>
+                  <input type="number" class="form-control" id="duree" name="duree" formControlName="duree">
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group col-md-4">
+                  <label for="pays">Pays</label>
+                  <ng-select formControlName="pays">
+                    <ng-option *ngFor="let pays of listePays" [value]="pays">{{pays}}</ng-option>
+                  </ng-select>
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="ville">Ville</label>
+                  <input type="text" class="form-control" id="ville" placeholder="ville de scolarite" name="ville"
+                    formControlName="ville">
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group col-md-4">
+                  <label for="entreprise">Entreprise</label>
+                  <input type="text" class="form-control" id="entreprise" name="entreprise"
+                    formControlName="entreprise">
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="poste">Poste</label>
+                  <input type="text" class="form-control" id="poste" name="poste" formControlName="poste">
+                </div>
+                <div class="form-group col-md-8">
+                  <label for="detail">Tâches</label>
+                  <textarea class="form-control" id="tache" rows="5" formControlName="tache" name="tache"
+                    placeholder="Liste des tâches"></textarea>
+                </div>
+              </div>
+
+              <div class="row col-md-12 justify-content-end">
+                <button type="submit" class="btn btn-primary btn-sm col-md-2 mt-2 mb-2"
+                  [disabled]="!experienceForm.valid">Enregistrer</button>
+              </div>
+            </form>
+
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Periode</th>
+                  <th scope="col">Entreprise</th>
+                  <th scope="col">Poste</th>
+                  <th scope="col">Tâche</th>
+                  <th scope="col">Pays</th>
+                  <th scope="col">Ville</th>
+                  <th scope="col" class="alignaction"><i class="fa fa-plus-square-o curseur" aria-hidden="true"
+                      (click)="onRazExperience()"></i>
+                  </th>
+                </tr>
+              </thead>
+              <tbody *ngIf="scolarite">
+                <tr *ngFor="let s of experiencepro; let i = index;">
+                  <th scope="row">{{s.oid}}</th>
+                  <td>{{s.datedebut}} Au {{s.datefin}} / ({{s.duree}}M)</td>
+                  <td>{{s.entreprise}}</td>
+                  <td>{{s.poste}}</td>
+                  <td>{{s.tache}}</td>
+                  <td>{{s.pays}}</td>
+                  <td>{{s.ville}}</td>
+                  <td class="alignaction"><i class="fa fa-pencil-square-o curseur" aria-hidden="true"
+                      (click)="onEditExperience(i)"></i>
+                    <i class="fa fa-trash-o curseur" style="margin-left: 25px;" aria-hidden="true"
+                      (click)="onDellExperience(i)"></i>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+
+
+
+
+          </div>
+        </div>
+      </div>
+
+
+      <!-- ///////////////////////////////// Langue ///////////////////////////////////// -->
+
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="panelsStayOpen-headingFive">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#panelsStayOpen-collapseFive" aria-expanded="false"
+            aria-controls="panelsStayOpen-collapseFive">
+            <div class="row">
+              <div class="col-1"><i class="fa fa-check-circle" aria-hidden="true"
+                  [ngClass]="langue!='' && loisir!='' ? 'champok': 'champmonok'"></i></div>
+              <div class="col-md-auto">Langues et loisirs</div>
+            </div>
+
+          </button>
+        </h2>
+        <div id="panelsStayOpen-collapseFive" class="accordion-collapse collapse"
+          aria-labelledby="panelsStayOpen-headingFive">
+          <div class="accordion-body">
+
+            <div class="row" *ngFor="let l of langueArray; let i=index">
+              <div class="col-md-1 " hidden>
+                <label for="oid">Oid</label>
+                <input type="number" class="form-control" id="oid" name="{{l.oid}}" [(ngModel)]="l.oid">
+              </div>
+              <div class="col-md-2">
+                <label for="pays">Langue</label>
+                <ng-select name="{{l.langue}}" [(ngModel)]="l.langue">
+                  <ng-option *ngFor="let lang of listlangue" [value]="lang">{{lang}}</ng-option>
+                </ng-select>
+
+              </div>
+              <div class="col-md-2">
+                <label for="pays">Parlée</label>
+                <ng-select name="{{l.parle}}" [(ngModel)]="l.parle">
+                  <ng-option *ngFor="let nlang of listniveaulangue" [value]="nlang">{{nlang}}</ng-option>
+                </ng-select>
+              </div>
+              <div class="col-md-2">
+                <label for="pays">Lue</label>
+                <ng-select name="{{l.lue}}" [(ngModel)]="l.lue">
+                  <ng-option *ngFor="let nlang of listniveaulangue" [value]="nlang">{{nlang}}</ng-option>
+                </ng-select>
+              </div>
+              <div class="col-md-2">
+                <label for="pays">Ecrit</label>
+                <ng-select name="{{l.ecrit}}" [(ngModel)]="l.ecrit">
+                  <ng-option *ngFor="let nlang of listniveaulangue" [value]="nlang">{{nlang}}</ng-option>
+                </ng-select>
+              </div>
+              <div class="col-md-3 pt-3">
+                <div class="row">
+                  <div class="col-md-5">
+                    <button id="val" type="submit" class="btn btn-primary btn-sm mt-2"
+                      (click)="onSaveLangue(i) ">Enregistrer</button>
+                  </div>
+                  <div class="col-md-5">
+                    <button id="val" type="submit" class="btn btn-primary btn-sm mt-2"
+                      (click)="onDellLangue(i)">Supprimer</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button type="button" class="btn btn-link" (click)="onAddLangue()">Ajouter une langue</button>
+
+
+            <div class="row mt-4">
+              <form [formGroup]="loisirForm" (ngSubmit)="onSaveLoisir()">
+                <div class="form-group col-md-4" hidden>
+                  <label for="oid">Oid</label>
+                  <input type="number" class="form-control" id="oid" placeholder="oid de scolarite" name="oid"
+                    formControlName="oid">
+                </div>
+                <div class="form-group">
+                  <label for="loisir">Loisirs</label>
+                  <textarea class="form-control" id="loisir" rows="2" formControlName="loisir" name="loisir"
+                    placeholder="Citer vos loisirs"></textarea>
+                </div>
+                <div class="col-md-6 justify-content-end">
+                  <button type="submit" class="btn btn-primary btn-sm col-md-6 mt-2 mb-2"
+                    [disabled]="!loisirForm.valid">Enregistrer</button>
+                </div>
+              </form>
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

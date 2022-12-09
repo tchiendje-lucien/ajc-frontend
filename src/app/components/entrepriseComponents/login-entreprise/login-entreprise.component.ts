@@ -5,11 +5,12 @@ import { JwtHelperService } from "@auth0/angular-jwt";
 import { EntrepriseService } from "../../../services/entrepriseServices/entreprise/entreprise.service";
 
 @Component({
-  selector: "app-login",
-  templateUrl: "./login.component.html",
-  styleUrls: ["./login.component.css"],
+  selector: 'app-login-entreprise',
+  templateUrl: './login-entreprise.component.html',
+  styleUrls: ['./login-entreprise.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginEntrepriseComponent implements OnInit {
+
   constructor(
     private formbulder: FormBuilder,
     private entrepriseServices: EntrepriseService,
@@ -68,4 +69,5 @@ export class LoginComponent implements OnInit {
       },
     });
   }
+
 }

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { UsersService } from './services/userServices/users.service';
+import { RegisterService } from './services/candidat/register.service';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +9,18 @@ import { UsersService } from './services/userServices/users.service';
 })
 export class AppComponent {
   title = 'ajc-fontend';
+  constructor(public usersService:UsersService, private registerservice:RegisterService){}
 
-  constructor(public usersService:UsersService){}
+   isAdmin(){
+    return this.registerservice.isAdmin()
+  }
+
+  isCandidat(){
+    return this.registerservice.isCandidat()
+  }
+
+  isAuthenticated(){
+    return this.registerservice.isAuthenticated()
+  }
+
 }

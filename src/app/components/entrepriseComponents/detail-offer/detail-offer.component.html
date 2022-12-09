@@ -1,0 +1,173 @@
+<main id="main">
+  <!-- ======= About Section ======= -->
+  <section id="about" class="about mt-5">
+    <div class="container" data-aos="fade-up">
+      <div class="row gx-5">
+        <div class="col">
+          <div class="p-3 border bg-light">
+            <div class="row">
+              <div class="col-md-4 border-right">
+                <div
+                  class="d-flex flex-column align-items-center text-center p-3 py-5"
+                >
+                  <img
+                    class=""
+                    width="210px"
+                    [src]="
+                      offreEmplois.image == null
+                        ? offersService.defaultOffreImage()
+                        : offersService.host + '/imageOffre/' + offreEmplois.oid
+                    "
+                  />
+                  <h5 class="font-weight-bold">{{ offreEmplois.title }}</h5>
+                  <span class="" style="color: green">{{
+                    offreEmplois.activitySectors.name
+                  }}</span>
+                </div>
+                <div class="">
+                  <p>
+                    <i
+                      class="fa fa-map-marker"
+                      aria-hidden="true"
+                      style="color: green"
+                    ></i
+                    >&nbsp;{{ offreEmplois.pays }} - {{ offreEmplois.ville }}
+                  </p>
+                </div>
+                <div>
+                  <p>
+                    <i
+                      class="fa fa-file-text-o"
+                      aria-hidden="true"
+                      style="color: green"
+                    ></i
+                    >&nbsp;{{ offreEmplois.typeContrat }} -
+                    {{ offreEmplois.typeEmploi }}
+                  </p>
+                </div>
+                <div>
+                  <p>
+                    <i
+                      class="fa fa-calendar"
+                      aria-hidden="true"
+                      style="color: green"
+                    ></i
+                    >&nbsp;Postuler avant le
+                    {{ offreEmplois.dateline | date : "dd/MM/yyyy" }}
+                  </p>
+                </div>
+              </div>
+              <div class="col-md-8 border-right">
+                <div class="p-1 py-1">
+                  <div class="card-body text-black">
+                    <div class="mb-3">
+                      <p class="lead fw-normal mb-1">Resumé de l'offre</p>
+                      <div class="p-4 bg-white">
+                        {{ offreEmplois.detail }}
+                      </div>
+                    </div>
+                    <div class="mb-3">
+                      <p class="lead fw-normal mb-1">
+                        Description de la mission
+                      </p>
+                      <div class="p-4 bg-white">
+                        <p
+                          class="font-italic mb-1"
+                          *ngFor="
+                            let missionOffre of offreEmplois.missionsOffres;
+                            let i = index
+                          "
+                        >
+                          <i
+                            class="fa fa-check-circle"
+                            aria-hidden="true"
+                            style="color: green"
+                          ></i
+                          >&nbsp; {{ missionOffre.name }}
+                        </p>
+                      </div>
+                    </div>
+                    <div class="mb-3">
+                      <p class="lead fw-normal mb-1">Profil attendu</p>
+                      <div class="p-4 bg-white">
+                        <p
+                          class="font-italic mb-1"
+                          *ngFor="
+                            let competenceOffres of offreEmplois.competenceOffres;
+                            let i = index
+                          "
+                        >
+                          <i
+                            class="fa fa-check-circle"
+                            aria-hidden="true"
+                            style="color: green"
+                          ></i
+                          >&nbsp; {{ competenceOffres.name }}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="mt-5 text-center" style="color: green">
+                    <button class="btn btn-success col-md-8" type="button">
+                      Postuler
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="p-3 border bg-light">
+            <h4 class="text-center">Offre similaire</h4>
+            <div
+              class="card mt-3"
+              style="border-radius: 15px"
+              *ngFor="let offreEmplois of offreEmploisList; let i = index"
+            >
+              <div class="card-body p-4">
+                <div class="d-flex text-black">
+                  <div class="flex-shrink-0">
+                    <img
+                      [src]="
+                        offreEmplois.image == null
+                          ? offersService.defaultOffreImage()
+                          : offersService.host +
+                            '/imageOffre/' +
+                            offreEmplois.oid
+                      "
+                      alt="Generic placeholder image"
+                      class="img-fluid"
+                      style="width: 100px; border-radius: 10px"
+                    />
+                  </div>
+                  <div class="flex-grow-1 ms-3">
+                    <h5 class="mb-1">{{ offreEmplois.title }}</h5>
+                    <p class="mb-2 pb-1" style="color: #2b2a2a">
+                      {{ offreEmplois.activitySectors.name }}
+                    </p>
+
+                    <div class="d-flex pt-1">
+                      <button
+                        type="button"
+                        class="btn btn-outline-primary me-1 flex-grow-1"
+                        (click)="view_similary_offer(offreEmplois)"
+                      >
+                        Voir plus
+                      </button>
+                      <button type="button" class="btn btn-primary flex-grow-1">
+                        Postuler
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mt-1"></div>
+  </section>
+  <!-- End About Section -->
+</main>

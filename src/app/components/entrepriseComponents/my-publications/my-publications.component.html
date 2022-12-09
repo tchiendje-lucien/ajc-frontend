@@ -1,0 +1,70 @@
+<main id="main">
+  <!-- ======= About Section ======= -->
+  <section id="about" class="about mt-5">
+    <div
+      class="container-fluid col-md-12 d-flex justify-content-center p-3"
+      data-aos="fade-up"
+    >
+      <!-- <h3>MES PUBLICATIONS</h3>  -->
+      <div class="justify-content-center"></div>
+      <div class="container profile-page">
+        <div class="row">
+          <div
+            class="col-xl-6 col-lg-7 col-md-12"
+            *ngFor="let offreEmploi of offreEmploisList; let i = index"
+          >
+            <div class="card profile-header bg-light">
+              <div class="body">
+                <div class="row">
+                  <div class="col-lg-4 col-md-4 col-12">
+                    <div class="profile-image float-md-right mt-5">
+                      <img
+                        [src]="
+                          offreEmploi.image == null
+                            ? offersService.defaultOffreImage()
+                            : offersService.host +
+                              '/imageOffre/' +
+                              offreEmploi.oid
+                        "
+                        alt=""
+                      />
+                    </div>
+                  </div>
+                  <div class="col-lg-8 col-md-8 col-12">
+                    <h4 class="m-t-0 m-b-0">
+                      <strong>{{ offreEmploi.title }}</strong>
+                    </h4>
+                    <span class="job_post">{{
+                      offreEmploi.activitySectors.name
+                    }}</span>
+                    <p>{{ offreEmploi.detail }}</p>
+                    <div class="d-flex pt-1">
+                      <a
+                        type="button"
+                        class="btn btn-outline-success me-1 flex-grow-1"
+                        [routerLink]="[
+                          '/entreprise/edit-offers/',
+                          offreEmploi.oid
+                        ]"
+                      >
+                        Editer
+                      </a>
+                      <a
+                        class="btn btn-danger flex-grow-1"
+                        (click)="supprimer_offre(offreEmploi)"
+                      >
+                        Supprimer
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mt-1"></div>
+  </section>
+  <!-- End About Section -->
+</main>

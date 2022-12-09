@@ -1,0 +1,14 @@
+fieldset, legend {
+  all: revert;
+}
+
+.reset {
+  all: revert;
+}
+
+
+.register-div {
+  border-radius: 6px;
+  box-shadow: 0 1px 8px #3c0fdf;
+  background-color: #ffffff;
+}

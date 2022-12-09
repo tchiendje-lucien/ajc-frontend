@@ -5,61 +5,10 @@
 >
   <div class="container d-flex align-items-center">
     <h5 class="logo me-auto">
-      <a href="/">Afrika Job's & Consulting</a>
+      <a href="/">AJC</a>
     </h5>
     <!-- Uncomment below if you prefer to use an image logo -->
     <!-- <a href="index.html" class="logo me-auto"><img src="./assets/img/logo.png" alt="" class="img-fluid"></a>-->
-
-    <nav id="navbar" class="navbar order-last order-lg-0">
-      <ul>
-        <li><a class="nav-link scrollto" href="/">Acceuil</a></li>
-        <li class="dropdown">
-          <a
-            ><span>Qui sommes nous?</span> <i class="bi bi-chevron-down"></i
-          ></a>
-          <ul>
-            <li><a routerLink="nos-services/placement-du-personnel">Notre vision</a></li>
-            <li><a routerLink="nos-services/management-des-rh">Nos missions</a></li>
-            <li><a routerLink="nos-services/audit-des-rh">Notre équipe</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
-          <a
-            ><span>Nos services</span> <i class="bi bi-chevron-down"></i
-          ></a>
-          <ul>
-            <li><a routerLink="nos-services/placement-du-personnel">Mise à la disposition du personnel</a></li>
-            <li><a routerLink="nos-services/management-des-rh">Management des ressources humaines</a></li>
-            <li><a routerLink="nos-services/audit-des-rh">Audit des ressources humaines</a></li>
-            <li><a routerLink="nos-services/fiscalite-administrative">Fiscalité administrative</a></li>
-            <li><a routerLink="nos-services/traning">Fomations</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
-          <a href="#"
-            ><span>Candidat</span> <i class="bi bi-chevron-down"></i
-          ></a>
-          <ul>
-            <li><a href="#">Recherche d'un emploi</a></li>
-            <li><a href="#">Depot de dossier</a></li>
-            <li><a href="#">Info et conseil</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
-          <a href="#"
-            ><span>Entreprise</span> <i class="bi bi-chevron-down"></i
-          ></a>
-          <ul>
-            <li><a href="#">Recherche de profile</a></li>
-            <li><a href="#">Demande de profil</a></li>
-            <li><a href="#">Publier une offre</a></li>
-          </ul>
-        </li>
-        <li><a class="nav-link scrollto" href="nous-contacter">Nous contacté</a></li>
-      </ul>
-      <i class="bi bi-list mobile-nav-toggle"></i>
-    </nav>
-    <!-- .navbar -->
 
     <div class="social-links">
       <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
@@ -67,11 +16,139 @@
       <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
       <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
     </div>
+    <nav id="navbar" class="navbar order-last order-lg-0 col-md-11">
+      <ul>
+        <li><a class="nav-link scrollto" href="/">Acceuil</a></li>
+        <li class="dropdown">
+          <a
+            ><span>Qui sommes nous?</span> <i class="bi bi-chevron-down"></i
+          ></a>
+          <ul>
+            <li>
+              <a routerLink="qui-sommes-nous/notre-vision">Notre vision</a>
+            </li>
+            <li>
+              <a routerLink="qui-sommes-nous/nos-missions">Nos missions</a>
+            </li>
+            <li>
+              <a routerLink="qui-sommes-nous/nos-valeurs"
+                >Nos valeurs</a
+              >
+            </li>
+            <li>
+              <a routerLink="qui-sommes-nous/notre-politique"
+                >Notre politique</a
+              >
+            </li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a><span>Nos services</span> <i class="bi bi-chevron-down"></i></a>
+          <ul>
+            <li>
+              <a routerLink="nos-services/placement-du-personnel"
+                >Mise à la disposition du personnel</a
+              >
+            </li>
+            <li>
+              <a routerLink="nos-services/management-des-rh"
+                >Management des ressources humaines</a
+              >
+            </li>
+            <li>
+              <a routerLink="nos-services/audit-des-rh"
+                >Audit des ressources humaines</a
+              >
+            </li>
+            <li>
+              <a routerLink="nos-services/fiscalite-administrative"
+                >Fiscalité administrative</a
+              >
+            </li>
+            <li><a routerLink="nos-services/fomration">Fomations</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#"
+            ><span>Candidat</span> <i class="bi bi-chevron-down"></i
+          ></a>
+          <ul>
+            <li>
+              <a routerLink="entreprise/list-offers">Recherche d'un emploi</a>
+            </li>
+            <li><a routerLink="errors/setting">Depot de dossier</a></li>
+            <li><a routerLink="errors/setting">Info et conseil</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#"
+            ><span>Entreprise</span> <i class="bi bi-chevron-down"></i
+          ></a>
+          <ul>
+            <li>
+              <a routerLink="candidate/find-profile">Recherche de profile</a>
+            </li>
+            <li><a routerLink="entreprise/ask-profile">Demande de profil</a></li>
+            <li>
+              <a routerLink="entreprise/create-offer">Publier une offre</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a class="nav-link scrollto" href="nous-contacter">Nous contacté</a>
+        </li>
+        <!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
+        <li class="nav-item dropdown float-lg-end" style="margin-left: 15%">
+          <a
+            class="nav-link dropdown-toggle text-nowrap px-3"
+            data-toggle="dropdown"
+            href="#"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            <img
+              class="user-avatar rounded-circle mr-2"
+              src="./assets/img/rh..-1024x1024.jpg"
+              width="50"
+              alt="User Avatar"
+            />
+            <span class="d-none d-md-inline-block">&nbsp; Lucien Didier</span>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-small">
+            <a class="dropdown-item" routerLink="entreprise/my-publications">
+              <i class="fa fa-book" aria-hidden="true"></i> &nbsp;Mes
+              publications</a
+            >
+            <a class="dropdown-item" routerLink="entreprise/my-profile">
+              <span
+                ><i class="fa fa-users" aria-hidden="true"></i> &nbsp;Mes
+                profil</span
+              ></a
+            >
+            <a class="dropdown-item" routerLink="errors/setting">
+              <span
+                ><i class="fa fa-user" aria-hidden="true"></i> &nbsp;Mon compte</span
+              ></a
+            >
+            <div class="dropdown-divider"></div>
+            <a
+              class="dropdown-item text-danger"
+              (click)="usersService.logout()"
+            >
+              <i class="fa fa-sign-out" aria-hidden="true"></i>Deconnexion
+            </a>
+          </ul>
+        </li>
+      </ul>
+      <i class="bi bi-list mobile-nav-toggle"></i>
+    </nav>
+    <!-- .navbar -->
   </div>
 </header>
 <!-- End Header -->
 
-<router-outlet></router-outlet>>
+<router-outlet></router-outlet>
 
 <app-footer></app-footer>
 

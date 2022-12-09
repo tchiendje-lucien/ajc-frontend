@@ -1,0 +1,189 @@
+<main id="main">
+  <!-- ======= About Section ======= -->
+  <section id="about" class="about mt-5">
+    <div class="container" data-aos="fade-up">
+      <div class="row gx-5">
+        <div class="col-md-6">
+          <div class="p-3 border bg-light">
+            <h4 class="text-center">Liste des profils chopper</h4>
+            <div class="col-md-12 p-3">
+              <div class="card mt-3" style="border-radius: 15px">
+                <div class="card-body p-4">
+                  <div class="d-flex text-black">
+                    <div class="flex-grow-1 ms-3">
+                      <h5 class="mb-1">Developpeur JAVA</h5>
+                      <div
+                        class="d-flex justify-content-start rounded-3 p-2 mb-2"
+                        style="background-color: #efefef"
+                      >
+                        <div>
+                          <p class="small text-muted mb-1">Type de contrat</p>
+                          <p class="mb-0">CDI</p>
+                        </div>
+                        <div class="px-3">
+                          <p class="small text-muted mb-1">Horaire</p>
+                          <p class="mb-0">Temps plein</p>
+                        </div>
+                        <div>
+                          <p class="small text-muted mb-1">Adresse</p>
+                          <p class="mb-0">Douala-Cameroun</p>
+                        </div>
+                      </div>
+                      <div class="d-flex pt-1">
+                        <button
+                          type="button"
+                          class="btn btn-outline-primary me-1 flex-grow-1"
+                          (click)="find_profile()"
+                        >
+                          Voir plus
+                        </button>
+                        <button
+                          type="button"
+                          class="btn btn-danger flex-grow-1"
+                        >
+                          Supprimer
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card mt-3" style="border-radius: 15px">
+                <div class="card-body p-4">
+                  <div class="d-flex text-black">
+                    <div class="flex-grow-1 ms-3">
+                      <h5 class="mb-1">Luc Walker</h5>
+                      <p class="mb-2 pb-1" style="color: #2b2a2a">
+                        Ingenieur IT
+                      </p>
+                      <div
+                        class="d-flex justify-content-start rounded-3 p-2 mb-2"
+                        style="background-color: #efefef"
+                      >
+                        <div>
+                          <p class="small text-muted mb-1">Age</p>
+                          <p class="mb-0">24 ans</p>
+                        </div>
+                        <div class="px-3">
+                          <p class="small text-muted mb-1">Pays</p>
+                          <p class="mb-0">Cameroun</p>
+                        </div>
+                        <div>
+                          <p class="small text-muted mb-1">Ville</p>
+                          <p class="mb-0">Douala</p>
+                        </div>
+                      </div>
+                      <div class="d-flex pt-1">
+                        <button
+                          type="button"
+                          class="btn btn-outline-primary me-1 flex-grow-1"
+                        >
+                          Voir plus
+                        </button>
+                        <button
+                          type="button"
+                          class="btn btn-primary flex-grow-1"
+                        >
+                          Le chopper
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <pagination-controls
+                (pageChange)="p_academicLevel = $event"
+              ></pagination-controls>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="p-3 border bg-light">
+            <h4 class="text-center">Liste des profils demander</h4>
+            <div
+              class="col-md-12 p-3"
+              *ngFor="let demandeProfil of demandeProfilList; let i = index"
+            >
+              <div class="card mt-3" style="border-radius: 15px">
+                <div class="card-body p-4">
+                  <div class="d-flex text-black">
+                    <div class="flex-grow-1 ms-3">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <h5 class="mb-1">{{ demandeProfil.poste }}</h5>
+                        </div>
+                        <div class="col-md-6">
+                          <p
+                            class="mb-1 d-flex justify-content-end text-secondary"
+                          >
+                            <small>{{
+                              demandeProfil.dateline | date : "dd/MM/yyyy"
+                            }}</small>
+                          </p>
+                        </div>
+                      </div>
+                      <div
+                        class="d-flex justify-content-start rounded-3 p-2 mb-2"
+                        style="background-color: #efefef"
+                      >
+                        <div>
+                          <p class="small text-muted mb-1">Type de contrat</p>
+                          <p class="mb-0">{{ demandeProfil.typeContrat }}</p>
+                        </div>
+                        <div class="px-3">
+                          <p class="small text-muted mb-1">Horaire</p>
+                          <p class="mb-0">{{ demandeProfil.horaireTravail }}</p>
+                        </div>
+                        <div class="px-3">
+                          <p class="small text-muted mb-1">N° de place</p>
+                          <p class="mb-0">{{ demandeProfil.nbProfil }}</p>
+                        </div>
+                        <div>
+                          <p class="small text-muted mb-1">Adresse</p>
+                          <p class="mb-0">{{ demandeProfil.lieuTravail }}</p>
+                        </div>
+                      </div>
+                      <div class="d-flex pt-1">
+                        <button
+                          type="button"
+                          class="btn btn-warning me-1 flex-grow-1"
+                          [routerLink]="[
+                            '/entreprise/edit-ask-profile/',
+                            demandeProfil.oid
+                          ]"
+                          [disabled]="
+                            todayDate >= demandeProfil.dateline ? true : false
+                          "
+                        >
+                          Editer
+                        </button>
+                        <button
+                          type="button"
+                          class="btn btn-danger flex-grow-1"
+                          [disabled]="
+                            todayDate >= demandeProfil.dateline ? true : false
+                          "
+                        >
+                          Annuler
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <pagination-controls
+                (pageChange)="p_academicLevel = $event"
+              ></pagination-controls>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mt-1"></div>
+  </section>
+  <!-- End About Section -->
+</main>

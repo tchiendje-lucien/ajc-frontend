@@ -1,0 +1,313 @@
+<main id="main">
+  <!-- ======= About Section ======= -->
+  <section id="about" class="about mt-5">
+    <div
+      class="container-fluid shadow-div col-md-8 d-flex justify-content-center register-div p-3"
+      data-aos="fade-up"
+    >
+      <div class="justify-content-center col-md-12">
+        <div style="background-color: rgb(16, 28, 82)">
+          <h4 class="text-center text-white"><b>MODIFICATION D'UNE DEMANDE DE PROFIL</b></h4>
+        </div>
+        <!-- <p class="text-center">
+          Si vous possedez deja un compte pour votre entreprise, connectez vous
+          en cliquant sur
+          <a routerLink="/entreprise/login" class="text-primary">
+            se connecter</a
+          >
+        </p> -->
+        <div class="col-md-12">
+          <form
+            #localFormOffre="ngForm"
+            enctype="multipart/form-data"
+            [formGroup]="askProfileForm"
+            #localAskProfileForm="ngForm"
+            (ngSubmit)="update_ask_profile()"
+          >
+            <div class="card-body">
+              <div class="form-group row">
+                <div class="col-sm-4">
+                  <label for="email">Poste solicité</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Poste solicité"
+                    formControlName="poste"
+                  />
+                  <input
+                    type="hidden"
+                    class="form-control"
+                    placeholder="Poste solicité"
+                    formControlName="oid"
+                  />
+                  <span
+                    *ngIf="
+                      localAskProfileForm.submitted && poste_askProfile.invalid
+                    "
+                    style="color: red"
+                    >champ obligatoire</span
+                  >
+                </div>
+
+                <div class="col-sm-4">
+                  <label for="email">Experience</label>
+                  <ng-select
+                    [items]="experienceTab"
+                    bindLabel="name"
+                    bindValue="id"
+                    placeholder="selectionner"
+                    formControlName="experience"
+                  >
+                  </ng-select>
+                  <span
+                    *ngIf="
+                      localAskProfileForm.submitted &&
+                      experience_askProfile.invalid
+                    "
+                    style="color: red"
+                    >champ obligatoire</span
+                  >
+                </div>
+                <div class="col-sm-4">
+                  <label for="email">Date limite</label>
+                  <input
+                    type="date"
+                    class="form-control"
+                    placeholder="Date limite"
+                    formControlName="dateline"
+                    [min]="todayDate"
+                  />
+                  <span
+                    *ngIf="
+                      localAskProfileForm.submitted &&
+                      dateline_askProfile.invalid
+                    "
+                    style="color: red"
+                    >champ obligatoire</span
+                  >
+                </div>
+              </div>
+              <div class="form-group row mt-3">
+                <div class="col-sm-4">
+                  <label for="email">Domaine de formation</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Domaine de formation"
+                    formControlName="domaineFormaton"
+                  />
+                  <span
+                    *ngIf="
+                      localAskProfileForm.submitted &&
+                      domaineFormaton_askProfile.invalid
+                    "
+                    style="color: red"
+                    >champ obligatoire</span
+                  >
+                </div>
+
+                <div class="col-sm-4">
+                  <label for="email">Niveau academique</label>
+                  <ng-select
+                    [items]="schooLevelTab"
+                    bindLabel="name"
+                    bindValue="id"
+                    placeholder="selectionner"
+                    formControlName="nivScolaire"
+                  >
+                  </ng-select>
+                  <span
+                    *ngIf="
+                      localAskProfileForm.submitted &&
+                      nivScolaire_askProfile.invalid
+                    "
+                    style="color: red"
+                    >champ obligatoire</span
+                  >
+                </div>
+                <div class="col-sm-4">
+                  <label for="email">Sexe</label>
+                  <ng-select
+                    [items]="civilityTab"
+                    bindLabel="name"
+                    bindValue="id"
+                    placeholder="selectionner"
+                    formControlName="civiliy"
+                  >
+                  </ng-select>
+                  <span
+                    *ngIf="
+                      localAskProfileForm.submitted &&
+                      civiliy_askProfile.invalid
+                    "
+                    style="color: red"
+                    >champ obligatoire</span
+                  >
+                </div>
+              </div>
+              <div class="form-group row mt-3">
+                <div class="col-sm-4">
+                  <label for="email">Statut matrimonial</label>
+                  <ng-select
+                    [items]="matrimonialStatusTab"
+                    bindLabel="name"
+                    bindValue="id"
+                    placeholder="selectionner"
+                    formControlName="statutMatrimonial"
+                  >
+                  </ng-select>
+                  <span
+                    *ngIf="
+                      localAskProfileForm.submitted &&
+                      statutMatrimonial_askProfile.invalid
+                    "
+                    style="color: red"
+                    >champ obligatoire</span
+                  >
+                </div>
+
+                <div class="col-sm-4">
+                  <label for="email">N° de place</label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    placeholder="N° de place"
+                    formControlName="nbProfil"
+                  />
+                  <span
+                    *ngIf="
+                      localAskProfileForm.submitted &&
+                      nbProfil_askProfile.invalid
+                    "
+                    style="color: red"
+                    >champ obligatoire</span
+                  >
+                </div>
+                <div class="col-sm-4">
+                  <label for="email">Type de contrat</label>
+                  <ng-select
+                    [items]="contratTypeTab"
+                    bindLabel="name"
+                    bindValue="id"
+                    placeholder="selectionner"
+                    formControlName="typeContrat"
+                  >
+                  </ng-select>
+                  <span
+                    *ngIf="
+                      localAskProfileForm.submitted &&
+                      typeContrat_askProfile.invalid
+                    "
+                    style="color: red"
+                    >champ obligatoire</span
+                  >
+                </div>
+              </div>
+              <div class="form-group row mt-3">
+                <div class="col-sm-4">
+                  <label for="email">Horaire de travail</label>
+                  <ng-select
+                    [items]="horaireTab"
+                    bindLabel="name"
+                    bindValue="id"
+                    placeholder="selectionner"
+                    formControlName="horaireTravail"
+                  >
+                  </ng-select>
+                  <span
+                    *ngIf="
+                      localAskProfileForm.submitted &&
+                      horaireTravail_askProfile.invalid
+                    "
+                    style="color: red"
+                    >champ obligatoire</span
+                  >
+                </div>
+
+                <div class="col-sm-4">
+                  <label for="email">Action</label>
+                  <ng-select
+                    [items]="actionTab"
+                    bindLabel="name"
+                    bindValue="id"
+                    placeholder="selectionner"
+                    formControlName="recrutement"
+                  >
+                  </ng-select>
+                  <span
+                    *ngIf="
+                      localAskProfileForm.submitted &&
+                      recrutement_askProfile.invalid
+                    "
+                    style="color: red"
+                    >champ obligatoire</span
+                  >
+                </div>
+                <div class="col-sm-4">
+                  <label for="email">Lieu de travail</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Lieu de travail"
+                    formControlName="lieuTravail"
+                  />
+                  <span
+                    *ngIf="
+                      localAskProfileForm.submitted &&
+                      lieuTravail_askProfile.invalid
+                    "
+                    style="color: red"
+                    >champ obligatoire</span
+                  >
+                </div>
+              </div>
+              <div class="form-group row mt-3">
+                <div class="col-sm-6">
+                  <label for="email">Competences solicité</label>
+                  <textarea
+                    class="form-control"
+                    id="exampleFormControlTextarea1"
+                    rows="2"
+                    placeholder="Veillez saisir une texte"
+                    formControlName="competence"
+                  ></textarea>
+                </div>
+                <div class="col-sm-6">
+                  <label for="email">Description</label>
+                  <textarea
+                    class="form-control"
+                    id="exampleFormControlTextarea1"
+                    rows="2"
+                    placeholder="Veillez saisir une texte"
+                    formControlName="description"
+                  ></textarea>
+                </div>
+              </div>
+              <div class="row col-md-12">
+                <div class="d-flex justify-content-start mt-5 col-md-6">
+                  <button
+                    type="submit"
+                    class="btn btn-danger btn-rounded col-md-4"
+                    (click)="delete_ask_profile()"
+                  >
+                    Annuler
+                  </button>
+                </div>
+                <div class="d-flex justify-content-end mt-5 col-md-6">
+                  <button
+                    type="submit"
+                    class="btn btn-success btn-rounded col-md-4"
+                  >
+                    Enreigistrer
+                  </button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="mt-1"></div>
+  </section>
+  <!-- End About Section -->
+</main>

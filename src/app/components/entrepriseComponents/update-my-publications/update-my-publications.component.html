@@ -1,0 +1,555 @@
+<main id="main">
+  <!-- ======= About Section ======= -->
+  <section id="about" class="about mt-5">
+    <div
+      class="container-fluid shadow-div col-md-6 d-flex justify-content-center register-div p-3"
+      data-aos="fade-up"
+    >
+      <div class="justify-content-center">
+        <h4 class="text-center"><b>MODIFICATION D'UNE OFFRE D'EMPLOI</b></h4>
+        <!-- <p class="text-center">
+          Si vous possedez deja un compte pour votre entreprise, connectez vous
+          en cliquant sur
+          <a routerLink="/entreprise/login" class="text-primary">
+            se connecter</a
+          >
+        </p> -->
+        <div class="col-md-12">
+          <form
+            #localFormOffre="ngForm"
+            enctype="multipart/form-data"
+            [formGroup]="offreForm"
+          >
+            <div
+              class="alert alert-success alert-dismissible fade show success-div"
+              role="alert"
+              *ngIf="offreResponse.status == true"
+            >
+              {{ offreResponse.message }}
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="alert"
+                aria-label="Close"
+              ></button>
+            </div>
+            <!-- <div
+              class="alert alert-danger error-div"
+              role="alert"
+              *ngIf="responseClass.status == false"
+            >
+              {{ responseClass.message }}
+            </div> -->
+            <!-- <div
+              class="alert alert-success"
+              role="alert"
+              *ngIf="responseClass.status == true"
+            >
+              {{ errorClass.message }}
+            </div> -->
+            <div class="card-body">
+              <div class="mt-4" style="background-color: rgb(16, 28, 82)">
+                <h6 class="text-white text-center">
+                  <b>Description de l'offre</b>
+                </h6>
+              </div>
+              <div class="form-group row">
+                <div class="col-sm-4">
+                  <label for="email">Titre de l'offre *</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Titre de l'offre"
+                    formControlName="title"
+                  />
+                  <span *ngIf="title_offre.invalid" style="color: red"
+                    >champ obligatoire</span
+                  >
+                  <input
+                    type="hidden"
+                    class="form-control"
+                    formControlName="oid"
+                  />
+                </div>
+                <div class="col-sm-4">
+                  <label for="email">N° de place *</label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    placeholder="N° de place"
+                    formControlName="nbPlace"
+                  />
+                  <span *ngIf="nbPlace_offre.invalid" style="color: red"
+                    >champ obligatoire</span
+                  >
+                </div>
+                <div class="col-sm-4">
+                  <label for="email">Date limite</label>
+                  <input
+                    type="date"
+                    class="form-control"
+                    placeholder="Date limite"
+                    formControlName="dateline"
+                    [min]="todayDate"
+                  />
+                  <span *ngIf="dateline_offre.invalid" style="color: red"
+                    >champ obligatoire</span
+                  >
+                </div>
+              </div>
+              <div class="form-group row mt-3">
+                <div class="col-sm-4">
+                  <label for="email">Type d'emploi</label>
+                  <select
+                    class="form-select"
+                    aria-label="Default select example"
+                    formControlName="typeEmploi"
+                  >
+                    <option
+                      class="dropdown-item"
+                      disabled
+                      selected
+                      value="undefined"
+                    >
+                      Selectionner
+                    </option>
+                    <option value="Temps plein">Temps plein</option>
+                    <option value="Temps partiel">Temps partiel</option>
+                  </select>
+                  <span
+                    *ngIf="
+                      this.offreForm.get('typeEmploi').value == 'undefined'
+                    "
+                    style="color: red"
+                    >champ obligatoire</span
+                  >
+                </div>
+                <div class="col-sm-4">
+                  <label for="email">Type de contrat</label>
+                  <select
+                    class="form-select"
+                    aria-label="Default select example"
+                    formControlName="typeContrat"
+                  >
+                    <option
+                      class="dropdown-item"
+                      disabled
+                      selected
+                      value="undefined"
+                    >
+                      Selectionner
+                    </option>
+                    <option value="CDD">CDD</option>
+                    <option value="CDI">CDI</option>
+                  </select>
+                  <span
+                    *ngIf="
+                      this.offreForm.get('typeContrat').value == 'undefined'
+                    "
+                    style="color: red"
+                    >champ obligatoire</span
+                  >
+                </div>
+                <div class="col-sm-4">
+                  <label for="email">Secteur d'activité *</label>
+                  <select
+                    class="form-select"
+                    aria-label="Default select example"
+                    formControlName="activitySectors"
+                  >
+                    <option
+                      class="dropdown-item"
+                      disabled
+                      selected
+                      value="undefined"
+                    >
+                      Selectionner
+                    </option>
+                    <option
+                      *ngFor="
+                        let activitySectors of activitySectorsList;
+                        let i = index
+                      "
+                      value="{{ activitySectors.oid }}"
+                    >
+                      {{ activitySectors.name }}
+                    </option>
+                  </select>
+                  <span
+                    *ngIf="
+                      this.offreForm.get('activitySectors').value == 'undefined'
+                    "
+                    style="color: red"
+                    >champ obligatoire</span
+                  >
+                </div>
+              </div>
+              <div class="form-group row mt-3">
+                <div class="col-sm-4">
+                  <label for="email">Pays *</label>
+                  <select
+                    class="form-select"
+                    aria-label="Default select example"
+                    formControlName="pays"
+                  >
+                    <option
+                      class="dropdown-item"
+                      disabled
+                      selected
+                      value="undefined"
+                    >
+                      Selectionner
+                    </option>
+                    <option
+                      *ngFor="let pays of paysList; let i = index"
+                      value=" {{ pays }}"
+                    >
+                      {{ pays }}
+                    </option>
+                  </select>
+                  <span
+                    *ngIf="this.offreForm.get('pays').value == 'undefined'"
+                    style="color: red"
+                    >champ obligatoire</span
+                  >
+                </div>
+                <div class="col-sm-4">
+                  <label for="email">Villes</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Ville"
+                    formControlName="villes"
+                  />
+                  <span *ngIf="villes_offre.invalid" style="color: red"
+                    >champ obligatoire</span
+                  >
+                </div>
+                <div class="col-sm-4">
+                  <label for="email">Image</label>
+                  <input
+                    type="file"
+                    class="form-control"
+                    placeholder="Identifiant"
+                    formControlName="image"
+                    (change)="onFileChangedLogo($event)"
+                  />
+                  <span [hidden]="file_statut" style="color: red"
+                    >Format jpeg requit</span
+                  >
+                  <!-- <div>
+                    <span
+                      *ngIf="
+                        localFormRegister.submitted &&
+                        registerForm.hasError('passwordNotMatch')
+                      "
+                      style="color: red"
+                      >Les mot de passe sont differents</span
+                    >
+                  </div> -->
+                </div>
+              </div>
+              <div class="form-group row mt-3">
+                <div class="col-sm-12">
+                  <label for="email">Detail de l'offre</label>
+                  <textarea
+                    class="form-control"
+                    id="exampleFormControlTextarea1"
+                    rows="2"
+                    placeholder="Veillez saisir une texte"
+                    formControlName="detail"
+                  ></textarea>
+                </div>
+              </div>
+              <div class="row col-md-12">
+                <div class="d-flex justify-content-start mt-5 col-md-6">
+                  <button
+                    type="submit"
+                    class="btn btn-danger btn-rounded col-md-4"
+                    (click)="supprimer_offre()"
+                  >
+                    Supprimer
+                  </button>
+                </div>
+                <div class="d-flex justify-content-end mt-5 col-md-6">
+                  <button
+                    type="submit"
+                    class="btn btn-success btn-rounded col-md-4"
+                    (click)="update_offres()"
+                  >
+                    Enreigistrer
+                  </button>
+                </div>
+              </div>
+              <!-- <div class="d-flex pt-1 mt-4">
+                <a class="btn btn-danger me-1 flex-grow-1" (click)="supprimer_offre()"> Supprimer </a>
+                <a
+                  type="button"
+                  class="btn btn-success flex-grow-1"
+                  (click)="update_offres()"
+                >
+                  Enreigistrer
+                </a>
+              </div> -->
+            </div>
+          </form>
+          <div class="card-body">
+            <div class="mt-4" style="background-color: rgb(16, 28, 82)">
+              <h6 class="text-white text-center">
+                <b>Mission</b>
+              </h6>
+            </div>
+            <div
+              class="alert alert-success alert-dismissible fade show success-mission-div"
+              role="alert"
+              *ngIf="missionResponse.status == true"
+            >
+              {{ missionResponse.message }}
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="alert"
+                aria-label="Close"
+                #closebutton
+              ></button>
+            </div>
+            <div *ngFor="let missionOffre of missionOffreList; let i = index">
+              <div class="row">
+                <div class="col-md-10">
+                  <label for="email">Libelle de la mission</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Libelle de la mission"
+                    name="{{ missionOffre.name }}"
+                    [(ngModel)]="missionOffre.name"
+                  />
+                </div>
+                <div class="d-flex pt-1 col-md-1 mt-4">
+                  <button
+                    type="button"
+                    class="btn btn-warning me-1 flex-grow-1"
+                    (click)="update_missionOffre(missionOffre)"
+                  >
+                    <i class="fa fa-edit"></i>
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-danger flex-grow-1"
+                    (click)="delete_missionOffre(missionOffre)"
+                  >
+                    <i class="fa fa-trash"></i>
+                  </button>
+                </div>
+              </div>
+              <!-- <span [hidden]="updateMissionErrorState" style="color: red"
+                >Champs obligatoire</span
+              > -->
+            </div>
+            <h5 class="text-center mt-5">Nouvelle(s) mission(s)</h5>
+            <div *ngFor="let mission of missionTab; let i = index">
+              <div class="row">
+                <div class="col-md-10">
+                  <label for="email">Libelle de la mission</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Libelle de la mission"
+                    name="{{ mission.name }}"
+                    [(ngModel)]="mission.name"
+                  />
+                </div>
+                <div class="d-flex pt-1 col-md-1 mt-4">
+                  <button
+                    type="button"
+                    class="btn btn-success me-1 flex-grow-1"
+                    (click)="save_mission(mission, i)"
+                  >
+                    <i class="fa fa-save"></i>
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-danger flex-grow-1"
+                    (click)="deleteMissionRow(i)"
+                  >
+                    <i class="fa fa-trash"></i>
+                  </button>
+                </div>
+                <!-- <div class="col-md-1 mt-4">
+                  <label for="email"></label>
+                  <button
+                    type="button"
+                    class="btn btn-success "
+                    (click)="addMission()"
+                  >
+                  <i class="fa fa-edit"></i>
+                  </button>
+                </div>
+                <div class="col-md-1 mt-4">
+                  <label for="email"></label>
+                  <button
+                    type="button"
+                    class="btn btn-danger "
+                    (click)="addMission()"
+                  >
+                   <i class="fa fa-trash"></i>
+                  </button>
+                </div> -->
+                <!-- <div class="col d-flex justify-content-end mt-4">
+                  <button
+                    type="button"
+                    class="btn-close mr-auto"
+                    aria-label="Close"
+                    (click)="deleteMissionRow(i)"
+                  >
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div> -->
+              </div>
+              <span [hidden]="missionErrorState" style="color: red"
+                >Champs obligatoire</span
+              >
+            </div>
+            <div class="mt-3">
+              <button
+                type="button"
+                class="btn btn-primary mb-2 col-md-2"
+                (click)="addMission()"
+              >
+                Ajouter
+              </button>
+            </div>
+          </div>
+
+          <div class="card-body">
+            <div class="mt-4" style="background-color: rgb(16, 28, 82)">
+              <h6 class="text-white text-center">
+                <b>Competence solicitées</b>
+              </h6>
+            </div>
+            <div
+              class="alert alert-success alert-dismissible fade show success-competence-div"
+              role="alert"
+              *ngIf="competenceResponse.status == true"
+            >
+              {{ competenceResponse.message }}
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="alert"
+                aria-label="Close"
+                #closebutton
+              ></button>
+            </div>
+            <div
+              class="row"
+              *ngFor="let competenceOffre of competenceOffreList; let i = index"
+            >
+              <div class="col-md-10">
+                <label for="email">Libelle de la competence</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Libelle de la mission"
+                  name="{{ competenceOffre.name }}"
+                  [(ngModel)]="competenceOffre.name"
+                />
+              </div>
+              <div class="d-flex pt-1 col-md-1 mt-4">
+                <button
+                  type="button"
+                  class="btn btn-warning me-1 flex-grow-1"
+                  (click)="update_competence(competenceOffre)"
+                >
+                  <i class="fa fa-edit"></i>
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-danger flex-grow-1"
+                  (click)="delete_competence(competenceOffre)"
+                >
+                  <i class="fa fa-trash"></i>
+                </button>
+              </div>
+            </div>
+            <h5 class="text-center mt-5">Nouvelle(s) competence(s)</h5>
+            <div *ngFor="let competence of competenceTab; let i = index">
+              <div class="row">
+                <div class="col-md-10">
+                  <label for="email">Libelle de la competence</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Libelle de la competence"
+                    name="{{ competence.name }}"
+                    [(ngModel)]="competence.name"
+                  />
+                </div>
+                <div class="d-flex pt-1 col-md-1 mt-4">
+                  <button
+                    type="button"
+                    class="btn btn-success me-1 flex-grow-1"
+                    (click)="save_competence(competence, i)"
+                  >
+                    <i class="fa fa-save"></i>
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-danger flex-grow-1"
+                    (click)="deleteCompetenceRow(i)"
+                  >
+                    <i class="fa fa-trash"></i>
+                  </button>
+                </div>
+                <!-- <div class="col-md-1 mt-4">
+                  <label for="email"></label>
+                  <button
+                    type="button"
+                    class="btn btn-success "
+                    (click)="addMission()"
+                  >
+                  <i class="fa fa-edit"></i>
+                  </button>
+                </div>
+                <div class="col-md-1 mt-4">
+                  <label for="email"></label>
+                  <button
+                    type="button"
+                    class="btn btn-danger "
+                    (click)="addMission()"
+                  >
+                   <i class="fa fa-trash"></i>
+                  </button>
+                </div> -->
+                <!-- <div class="col d-flex justify-content-end mt-4">
+                  <button
+                    type="button"
+                    class="btn-close mr-auto"
+                    aria-label="Close"
+                    (click)="deleteMissionRow(i)"
+                  >
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div> -->
+              </div>
+              <span [hidden]="competenceErrorState" style="color: red"
+                >Champs obligatoire</span
+              >
+            </div>
+            <div class="mt-3">
+              <button
+                type="button"
+                class="btn btn-primary mb-2 col-md-2"
+                (click)="addCompetence()"
+              >
+                Ajouter
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mt-1"></div>
+  </section>
+  <!-- End About Section -->
+</main>

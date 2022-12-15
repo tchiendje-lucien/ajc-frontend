@@ -42,6 +42,8 @@ import { UpdateAskProfileComponent } from './components/entrepriseComponents/upd
 import { SetcvComponent } from './components/candidat/setcv/setcv.component';
 import { LoginEntrepriseComponent } from './components/entrepriseComponents/login-entreprise/login-entreprise.component';
 import { LoginComponent } from "./components/candidat/login/login.component";
+import { MyAccountComponent } from './components/entrepriseComponents/my-account/my-account.component';
+import { UpdateMyAccountComponent } from './components/entrepriseComponents/update-my-account/update-my-account.component';
 
 
 @NgModule({
@@ -82,6 +84,8 @@ import { LoginComponent } from "./components/candidat/login/login.component";
     RegisterComponent,
     SetcvComponent,
     LoginEntrepriseComponent,
+    MyAccountComponent,
+    UpdateMyAccountComponent,
   ],
   imports: [
     BrowserModule,

@@ -10,7 +10,7 @@ export class EntrepriseAccount {
   another_activitySector: string;
   adress: string;
   pays: string;
-  villes: string;
+  ville: string;
   state: boolean;
   isDelete: boolean;
   logo: string;
@@ -19,5 +19,5 @@ export class EntrepriseAccount {
   activitySectors: ActivitySectors;
   users: Users;
   respoEntreprises: Array<RespoEntreprise>;
-  demandeProfil: Array<DemandeProfil>;
+  // demandeProfil: Array<DemandeProfil>;
 }

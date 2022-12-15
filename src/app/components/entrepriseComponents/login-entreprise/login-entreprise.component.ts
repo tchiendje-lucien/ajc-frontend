@@ -3,14 +3,18 @@ import { FormBuilder, FormControl, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { JwtHelperService } from "@auth0/angular-jwt";
 import { EntrepriseService } from "../../../services/entrepriseServices/entreprise/entreprise.service";
+import * as $ from "jquery";
 
 @Component({
-  selector: 'app-login-entreprise',
-  templateUrl: './login-entreprise.component.html',
-  styleUrls: ['./login-entreprise.component.css']
+  selector: "app-login-entreprise",
+  templateUrl: "./login-entreprise.component.html",
+  styleUrls: ["./login-entreprise.component.css"],
 })
 export class LoginEntrepriseComponent implements OnInit {
-
+  loginError = {
+    message: null,
+    status: null,
+  };
   constructor(
     private formbulder: FormBuilder,
     private entrepriseServices: EntrepriseService,
@@ -44,14 +48,23 @@ export class LoginEntrepriseComponent implements OnInit {
       this.entrepriseServices.login(user).subscribe({
         next: (response) => {
           let token = response.headers.get("Authorization");
+          let statusCode = response.headers.get("status");
           localStorage.setItem("token", token);
           // this.find_user()
           this.router.navigate(["candidate/find-profile"]);
-          // console.log(token);
+          console.log(response);
           // console.log(localStorage.getItem("token"));
         },
         error: (err) => {
-          console.log(err.error);
+          // let statusCode = err.headers.get("status");
+          // console.log(statusCode);
+          this.loginError.status = 403;
+          this.loginError.message = "Identifiant ou mot de passe erroné";
+          $(".error-div").show();
+          setTimeout(function () {
+            $(".error-div").hide();
+          }, 5000);
+          console.log(err);
         },
       });
     } else {
@@ -69,5 +82,4 @@ export class LoginEntrepriseComponent implements OnInit {
       },
     });
   }
-
 }

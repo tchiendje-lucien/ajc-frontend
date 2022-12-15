@@ -30,8 +30,11 @@ export class HttpInterceptorServiceService implements HttpInterceptor {
         if (err.status === 401) {
           this.usersService.logout();
         }
-        if (err.status === 403) {
-          this.router.navigate(["errors/forbidden"]);
+        // if (err.status === 403) {
+        //   this.router.navigate(["errors/forbidden"]);
+        // }
+        if (err.status === 404) {
+          this.router.navigate(["errors/not-fond"]);
         }
         const error = err.error.message || err.statusText;
         return throwError(error);

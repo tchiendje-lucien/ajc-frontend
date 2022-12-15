@@ -44,9 +44,22 @@
                       >Identifiant ou mot de passe erroné</span
                     >
                   </div> -->
+                  <div
+                    class="alert alert-danger alert-dismissible fade show error-div"
+                    role="alert"
+                    *ngIf="loginError.status == 403"
+                  >
+                    {{ loginError.message }}
+                    <button
+                      type="button"
+                      class="btn-close"
+                      data-bs-dismiss="alert"
+                      aria-label="Close"
+                    ></button>
+                  </div>
                   <div class="form-group d-flex justify-content-center">
                     <div class="col-sm-8">
-                      <label for="email">Identifiant *</label>
+                      <label for="email">Identifiant</label>
                       <input
                         type="text"
                         class="form-control"

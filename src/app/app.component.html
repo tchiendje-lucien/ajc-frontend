@@ -31,9 +31,7 @@
               <a routerLink="qui-sommes-nous/nos-missions">Nos missions</a>
             </li>
             <li>
-              <a routerLink="qui-sommes-nous/nos-valeurs"
-                >Nos valeurs</a
-              >
+              <a routerLink="qui-sommes-nous/nos-valeurs">Nos valeurs</a>
             </li>
             <li>
               <a routerLink="qui-sommes-nous/notre-politique"
@@ -88,7 +86,9 @@
             <li>
               <a routerLink="candidate/find-profile">Recherche de profile</a>
             </li>
-            <li><a routerLink="entreprise/ask-profile">Demande de profil</a></li>
+            <li>
+              <a routerLink="entreprise/ask-profile">Demande de profil</a>
+            </li>
             <li>
               <a routerLink="entreprise/create-offer">Publier une offre</a>
             </li>
@@ -98,7 +98,11 @@
           <a class="nav-link scrollto" href="nous-contacter">Nous contacté</a>
         </li>
         <!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
-        <li class="nav-item dropdown float-lg-end" style="margin-left: 15%">
+        <li
+          class="nav-item dropdown float-lg-end"
+          style="margin-left: 15%"
+          *ngIf="isAuthenticatedEntreprise() && users.role == 'Entreprise'"
+        >
           <a
             class="nav-link dropdown-toggle text-nowrap px-3"
             data-toggle="dropdown"
@@ -109,11 +113,19 @@
           >
             <img
               class="user-avatar rounded-circle mr-2"
-              src="./assets/img/rh..-1024x1024.jpg"
+              [src]="
+                users.entrepriseAccount.logo == null
+                  ? entrepriseService.defaultEntrepriseImage()
+                  : entrepriseServices.host +
+                    '/imageEntreprise/' +
+                    users.entrepriseAccount.oid
+              "
               width="50"
               alt="User Avatar"
             />
-            <span class="d-none d-md-inline-block">&nbsp; Lucien Didier</span>
+            <span class="d-none d-md-inline-block"
+              >&nbsp; {{ users.entrepriseAccount.name }}</span
+            >
           </a>
           <ul class="dropdown-menu dropdown-menu-small">
             <a class="dropdown-item" routerLink="entreprise/my-publications">
@@ -126,9 +138,10 @@
                 profil</span
               ></a
             >
-            <a class="dropdown-item" routerLink="errors/setting">
+            <a class="dropdown-item" routerLink="entreprise/my-account">
               <span
-                ><i class="fa fa-user" aria-hidden="true"></i> &nbsp;Mon compte</span
+                ><i class="fa fa-user" aria-hidden="true"></i> &nbsp;Mon
+                compte</span
               ></a
             >
             <div class="dropdown-divider"></div>

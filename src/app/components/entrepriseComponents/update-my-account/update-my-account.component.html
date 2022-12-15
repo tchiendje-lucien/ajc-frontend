@@ -1,0 +1,641 @@
+<main id="main">
+  <!-- ======= About Section ======= -->
+  <section id="about" class="about mt-5">
+    <div
+      class="container-fluid shadow-div col-md-6 d-flex justify-content-center register-div p-3"
+      data-aos="fade-up"
+    >
+      <div class="justify-content-center">
+        <h4 class="text-center">
+          <b>MODIFICATION DES INFORMATIONS DE VOTRE ENTREPRISE</b>
+        </h4>
+        <!-- <p class="text-center">
+          Si vous possedez deja un compte pour votre entreprise, connectez vous
+          en cliquant sur
+          <a routerLink="/entreprise/login" class="text-primary">
+            se connecter</a
+          >
+        </p> -->
+        <div class="col-md-12">
+          <div class="card-body">
+            <div class="mt-4" style="background-color: rgb(16, 28, 82)">
+              <h6 class="text-white text-center">
+                <b>Informations d'identification</b>
+              </h6>
+            </div>
+            <form
+              #localFormUpdtUsername="ngForm"
+              [formGroup]="updtUsernameForm"
+              enctype="multipart/form-data"
+              (ngSubmit)="update_username()"
+            >
+              <div
+                class="alert alert-danger alert-dismissible fade show identifiant-div"
+                role="alert"
+                *ngIf="updtIdentifiantResponse.status == false"
+              >
+                {{ updtIdentifiantResponse.message }}
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="alert"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div
+                class="alert alert-success alert-dismissible fade show identifiant-div"
+                role="alert"
+                *ngIf="updtIdentifiantResponse.status == true"
+              >
+                {{ updtIdentifiantResponse.message }}
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="alert"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="form-group row">
+                <div class="col-sm-8">
+                  <label for="email">Identifiant</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Identifiant"
+                    formControlName="entrepriseId"
+                  />
+                  <input
+                    type="hidden"
+                    class="form-control"
+                    formControlName="oid"
+                  />
+                  <span
+                    *ngIf="
+                      localFormUpdtUsername.submitted &&
+                      entrepriseId_register.invalid
+                    "
+                    style="color: red"
+                    >champ obligatoire</span
+                  >
+                </div>
+                <div class="col-sm-4 mt-4">
+                  <button
+                    type="submit"
+                    class="btn btn-success btn-rounded col-md-12"
+                  >
+                    Enreigistrer
+                  </button>
+                </div>
+              </div>
+            </form>
+            <form
+              #localFormUpdtPwd="ngForm"
+              [formGroup]="updtPwdForm"
+              enctype="multipart/form-data"
+              (ngSubmit)="update_password()"
+            >
+              <div class="form-group row mt-3">
+                <div class="col-sm-4">
+                  <label for="email">Ancien mot de passe</label>
+                  <input
+                    type="password"
+                    class="form-control"
+                    placeholder="Ancien mot de passe"
+                    formControlName="old_password"
+                  />
+                  <input
+                    type="hidden"
+                    class="form-control"
+                    formControlName="oid"
+                  />
+                  <span
+                    *ngIf="
+                      localFormUpdtPwd.submitted &&
+                      old_password_register.invalid
+                    "
+                    style="color: red"
+                    >champ obligatoire</span
+                  >
+                </div>
+                <div class="col-sm-4">
+                  <label for="email">Nouveau mot de passe</label>
+                  <input
+                    type="password"
+                    class="form-control"
+                    placeholder="Nouveau mot de passe"
+                    formControlName="new_password"
+                  />
+                  <div>
+                    <span
+                      *ngIf="
+                        localFormUpdtPwd.submitted &&
+                        new_password_register.invalid
+                      "
+                      style="color: red"
+                      >champ obligatoire</span
+                    >
+                  </div>
+                  <div>
+                    <span
+                      *ngIf="
+                        localFormUpdtPwd.submitted &&
+                        updtPwdForm.get('new_password').hasError('minlength')
+                      "
+                      style="color: red"
+                      >Le mot de passe doit contenir au moins 8 caratère</span
+                    >
+                  </div>
+                </div>
+                <div class="col-sm-4 mt-4">
+                  <button
+                    type="submit"
+                    class="btn btn-success btn-rounded col-md-12"
+                  >
+                    Enreigistrer
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="card-body">
+            <div class="mt-4" style="background-color: rgb(16, 28, 82)">
+              <h6 class="text-white text-center">
+                <b>Informations sur l'entreprise</b>
+              </h6>
+            </div>
+
+            <form
+              #localFormRegister="ngForm"
+              [formGroup]="registerForm"
+              enctype="multipart/form-data"
+              (ngSubmit)="update_entreprise()"
+            >
+              <div
+                class="alert alert-danger"
+                role="alert"
+                *ngIf="errorClass.status == false"
+              >
+                {{ errorClass.message }}
+              </div>
+              <div
+                class="alert alert-danger alert-dismissible fade show success-div"
+                role="alert"
+                *ngIf="responseClass.status == false"
+              >
+                {{ responseClass.message }}
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="alert"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div
+                class="alert alert-success alert-dismissible fade show success-div"
+                role="alert"
+                *ngIf="responseClass.status == true"
+              >
+                {{ responseClass.message }}
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="alert"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="form-group row">
+                <div class="col-sm-4">
+                  <label for="email">Nom de l'entreprise *</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Nom de l'entreprise"
+                    formControlName="name"
+                  />
+                  <input
+                    type="hidden"
+                    class="form-control"
+                    formControlName="oid"
+                  />
+                  <span
+                    *ngIf="localFormRegister.submitted && name_register.invalid"
+                    style="color: red"
+                    >champ obligatoire</span
+                  >
+                </div>
+                <div class="col-sm-4">
+                  <label for="email">Raison sociale *</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Raison sociale"
+                    formControlName="social_reason"
+                  />
+                  <span
+                    *ngIf="
+                      localFormRegister.submitted &&
+                      social_reason_register.invalid
+                    "
+                    style="color: red"
+                    >champ obligatoire</span
+                  >
+                </div>
+                <div class="col-sm-4">
+                  <label for="email">Secteur d'activité *</label>
+                  <!-- <ng-select
+                  [items]="nationalityList"
+                  bindLabel="name"
+                  placeholder="Selectionner"
+                  appendTo="body"
+                  [searchable]="true"
+                  [clearable]="true"
+                  class="form-control"
+                  formControlName="nationality"
+                  >
+                  </ng-select> -->
+                  <select
+                    class="form-select"
+                    aria-label="Default select example"
+                    formControlName="activitySectors"
+                  >
+                    <option
+                      class="dropdown-item"
+                      disabled
+                      selected
+                      value="undefined"
+                    >
+                      Selectionner
+                    </option>
+                    <option
+                      *ngFor="
+                        let activitySectors of activitySectorsList;
+                        let i = index
+                      "
+                      value="{{ activitySectors.oid }}"
+                    >
+                      {{ activitySectors.name }}
+                    </option>
+                  </select>
+                  <span
+                    *ngIf="
+                      localFormRegister.submitted &&
+                      this.registerForm.get('activitySectors').value ==
+                        'undefined'
+                    "
+                    style="color: red"
+                    >champ obligatoire</span
+                  >
+                </div>
+              </div>
+              <div class="form-group row mt-3">
+                <div class="col-sm-4">
+                  <label for="email">Autre secteur</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Autre secteur"
+                    formControlName="another_activitySector"
+                  />
+                  <!-- <span
+                    *ngIf="localForm.submitted && phone_cdt.invalid"
+                    style="color: red"
+                    >champ obligatoire</span
+                  > -->
+                </div>
+                <div class="col-sm-4">
+                  <label for="email">Pays *</label>
+                  <!-- <ng-select
+                    [items]="activitySectorsList"
+                    bindLabel="name"
+                    bindValue="oid"
+                    class="form-select"
+                    placeholder="cloix"
+                  >
+                  </ng-select> -->
+                  <!-- {{ cars | json }} -->
+                  <select
+                    class="form-select"
+                    aria-label="Default select example"
+                    formControlName="pays"
+                  >
+                    <option
+                      class="dropdown-item"
+                      disabled
+                      selected
+                      value="undefined"
+                    >
+                      Selectionner
+                    </option>
+                    <option
+                      *ngFor="let pays of paysList; let i = index"
+                      value=" {{ pays }}"
+                    >
+                      {{ pays }}
+                    </option>
+                  </select>
+                  <span
+                    *ngIf="
+                      localFormRegister.submitted &&
+                      this.registerForm.get('pays').value == 'undefined'
+                    "
+                    style="color: red"
+                    >champ obligatoire</span
+                  >
+                </div>
+                <div class="col-sm-4">
+                  <label for="email">Ville *</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Ville"
+                    formControlName="ville"
+                  />
+                  <span
+                    *ngIf="
+                      localFormRegister.submitted && villes_register.invalid
+                    "
+                    style="color: red"
+                    >champ obligatoire</span
+                  >
+                </div>
+              </div>
+              <div class="form-group row mt-3">
+                <div class="col-sm-4">
+                  <label for="email">Adresse</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Confirmer mot de passe"
+                    formControlName="adress"
+                  />
+                  <!-- <span
+                  *ngIf="localFormRegister.submitted && phone_cdt.invalid"
+                  style="color: red"
+                  >champ obligatoire</span
+                  > -->
+                </div>
+                <div class="col-sm-8">
+                  <label for="email">Logo</label>
+                  <input
+                    type="file"
+                    class="form-control"
+                    placeholder="Confirmer mot de passe"
+                    formControlName="logo"
+                    (change)="onFileChangedLogo($event)"
+                  />
+                  <span [hidden]="file_statut" style="color: red"
+                    >Format jpeg requit</span
+                  >
+                </div>
+              </div>
+              <div class="d-flex justify-content-end mt-3">
+                <button
+                  type="submit"
+                  class="btn btn-success btn-rounded col-md-4"
+                >
+                  Enreigistrer
+                </button>
+              </div>
+            </form>
+          </div>
+          <div class="card-body">
+            <div class="mt-4" style="background-color: rgb(16, 28, 82)">
+              <h6 class="text-white text-center">
+                <b>Personne(s) à contacter</b>
+              </h6>
+            </div>
+            <div
+              class="alert alert-danger alert-dismissible fade show respo-div"
+              role="alert"
+              *ngIf="updtIRespoResponse.status == false"
+            >
+              {{ updtIRespoResponse.message }}
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="alert"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div
+              class="alert alert-success alert-dismissible fade show respo-div"
+              role="alert"
+              *ngIf="updtIRespoResponse.status == true"
+            >
+              {{ updtIRespoResponse.message }}
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="alert"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div
+              class="col-md-12"
+              *ngFor="let respo of respoEntrepriseList; let i = index"
+            >
+              <form
+                #localrespoEntrepriseForm="ngForm"
+                [formGroup]="respoEntrepriseForm"
+                enctype="multipart/form-data"
+              >
+                <!-- <div class="col d-flex justify-content-end">
+                <button
+                  type="button"
+                  class="btn-close mr-auto"
+                  aria-label="Close"
+                  (click)="deleteRespoRow(i)"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                </div> -->
+                <div class="form-group row mt-4">
+                  <div class="col-sm-4">
+                    <label for="email">Civilité *</label>
+                    <select
+                      class="form-select"
+                      aria-label="Default select example"
+                      formControlName="civility"
+                      name="{{ respo.civility }}"
+                      [(ngModel)]="respo.civility"
+                    >
+                      <option
+                        class="dropdown-item"
+                        disabled
+                        selected
+                        value="undefined"
+                      >
+                        Selectionner
+                      </option>
+                      <option value="Mr">Mr</option>
+                      <option value="Mme">Mme</option>
+                      <option value="Mlle">Mlle</option>
+                    </select>
+                    <span
+                      *ngIf="
+                        localrespoEntrepriseForm.submitted &&
+                        this.respoEntrepriseForm.get('civility').value ==
+                          'undefined'
+                      "
+                      style="color: red"
+                      >champ obligatoire</span
+                    >
+                  </div>
+                  <div class="col-sm-4">
+                    <label for="email">Nom *</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Votre nom"
+                      formControlName="username"
+                      name="{{ respo.name }}"
+                      [(ngModel)]="respo.name"
+                    />
+                    <input
+                      type="hidden"
+                      class="form-control"
+                      formControlName="oid"
+                      name="{{ respo.oid }}"
+                      [(ngModel)]="respo.oid"
+                    />
+                    <span
+                      *ngIf="
+                        localrespoEntrepriseForm.submitted &&
+                        username_register.invalid
+                      "
+                      style="color: red"
+                      >champ obligatoire</span
+                    >
+                  </div>
+                  <div class="col-sm-4">
+                    <label for="email">Prenom</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Votre prenom"
+                      formControlName="surname"
+                      name="{{ respo.surname }}"
+                      [(ngModel)]="respo.surname"
+                    />
+                    <span
+                      *ngIf="
+                        localrespoEntrepriseForm.submitted &&
+                        surname_register.invalid
+                      "
+                      style="color: red"
+                      >champ obligatoire</span
+                    >
+                  </div>
+                </div>
+                <div class="form-group row mt-4">
+                  <div class="col-sm-4">
+                    <label for="email">E-mail *</label>
+                    <input
+                      type="email"
+                      class="form-control"
+                      placeholder="Votre email"
+                      formControlName="email"
+                      name="{{ respo.email }}"
+                      [(ngModel)]="respo.email"
+                    />
+                    <div>
+                      <span
+                        *ngIf="
+                          localrespoEntrepriseForm.submitted &&
+                          email_register.invalid &&
+                          !respoEntrepriseForm.get('email').hasError('email')
+                        "
+                        style="color: red"
+                        >champ obligatoire</span
+                      >
+                    </div>
+                    <div>
+                      <span
+                        *ngIf="
+                          localrespoEntrepriseForm.submitted &&
+                          respoEntrepriseForm.get('email').hasError('email')
+                        "
+                        style="color: red"
+                        >Mauvais format</span
+                      >
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <label for="email">Fonction *</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Fonction"
+                      formControlName="function"
+                      name="{{ respo.function }}"
+                      [(ngModel)]="respo.function"
+                    />
+                    <span
+                      *ngIf="
+                        localrespoEntrepriseForm.submitted &&
+                        function_register.invalid
+                      "
+                      style="color: red"
+                      >champ obligatoire</span
+                    >
+                  </div>
+                  <div class="col-sm-4">
+                    <label for="email">Numero fixe</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Numero fixe"
+                      formControlName="numFixe"
+                      name="{{ respo.numFixe }}"
+                      [(ngModel)]="respo.numFixe"
+                    />
+                    <span
+                      *ngIf="
+                        localrespoEntrepriseForm.submitted &&
+                        numFixe_register.invalid
+                      "
+                      style="color: red"
+                      >champ obligatoire</span
+                    >
+                  </div>
+                </div>
+                <div class="form-group row mt-4">
+                  <div class="col-sm-4">
+                    <label for="email">Numero portable</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Numero portable"
+                      formControlName="numPortable"
+                      name="{{ respo.numPortable }}"
+                      [(ngModel)]="respo.numPortable"
+                    />
+                  </div>
+                  <!-- <div class="col-sm-4 mt-4">
+                    <button
+                      type="button"
+                      class="btn btn-danger btn-rounded col-md-12"
+                    >
+                      Supprimer
+                    </button>
+                  </div> -->
+                  <div class="col-sm-4 mt-4">
+                    <button
+                      type="submit"
+                      class="btn btn-success btn-rounded col-md-12"
+                      (click)="save_respoEntreprise(respo)"
+                    >
+                      Enreigistrer
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mt-1"></div>
+  </section>
+  <!-- End About Section -->
+</main>

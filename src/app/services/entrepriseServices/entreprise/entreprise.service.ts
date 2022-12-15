@@ -7,6 +7,9 @@ import { myConst } from "../../../models/entreprise/settings";
 })
 export class EntrepriseService {
   headers = { Authorization: "Bearer " + localStorage.getItem("token") };
+
+  public host = "http://localhost:8080";
+
   constructor(private http: HttpClient) {}
 
   create_entreprise(entreprise: any) {
@@ -45,4 +48,13 @@ export class EntrepriseService {
     return this.http.get(myConst.url.concat("/find_user"));
   }
 
+  imageEntreprise(oid_entreprise) {
+    return this.http.get(
+      myConst.url.concat("/imageEntreprise/" + oid_entreprise)
+    );
+  }
+
+  defaultEntrepriseImage() {
+    return "assets/img/alternance.png";
+  }
 }

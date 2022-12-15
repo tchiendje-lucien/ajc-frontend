@@ -1,0 +1,161 @@
+<main id="main">
+  <!-- ======= About Section ======= -->
+  <section id="about" class="about mt-5">
+    <div
+      class="container-fluid col-md-8 d-flex justify-content-center p-3 bg-light"
+      data-aos="fade-up"
+    >
+      <div class="container py-5">
+        <div class="row">
+          <div class="col-lg-4">
+            <div class="card mb-4">
+              <div class="card-body text-center">
+                <img
+                  [src]="
+                    users.entrepriseAccount.logo == null
+                      ? 'assets/img/alternance.png'
+                      : entrepriseServices.host +
+                        '/imageEntreprise/' +
+                        users.entrepriseAccount.oid
+                  "
+                  alt="avatar"
+                  class="rounded-circle img-fluid"
+                  style="width: 150px"
+                />
+                <h5 class="my-3">
+                  {{ users.entrepriseAccount.name }}
+                </h5>
+                <p class="text-muted mb-1">
+                  {{ users.entrepriseAccount.activitySectors.name }}
+                </p>
+                <p class="text-muted mb-4">
+                  {{ users.entrepriseAccount.pays }} -
+                  {{ users.entrepriseAccount.ville }}
+                </p>
+                <div class="d-flex justify-content-center mb-2">
+                  <a
+                    type="button"
+                    class="btn btn-warning"
+                    routerLink="/entreprise/edit-my-account"
+                  >
+                    Modifier
+                  </a>
+                  <button type="button" class="btn btn-danger ms-1">
+                    Supprimer
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-8">
+            <div class="card mb-4">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-sm-3">
+                    <p class="mb-0">Identifiant</p>
+                  </div>
+                  <div class="col-sm-9">
+                    <p class="text-muted mb-0">
+                      {{ users.identifiant }}
+                    </p>
+                  </div>
+                </div>
+                <hr />
+                <div class="row">
+                  <div class="col-sm-3">
+                    <p class="mb-0">Raison sociale</p>
+                  </div>
+                  <div class="col-sm-9">
+                    <p class="text-muted mb-0">
+                      {{ users.entrepriseAccount.social_reason }}
+                    </p>
+                  </div>
+                </div>
+                <hr />
+                <div class="row">
+                  <div class="col-sm-3">
+                    <p class="mb-0">Autre secteur</p>
+                  </div>
+                  <div class="col-sm-9">
+                    <p class="text-muted mb-0">
+                      {{ users.entrepriseAccount.social_reason }}
+                    </p>
+                  </div>
+                </div>
+                <hr />
+                <div class="row">
+                  <div class="col-sm-3">
+                    <p class="mb-0">Adresse</p>
+                  </div>
+                  <div class="col-sm-9">
+                    <p class="text-muted mb-0">
+                      {{ users.entrepriseAccount.adress }}
+                    </p>
+                  </div>
+                </div>
+                <hr />
+                <div class="row">
+                  <div class="col-sm-3">
+                    <p class="mb-0">Date de creation</p>
+                  </div>
+                  <div class="col-sm-9">
+                    <p class="text-muted mb-0">
+                      {{ users.entrepriseAccount.created_at }}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div *ngFor="let respo of respoList; let i = index">
+              <div class="card mb-4">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <p class="mb-0">Nom</p>
+                    </div>
+                    <div class="col-sm-9">
+                      <p class="text-muted mb-0">
+                        {{ respo.civility }}. {{ respo.name }}
+                        {{ respo.surname }}
+                      </p>
+                    </div>
+                  </div>
+                  <hr />
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <p class="mb-0">Email</p>
+                    </div>
+                    <div class="col-sm-9">
+                      <p class="text-muted mb-0">{{ respo.email }}</p>
+                    </div>
+                  </div>
+                  <hr />
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <p class="mb-0">Fonction</p>
+                    </div>
+                    <div class="col-sm-9">
+                      <p class="text-muted mb-0">{{ respo.function }}</p>
+                    </div>
+                  </div>
+                  <hr />
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <p class="mb-0">N° de téléphone</p>
+                    </div>
+                    <div class="col-sm-9">
+                      <p class="text-muted mb-0">
+                        {{ respo.numFixe }} / {{ respo.numPortable }}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mt-1"></div>
+  </section>
+</main>

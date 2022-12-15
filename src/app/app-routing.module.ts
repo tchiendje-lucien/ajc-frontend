@@ -31,6 +31,7 @@ import { MesProfilsComponent } from './components/entrepriseComponents/mes-profi
 import { UpdateAskProfileComponent } from './components/entrepriseComponents/update-ask-profile/update-ask-profile.component';
 import { SetcvComponent } from './components/candidat/setcv/setcv.component';
 import { LoginEntrepriseComponent } from './components/entrepriseComponents/login-entreprise/login-entreprise.component';
+import { RegistercandidatComponent } from "./components/candidat/registercandidat/registercandidat.component";
 
 const appRoutes: Routes = [
   // {
@@ -142,12 +143,12 @@ const appRoutes: Routes = [
   },
   {
     path: "entreprise/list-offers",
-    canActivate: [AuthService],
+    //canActivate: [AuthService],
     component: ListOfferComponent,
   },
   {
     path: "entreprise/detail-offers/:offre_oid",
-    canActivate: [AuthService],
+    // canActivate: [AuthService],
     component: DetailOfferComponent,
   },
   {
@@ -179,13 +180,21 @@ const appRoutes: Routes = [
     component: LoginComponent,
   },
    {
-    path: "candidat/registrecanditate",
-    component: RegisterComponent,
+    path: "candidat/register-canditate",
+    component: RegistercandidatComponent,
   },
    {
     path: "candidat/setcv",
     component: SetcvComponent
   },
+
+
+  ///// Candidate route
+  {
+    path: "candidat/login",
+    component: LoginComponent
+  },
+
 ];
 
 @NgModule({

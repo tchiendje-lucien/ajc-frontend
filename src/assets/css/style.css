@@ -13,6 +13,7 @@ body {
   color: #444;
   /* font-family: "Open Sans", sans-serif; */
   font-family: "Didact Gothic", sans-serif;
+  /* font-family: "Constantia", sans-serif; */
 }
 
 a {
@@ -44,6 +45,7 @@ h5,
 h6 {
   /* font-family: "Montserrat", sans-serif; */
   font-family: "Didact Gothic", sans-serif;
+   /* font-family: "Constantia", sans-serif; */
   font-weight: 400;
   margin: 0 0 20px 0;
   padding: 0;
@@ -203,6 +205,7 @@ h6 {
   padding: 10px 0 10px 24px;
   /* font-family: "Montserrat", sans-serif; */
   font-family: "Didact Gothic", sans-serif;
+   /* font-family: "Constantia", sans-serif; */
   text-transform: uppercase;
   font-size: 14px;
   font-weight: 600;
@@ -468,6 +471,7 @@ h6 {
 #hero .intro-info .btn-services {
   /* font-family: "Montserrat", sans-serif; */
   font-family: "Didact Gothic", sans-serif;
+   /* font-family: "Constantia", sans-serif; */
   font-size: 13px;
   font-weight: 600;
   text-transform: uppercase;
@@ -503,6 +507,7 @@ section {
   position: relative;
   /* font-family: "Montserrat", sans-serif; */
   font-family: "Didact Gothic", sans-serif;
+   /* font-family: "Constantia", sans-serif; */
 }
 
 .section-header p {
@@ -540,6 +545,7 @@ section {
   color: #413e66;
   /* font-family: "Montserrat", sans-serif; */
   font-family: "Didact Gothic", sans-serif;
+   /* font-family: "Constantia", sans-serif; */
   font-weight: 700;
 }
 
@@ -705,6 +711,7 @@ section {
 #why-us .counters span {
   /* font-family: "Montserrat", sans-serif; */
   font-family: "Didact Gothic", sans-serif;
+   /* font-family: "Constantia", sans-serif; */
   font-weight: bold;
   font-size: 48px;
   display: block;
@@ -716,6 +723,7 @@ section {
   margin: 0 0 20px 0;
   /* font-family: "Montserrat", sans-serif; */
   font-family: "Didact Gothic", sans-serif;
+   /* font-family: "Constantia", sans-serif; */
   font-size: 14px;
   color: #8a87b6;
 }
@@ -749,6 +757,7 @@ section {
 #call-to-action .cta-btn {
   /* font-family: "Montserrat", sans-serif; */
   font-family: "Didact Gothic", sans-serif;
+   /* font-family: "Constantia", sans-serif; */
   font-weight: 700;
   font-size: 16px;
   letter-spacing: 1px;
@@ -1416,6 +1425,7 @@ section {
   line-height: 1;
   /* font-family: "Montserrat", sans-serif; */
   font-family: "Didact Gothic", sans-serif;
+   /* font-family: "Constantia", sans-serif; */
   color: #413e66;
   font-weight: 400;
   letter-spacing: 3px;
@@ -1428,6 +1438,7 @@ section {
   margin-bottom: 0;
   /* font-family: "Montserrat", sans-serif; */
   font-family: "Didact Gothic", sans-serif;
+   /* font-family: "Constantia", sans-serif; */
   color: #535074;
 }
 
@@ -1655,4 +1666,9 @@ section {
 
 #footer .credits a:hover {
   color: #0a98c0;
+}
+
+
+.text-justify {
+  text-align: justify;
 }

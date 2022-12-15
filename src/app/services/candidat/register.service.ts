@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpBackend, HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from "@auth0/angular-jwt";
 
@@ -7,195 +7,107 @@ import { JwtHelperService } from "@auth0/angular-jwt";
 })
 export class RegisterService {
 
+  private customHttpClient: HttpClient;
   public host="http://localhost:8080"
 
-  candidatserv;
   jwt: string;
   candidat : string;
   roles : Array<string>;
   tokenType: String = 'Bearer'
+  userconnectservice;
 
-  constructor( private http:HttpClient) { }
+  constructor( private http:HttpClient, backend: HttpBackend) { 
+    this.customHttpClient = new HttpClient(backend);
+  }
 
   add_candidat(candidat){
     //console.log(candidat)
-     return this.http.post(this.host+"/add_candidat",candidat)
+     return this.customHttpClient.post(this.host+"/add_candidat",candidat)
   }
   edit_candidat(candidat){
     //console.log(candidat)
      return this.http.post(this.host+"/edit_candidat",candidat)
   }
 
-  load_candidat(user){
-
+  load_candidat(){
     console.log(this.tokenType+' '+this.getToken())
-  //  let header = {
-  //  headers: new HttpHeaders({ 'Authorization': this.tokenType+' '+this.getToken()})
-  //  }
-    
-    const h = new HttpHeaders()
-    .append('Authorization', this.tokenType+' '+this.getToken())
-    .append('Access-Control-Allow-Origin', '*');
- 
-    const header = { headers: h};
-   
-
-    return this.http.get(this.host+"/load_candidat",header)
+    return this.http.get(this.host+"/load_candidat")
   }
 
   connexion_candidat(user){
-    //console.log(candidat)
-    //let params = new HttpParams().set("paramName",paramValue).set("paramName2", paramValue2);
-    // return this.http.post(this.host+"connexion_candidat",user)
     return this.http.post(this.host+"/login",user,{observe:'response'})
      
   }
 
+  candidatConnected(){
+    return this.userconnectservice.prenom
+  }
+
 
   add_competence(competence){    
-      const header = new HttpHeaders()
-    .set('Content-Type', 'application/json')
-    .set('Authorization', this.tokenType+' '+this.getToken())
-    .set('Access-Control-Allow-Origin', '*');
-    const headers = { headers: header };
-    return this.http.post(this.host+"/add_competence",competence,headers)
+    return this.http.post(this.host+"/add_competence",competence)
   }
 
     edit_competence(competence){    
-      const header = new HttpHeaders()
-    .set('Content-Type', 'application/json')
-    .set('Authorization', this.tokenType+' '+this.getToken())
-    .set('Access-Control-Allow-Origin', '*');
-    const headers = { headers: header };
-    return this.http.post(this.host+"/edit_competence",competence,headers)
+    return this.http.post(this.host+"/edit_competence",competence)
   }
 
   dell_competence(competence){    
-      const header = new HttpHeaders()
-    .set('Content-Type', 'application/json')
-    .set('Authorization', this.tokenType+' '+this.getToken())
-    .set('Access-Control-Allow-Origin', '*');
-    const headers = { headers: header };
-    return this.http.post(this.host+"/dell_competence",competence,headers)
+    return this.http.post(this.host+"/dell_competence",competence)
   }
 
   add_scolarite(scolarite){    
-      const header = new HttpHeaders()
-    .set('Content-Type', 'application/json')
-    .set('Authorization', this.tokenType+' '+this.getToken())
-    .set('Access-Control-Allow-Origin', '*');
-    const headers = { headers: header };
-    return this.http.post(this.host+"/add_scolarite",scolarite,headers)
+    return this.http.post(this.host+"/add_scolarite",scolarite)
   }
   
   edit_scolarite(scolarite){    
-      const header = new HttpHeaders()
-    .set('Content-Type', 'application/json')
-    .set('Authorization', this.tokenType+' '+this.getToken())
-    .set('Access-Control-Allow-Origin', '*');
-    const headers = { headers: header };
-    return this.http.post(this.host+"/edit_scolarite",scolarite,headers)
+    return this.http.post(this.host+"/edit_scolarite",scolarite)
   }
 
      dell_scolarite(scolarite){    
-      const header = new HttpHeaders()
-    .set('Content-Type', 'application/json')
-    .set('Authorization', this.tokenType+' '+this.getToken())
-    .set('Access-Control-Allow-Origin', '*');
-    const headers = { headers: header };
-    return this.http.post(this.host+"/dell_scolarite",scolarite,headers)
+    return this.http.post(this.host+"/dell_scolarite",scolarite)
   }
 
 
   add_experience(experience){    
-      const header = new HttpHeaders()
-    .set('Content-Type', 'application/json')
-    .set('Authorization', this.tokenType+' '+this.getToken())
-    .set('Access-Control-Allow-Origin', '*');
-    const headers = { headers: header };
-    return this.http.post(this.host+"/add_experience",experience,headers)
+    return this.http.post(this.host+"/add_experience",experience)
   }
   
   edit_experience(experience){    
-      const header = new HttpHeaders()
-    .set('Content-Type', 'application/json')
-    .set('Authorization', this.tokenType+' '+this.getToken())
-    .set('Access-Control-Allow-Origin', '*');
-    const headers = { headers: header };
-    return this.http.post(this.host+"/edit_experience",experience,headers)
+    return this.http.post(this.host+"/edit_experience",experience)
   }
 
      dell_experience(experience){    
-      const header = new HttpHeaders()
-    .set('Content-Type', 'application/json')
-    .set('Authorization', this.tokenType+' '+this.getToken())
-    .set('Access-Control-Allow-Origin', '*');
-    const headers = { headers: header };
-    return this.http.post(this.host+"/dell_experience",experience,headers)
+    return this.http.post(this.host+"/dell_experience",experience)
   }
 
   add_loisir(loisir){    
-      const header = new HttpHeaders()
-    .set('Content-Type', 'application/json')
-    .set('Authorization', this.tokenType+' '+this.getToken())
-    .set('Access-Control-Allow-Origin', '*');
-    const headers = { headers: header };
-    return this.http.post(this.host+"/add_loisir",loisir,headers)
+    return this.http.post(this.host+"/add_loisir",loisir)
   }
   
   edit_loisir(loisir){    
-      const header = new HttpHeaders()
-    .set('Content-Type', 'application/json')
-    .set('Authorization', this.tokenType+' '+this.getToken())
-    .set('Access-Control-Allow-Origin', '*');
-    const headers = { headers: header };
-    return this.http.post(this.host+"/edit_loisir",loisir,headers)
+    return this.http.post(this.host+"/edit_loisir",loisir)
   }
 
      dell_loisir(loisir){    
-      const header = new HttpHeaders()
-    .set('Content-Type', 'application/json')
-    .set('Authorization', this.tokenType+' '+this.getToken())
-    .set('Access-Control-Allow-Origin', '*');
-    const headers = { headers: header };
-    return this.http.post(this.host+"/dell_loisir",loisir,headers)
+    return this.http.post(this.host+"/dell_loisir",loisir)
   }
 
    add_langue(langue){    
-      const header = new HttpHeaders()
-    .set('Content-Type', 'application/json')
-    .set('Authorization', this.tokenType+' '+this.getToken())
-    .set('Access-Control-Allow-Origin', '*');
-    const headers = { headers: header };
-    return this.http.post(this.host+"/add_langue",langue,headers)
+    return this.http.post(this.host+"/add_langue",langue)
   }
   
   edit_langue(langue){    
-      const header = new HttpHeaders()
-    .set('Content-Type', 'application/json')
-    .set('Authorization', this.tokenType+' '+this.getToken())
-    .set('Access-Control-Allow-Origin', '*');
-    const headers = { headers: header };
-    return this.http.post(this.host+"/edit_langue",langue,headers)
+    return this.http.post(this.host+"/edit_langue",langue)
   }
 
      dell_langue(langue){    
-      const header = new HttpHeaders()
-    .set('Content-Type', 'application/json')
-    .set('Authorization', this.tokenType+' '+this.getToken())
-    .set('Access-Control-Allow-Origin', '*');
-    const headers = { headers: header };
-    return this.http.post(this.host+"/dell_langue",langue,headers)
+    return this.http.post(this.host+"/dell_langue",langue)
   }
 
 
   list_countrie(){    
-      const header = new HttpHeaders()
-    .set('Content-Type', 'application/json')
-    .set('Authorization', this.tokenType+' '+this.getToken())
-    .set('Access-Control-Allow-Origin', '*');
-    const headers = { headers: header };
-    return this.http.get(this.host+"/list_pays",headers)
+    return this.customHttpClient.get(this.host+"/list_pays")
   }
 
 
@@ -217,8 +129,17 @@ export class RegisterService {
       let jwtHelper=new JwtHelperService();
       let objJWT=jwtHelper.decodeToken(this.jwt);
       this.candidat=objJWT.obj;
+      //console.log(this.candidat)
       this.roles=objJWT.roles;
+  }
 
+  loadToken(){
+    
+     this.jwt = localStorage.getItem('token')
+    // console.log(this.jwt)
+     if(this.jwt != null){
+          this.parseJWT()
+     }  
   }
 
   isAdmin(){
@@ -230,7 +151,19 @@ export class RegisterService {
   }
 
   isAuthenticated(){
+    this.loadToken()
     return this.roles
+  }
+
+  toDeconnected(){
+    localStorage.removeItem('token')
+    this.initParam()
+  }
+
+  initParam(){
+    this.jwt=undefined;
+    this.candidat=undefined
+    this.roles=undefined
   }
 
 

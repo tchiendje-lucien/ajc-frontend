@@ -1,8 +1,5 @@
 <!-- ======= Header ======= -->
-<header
-  id="header"
-  class="fixed-top d-flex align-items-center header-transparent bg-light"
->
+<header id="header" class="fixed-top d-flex align-items-center header-transparent bg-light">
   <div class="container d-flex align-items-center">
     <h5 class="logo me-auto">
       <a href="/">AJC</a>
@@ -20,9 +17,7 @@
       <ul>
         <li><a class="nav-link scrollto" href="/">Acceuil</a></li>
         <li class="dropdown">
-          <a
-            ><span>Qui sommes nous?</span> <i class="bi bi-chevron-down"></i
-          ></a>
+          <a><span>Qui sommes nous?</span> <i class="bi bi-chevron-down"></i></a>
           <ul>
             <li>
               <a routerLink="qui-sommes-nous/notre-vision">Notre vision</a>
@@ -31,14 +26,10 @@
               <a routerLink="qui-sommes-nous/nos-missions">Nos missions</a>
             </li>
             <li>
-              <a routerLink="qui-sommes-nous/nos-valeurs"
-                >Nos valeurs</a
-              >
+              <a routerLink="qui-sommes-nous/nos-valeurs">Nos valeurs</a>
             </li>
             <li>
-              <a routerLink="qui-sommes-nous/notre-politique"
-                >Notre politique</a
-              >
+              <a routerLink="qui-sommes-nous/notre-politique">Notre politique</a>
             </li>
           </ul>
         </li>
@@ -46,44 +37,34 @@
           <a><span>Nos services</span> <i class="bi bi-chevron-down"></i></a>
           <ul>
             <li>
-              <a routerLink="nos-services/placement-du-personnel"
-                >Mise à la disposition du personnel</a
-              >
+              <a routerLink="nos-services/placement-du-personnel">Mise à la disposition du personnel</a>
             </li>
             <li>
-              <a routerLink="nos-services/management-des-rh"
-                >Management des ressources humaines</a
-              >
+              <a routerLink="nos-services/management-des-rh">Management des ressources humaines</a>
             </li>
             <li>
-              <a routerLink="nos-services/audit-des-rh"
-                >Audit des ressources humaines</a
-              >
+              <a routerLink="nos-services/audit-des-rh">Audit des ressources humaines</a>
             </li>
             <li>
-              <a routerLink="nos-services/fiscalite-administrative"
-                >Fiscalité administrative</a
-              >
+              <a routerLink="nos-services/fiscalite-administrative">Fiscalité administrative</a>
             </li>
             <li><a routerLink="nos-services/fomration">Fomations</a></li>
           </ul>
         </li>
         <li class="dropdown">
-          <a href="#"
-            ><span>Candidat</span> <i class="bi bi-chevron-down"></i
-          ></a>
+          <a href="#"><span>Candidat</span> <i class="bi bi-chevron-down"></i></a>
           <ul>
             <li>
-              <a routerLink="candidat/login">Recherche d'un emploi</a>
+              <a [routerLink]="(!isAuthenticated() ? 'candidat/login' : 'entreprise/list-offers')">Trouver un emploi</a>
             </li>
-            <li><a routerLink="errors/setting">Depot de dossier</a></li>
-            <li><a routerLink="errors/setting">Info et conseil</a></li>
+            <li><a routerLink=" errors/setting">Deposer votre dossier</a>
+            </li>
+            <li><a routerLink="errors/setting">Candidature spontanée</a></li>
+            <li><a *ngIf="!isAuthenticated()" routerLink="candidat/login">Se connecter</a></li>
           </ul>
         </li>
         <li class="dropdown">
-          <a href="#"
-            ><span>Entreprise</span> <i class="bi bi-chevron-down"></i
-          ></a>
+          <a href="#"><span>Entreprise</span> <i class="bi bi-chevron-down"></i></a>
           <ul>
             <li>
               <a routerLink="candidate/find-profile">Recherche de profile</a>
@@ -98,48 +79,50 @@
           <a class="nav-link scrollto" href="nous-contacter">Nous contacté</a>
         </li>
         <!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
-        <li class="nav-item dropdown float-lg-end" style="margin-left: 15%">
-          <a
-            class="nav-link dropdown-toggle text-nowrap px-3"
-            data-toggle="dropdown"
-            href="#"
-            role="button"
-            aria-haspopup="true"
-            aria-expanded="false"
-          >
-            <img
-              class="user-avatar rounded-circle mr-2"
-              src="./assets/img/rh..-1024x1024.jpg"
-              width="50"
-              alt="User Avatar"
-            />
+        <li *ngIf="isAuthenticated() && !isCandidat()" class="nav-item dropdown float-lg-end" style="margin-left: 15%">
+          <a class="nav-link dropdown-toggle text-nowrap px-3" data-toggle="dropdown" href="#" role="button"
+            aria-haspopup="true" aria-expanded="false">
+            <img class="user-avatar rounded-circle mr-2" src="./assets/img/rh..-1024x1024.jpg" width="50"
+              alt="User Avatar" />
             <span class="d-none d-md-inline-block">&nbsp; Lucien Didier</span>
           </a>
           <ul class="dropdown-menu dropdown-menu-small">
             <a class="dropdown-item" routerLink="entreprise/my-publications">
               <i class="fa fa-book" aria-hidden="true"></i> &nbsp;Mes
-              publications</a
-            >
+              publications</a>
             <a class="dropdown-item" routerLink="entreprise/my-profile">
-              <span
-                ><i class="fa fa-users" aria-hidden="true"></i> &nbsp;Mes
-                profil</span
-              ></a
-            >
+              <span><i class="fa fa-users" aria-hidden="true"></i> &nbsp;Mes
+                profil</span></a>
             <a class="dropdown-item" routerLink="errors/setting">
-              <span
-                ><i class="fa fa-user" aria-hidden="true"></i> &nbsp;Mon compte</span
-              ></a
-            >
+              <span><i class="fa fa-user" aria-hidden="true"></i> &nbsp;Mon compte</span></a>
             <div class="dropdown-divider"></div>
-            <a
-              class="dropdown-item text-danger"
-              (click)="usersService.logout()"
-            >
+            <a class="dropdown-item text-danger" (click)="usersService.logout()">
               <i class="fa fa-sign-out" aria-hidden="true"></i>Deconnexion
             </a>
           </ul>
         </li>
+        <!-- /////////////// CANDIDAT //////////////////// -->
+        <li *ngIf="isAuthenticated() && isCandidat()" class="nav-item dropdown float-lg-end" style="margin-left: 15%">
+          <a class="nav-link dropdown-toggle text-nowrap px-3" data-toggle="dropdown" href="#" role="button"
+            aria-haspopup="true" aria-expanded="false">
+            <img class="user-avatar rounded-circle mr-2" src="./assets/img/rh..-1024x1024.jpg" width="50"
+              alt="User Avatar" />
+            <span class="d-none d-md-inline-block">{{candidatconnecter}}</span>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-small">
+            <a class="dropdown-item" routerLink="">
+              <i class="fa fa-book" aria-hidden="true"></i> &nbsp;Mes candidatures</a>
+            <a class="dropdown-item" routerLink="">
+              <span><i class="fa fa-users" aria-hidden="true"></i> &nbsp;Alertes</span></a>
+            <a class="dropdown-item" routerLink="/candidat/setcv">
+              <span><i class="fa fa-user" aria-hidden="true"></i> &nbsp;Mon compte</span></a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item text-danger" [routerLink]="['/']" (click)="toDeconnected()">
+              <i class="fa fa-sign-out" aria-hidden="true"></i>Se deconnecter
+            </a>
+          </ul>
+        </li>
+
       </ul>
       <i class="bi bi-list mobile-nav-toggle"></i>
     </nav>
@@ -152,6 +135,5 @@
 
 <app-footer></app-footer>
 
-<a href="#" class="back-to-top d-flex align-items-center justify-content-center"
-  ><i class="bi bi-arrow-up-short"></i
-></a>
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+    class="bi bi-arrow-up-short"></i></a>

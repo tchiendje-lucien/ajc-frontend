@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRouteSnapshot, Router, RouterStateSnapshot } from '@angular/router';
+import { Observable } from 'rxjs';
 import { RegisterService } from 'src/app/services/candidat/register.service';
+import { LoginComponent } from '../login/login.component';
 
 
 @Component({
@@ -27,19 +30,14 @@ export class SetcvComponent implements OnInit {
 
   langueArray=[]; 
 
-  constructor(private fb:FormBuilder, private registerservice: RegisterService) { }
+  constructor(private fb:FormBuilder, private registerservice: RegisterService,
+    private router: Router) { }
 
   ngOnInit() {
-      
-    let token = this.registerservice.getToken()
 
-     if(this.registerservice.tokenExpired(token)==true){
-        console.log("Le token est expiré")
-     }
-
-    
 
     this.candidatconnect()
+    
 
     //this.candidat = this.registerservice.candidatserv
     console.log(this.candidat)
@@ -112,15 +110,15 @@ export class SetcvComponent implements OnInit {
 
 
     candidatconnect(){
-         let user = {        
-         "email": "njofang1@gmail.com",
-         "password": "12345"
-      }
 
-         this.registerservice.load_candidat(user)
+
+      console.log()
+
+         this.registerservice.load_candidat()
          .subscribe(data=>{
 
             this.candidat=data
+            this.registerservice.userconnectservice=this.candidat
             this.competence=this.candidat.competence
             this.scolarite=this.candidat.scolarite
             this.experiencepro=this.candidat.experience
@@ -491,7 +489,7 @@ onSaveLangue(index){
               .subscribe((response) => {
                             this.langueArray = []
                             alert("Succès enregistrement")
-                            this.ngOnInit();
+                           // this.ngOnInit();
                         },err=>{
                         console.log(err)
                       })
@@ -504,7 +502,7 @@ onSaveLangue(index){
     .subscribe((response) => {
                   alert("Succès enregistrement")
                   this.langueArray = []
-                  this.ngOnInit();
+                 // this.ngOnInit();
               },err=>{
               console.log(err)
           })
@@ -540,6 +538,6 @@ onSaveLangue(index){
              })
  }
 
-   
+ 
 
 }

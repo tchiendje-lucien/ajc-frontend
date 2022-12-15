@@ -42,6 +42,10 @@ import { UpdateAskProfileComponent } from './components/entrepriseComponents/upd
 import { SetcvComponent } from './components/candidat/setcv/setcv.component';
 import { LoginEntrepriseComponent } from './components/entrepriseComponents/login-entreprise/login-entreprise.component';
 import { LoginComponent } from "./components/candidat/login/login.component";
+import { RegistercandidatComponent } from "./components/candidat/registercandidat/registercandidat.component";
+
+
+ 
 
 
 @NgModule({
@@ -82,6 +86,7 @@ import { LoginComponent } from "./components/candidat/login/login.component";
     RegisterComponent,
     SetcvComponent,
     LoginEntrepriseComponent,
+    RegistercandidatComponent,
   ],
   imports: [
     BrowserModule,
@@ -93,6 +98,7 @@ import { LoginComponent } from "./components/candidat/login/login.component";
     Ng2SearchPipeModule,
     NgxPaginationModule,
     NgSelectModule
+    
   ],
   providers: [    {
     provide: HTTP_INTERCEPTORS,

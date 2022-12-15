@@ -1,5 +1,5 @@
-<div class="container ma_div">
-  <div class="row border rounded-5">
+<div class="container ma_div d-flex justify-content-center square-box align-items-center">
+  <div class="row border rounded-5 w-75">
     <div class="col-md-6 mt-2 mb-2 border-end">
       <div class="mb-3 row">
         <h2>Vous êtes déjà inscrit</h2>
@@ -7,10 +7,10 @@
           identifiants</p>
       </div>
       <form [formGroup]="loginForm" (ngSubmit)="onConnexion()">
-        <div class="mb-3 row">
-          <label for="user" class="col-sm-4 col-form-label">Adresse email</label>
+        <div class="mb-3 row ">
+          <label for="identifiant" class="col-sm-4 col-form-label">Adresse email</label>
           <div class="col-sm-8">
-            <input type="text" class="form-control" name="user" id="user" formControlName="user">
+            <input type="text" class="form-control" name="identifiant" id="identifiant" formControlName="identifiant">
           </div>
         </div>
         <div class="mb-3 row">
@@ -32,11 +32,12 @@
     <div class="col-md-6 ">
       <div class="mb-3 row">
         <h2>Vous n'êtes pas encore inscrit</h2>
-        <p> Si vous n'êtes pas encore inscrit, inscriver vous en rempliçant le formulaire et beneficier gratuitement des
+        <p> Si vous n'êtes pas encore inscrit, inscriver vous en rempliçant le formulaire et beneficier gratuitement
+          des
           services en ligne de Afrika Job's and Consulting</p>
       </div>
       <div class="mb-3 row justify-content-center">
-        <button type="button" class="btn btn-primary btn-sm col-md-3" [routerLink]="['/candidat/registrecanditate']"
+        <button type="button" class="btn btn-primary btn-sm col-md-3" [routerLink]="['/candidat/register-canditate']"
           routerLinkActive="router-link-active">Enregister vous</button>
       </div>
       <div class="mb-3 row justify-content-center">

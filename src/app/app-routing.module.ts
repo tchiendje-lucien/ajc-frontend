@@ -17,22 +17,23 @@ import { CreateOffreComponent } from "./components/entrepriseComponents/create-o
 import { FindProfilesComponent } from "./components/candidat/find-profiles/find-profiles.component";
 import { ForbiddenErrorsComponent } from "./components/errorsComponents/forbidden-errors/forbidden-errors.component";
 import { NotFondErrorsComponent } from "./components/errorsComponents/not-fond-errors/not-fond-errors.component";
-import { ProfileDetailComponent } from "./components/candidat/profile-detail/profile-detail.component";
-import { ListOfferComponent } from "./components/entrepriseComponents/list-offer/list-offer.component";
-import { DetailOfferComponent } from "./components/entrepriseComponents/detail-offer/detail-offer.component";
-import { MyPublicationsComponent } from "./components/entrepriseComponents/my-publications/my-publications.component";
-import { OurMissionsComponent } from "./components/our-missions/our-missions.component";
-import { OurPoliticComponent } from "./components/our-politic/our-politic.component";
-import { OurVisionsComponent } from "./components/our-visions/our-visions.component";
-import { OurValuesComponent } from "./components/our-values/our-values.component";
-import { UpdateMyPublicationsComponent } from "./components/entrepriseComponents/update-my-publications/update-my-publications.component";
-import { AskProfileComponent } from "./components/entrepriseComponents/ask-profile/ask-profile.component";
-import { MesProfilsComponent } from "./components/entrepriseComponents/mes-profils/mes-profils.component";
-import { UpdateAskProfileComponent } from "./components/entrepriseComponents/update-ask-profile/update-ask-profile.component";
-import { SetcvComponent } from "./components/candidat/setcv/setcv.component";
-import { LoginEntrepriseComponent } from "./components/entrepriseComponents/login-entreprise/login-entreprise.component";
 import { MyAccountComponent } from "./components/entrepriseComponents/my-account/my-account.component";
 import { UpdateMyAccountComponent } from './components/entrepriseComponents/update-my-account/update-my-account.component';
+import { ProfileDetailComponent } from './components/candidat/profile-detail/profile-detail.component';
+import { ListOfferComponent } from './components/entrepriseComponents/list-offer/list-offer.component';
+import { DetailOfferComponent } from './components/entrepriseComponents/detail-offer/detail-offer.component';
+import { MyPublicationsComponent } from './components/entrepriseComponents/my-publications/my-publications.component';
+import { OurMissionsComponent } from './components/our-missions/our-missions.component';
+import { OurPoliticComponent } from './components/our-politic/our-politic.component';
+import { OurVisionsComponent } from './components/our-visions/our-visions.component';
+import { OurValuesComponent } from './components/our-values/our-values.component';
+import { UpdateMyPublicationsComponent } from './components/entrepriseComponents/update-my-publications/update-my-publications.component';
+import { AskProfileComponent } from './components/entrepriseComponents/ask-profile/ask-profile.component';
+import { MesProfilsComponent } from './components/entrepriseComponents/mes-profils/mes-profils.component';
+import { UpdateAskProfileComponent } from './components/entrepriseComponents/update-ask-profile/update-ask-profile.component';
+import { SetcvComponent } from './components/candidat/setcv/setcv.component';
+import { LoginEntrepriseComponent } from './components/entrepriseComponents/login-entreprise/login-entreprise.component';
+import { RegistercandidatComponent } from './components/candidat/registercandidat/registercandidat.component';
 
 const appRoutes: Routes = [
   // {
@@ -73,7 +74,7 @@ const appRoutes: Routes = [
     component: AuditRhComponent,
   },
   {
-    path: "nos-services/fiscalite-administrative",
+    path: "nos-services/facilite-administrative",
     component: FiscalityAdministrativeComponent,
   },
   {
@@ -144,12 +145,12 @@ const appRoutes: Routes = [
   },
   {
     path: "entreprise/list-offers",
-    canActivate: [AuthService],
+    //canActivate: [AuthService],
     component: ListOfferComponent,
   },
   {
     path: "entreprise/detail-offers/:offre_oid",
-    canActivate: [AuthService],
+    // canActivate: [AuthService],
     component: DetailOfferComponent,
   },
   {
@@ -193,14 +194,23 @@ const appRoutes: Routes = [
     path: "candidat/login",
     component: LoginComponent,
   },
-  {
-    path: "candidat/registrecanditate",
-    component: RegisterComponent,
+
+{
+    path: "candidat/register-canditate",
+    component: RegistercandidatComponent,
   },
   {
     path: "candidat/setcv",
     component: SetcvComponent,
   },
+
+
+  ///// Candidate route
+  {
+    path: "candidat/login",
+    component: LoginComponent
+  },
+
 ];
 
 @NgModule({

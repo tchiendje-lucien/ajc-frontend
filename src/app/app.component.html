@@ -3,10 +3,14 @@
   id="header"
   class="fixed-top d-flex align-items-center header-transparent bg-light"
 >
+<div class="col-lg-2 col-md-4">
+  <img
+    src="./assets/img/photo/WhatsApp Image 2022-12-15 at 13.44.50.jpeg" height="90px"
+    alt=""
+  />
+</div>
   <div class="container d-flex align-items-center">
-    <h5 class="logo me-auto">
-      <a href="/">AJC</a>
-    </h5>
+
     <!-- Uncomment below if you prefer to use an image logo -->
     <!-- <a href="index.html" class="logo me-auto"><img src="./assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
@@ -72,10 +76,22 @@
           ></a>
           <ul>
             <li>
-              <a routerLink="candidat/login">Recherche d'un emploi</a>
+              <a
+                [routerLink]="
+                  !isAuthenticated()
+                    ? 'candidat/login'
+                    : 'entreprise/list-offers'
+                "
+                >Trouver un emploi</a
+              >
             </li>
-            <li><a routerLink="errors/setting">Depot de dossier</a></li>
-            <li><a routerLink="errors/setting">Info et conseil</a></li>
+            <li><a routerLink=" errors/setting">Deposer votre dossier</a></li>
+            <li><a routerLink="errors/setting">Candidature spontanée</a></li>
+            <li>
+              <a *ngIf="!isAuthenticated()" routerLink="candidat/login"
+                >Se connecter</a
+              >
+            </li>
           </ul>
         </li>
         <li class="dropdown">
@@ -98,9 +114,11 @@
           <a class="nav-link scrollto" href="nous-contacter">Nous contacté</a>
         </li>
         <!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
+
+        <!-- /////////////// Entreprise //////////////////// -->
         <li
-          class="nav-item dropdown float-lg-end"
-          style="margin-left: 15%"
+          class="nav-item dropdown"
+          style="margin-left: 9%"
           *ngIf="isAuthenticatedEntreprise() && users.role == 'Entreprise'"
         >
           <a
@@ -150,6 +168,58 @@
               (click)="usersService.logout()"
             >
               <i class="fa fa-sign-out" aria-hidden="true"></i>Deconnexion
+            </a>
+          </ul>
+        </li>
+
+        <!-- /////////////// CANDIDAT //////////////////// -->
+        <li
+          *ngIf="isAuthenticated() && isCandidat()"
+          class="nav-item dropdown float-lg-end"
+          style="margin-left: 15%"
+        >
+          <a
+            class="nav-link dropdown-toggle text-nowrap px-3"
+            data-toggle="dropdown"
+            href="#"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            <img
+              class="user-avatar rounded-circle mr-2"
+              src="./assets/img/rh..-1024x1024.jpg"
+              width="50"
+              alt="User Avatar"
+            />
+            <span class="d-none d-md-inline-block">{{
+              candidatconnecter
+            }}</span>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-small">
+            <a class="dropdown-item" routerLink="">
+              <i class="fa fa-book" aria-hidden="true"></i> &nbsp;Mes
+              candidatures</a
+            >
+            <a class="dropdown-item" routerLink="">
+              <span
+                ><i class="fa fa-users" aria-hidden="true"></i>
+                &nbsp;Alertes</span
+              ></a
+            >
+            <a class="dropdown-item" routerLink="/candidat/setcv">
+              <span
+                ><i class="fa fa-user" aria-hidden="true"></i> &nbsp;Mon
+                compte</span
+              ></a
+            >
+            <div class="dropdown-divider"></div>
+            <a
+              class="dropdown-item text-danger"
+              [routerLink]="['/']"
+              (click)="toDeconnected()"
+            >
+              <i class="fa fa-sign-out" aria-hidden="true"></i>Se deconnecter
             </a>
           </ul>
         </li>

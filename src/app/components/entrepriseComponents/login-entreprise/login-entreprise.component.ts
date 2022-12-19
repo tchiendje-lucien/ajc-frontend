@@ -52,6 +52,7 @@ export class LoginEntrepriseComponent implements OnInit {
           localStorage.setItem("token", token);
           // this.find_user()
           this.router.navigate(["candidate/find-profile"]);
+          // window.location.href("candidate/find-profile")
           console.log(response);
           // console.log(localStorage.getItem("token"));
         },

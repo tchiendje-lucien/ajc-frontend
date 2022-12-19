@@ -23,6 +23,7 @@ export class DetailOfferComponent implements OnInit {
 
   //Another proprieties
   offre_oid = this.router.snapshot.paramMap.get("offre_oid");
+  p_detailOffre: number = 1;
 
   constructor(
     public offersService: OffersService,
@@ -74,7 +75,9 @@ export class DetailOfferComponent implements OnInit {
 
   view_similary_offer(index) {
     this.offreEmplois = index;
-    console.log(this.offreEmplois)
-    this.location.replaceState("/entreprise/detail-offers/" + this.offreEmplois.oid);
+    console.log(this.offreEmplois);
+    this.location.replaceState(
+      "/entreprise/detail-offers/" + this.offreEmplois.oid
+    );
   }
 }

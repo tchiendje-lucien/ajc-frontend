@@ -1,21 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { THROW_IF_NOT_FOUND } from '@angular/core/src/di/injector';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RegisterService } from 'src/app/services/candidat/register.service';
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  selector: 'app-registercandidat',
+  templateUrl: './registercandidat.component.html',
+  styleUrls: ['./registercandidat.component.css']
 })
-export class RegisterComponent implements OnInit {
+export class RegistercandidatComponent implements OnInit {
 
-  registerform: FormGroup
+registerform: FormGroup
   candidat;
   messageconfirmpassword
-  
-  constructor( private fb:FormBuilder, private candidatservice: RegisterService,
+
+ constructor( private fb:FormBuilder, private candidatservice: RegisterService,
     private router: Router,private route:ActivatedRoute, private registerserve: RegisterService) { }
 
   ngOnInit() {
@@ -29,13 +28,13 @@ export class RegisterComponent implements OnInit {
            civilite : ["", Validators.required]
        })
 
-  
+
 
   }
 
 
   onRegisterCandidat(){
-    
+
     // this.router.navigate(['/candidat/setcv']);
     let registered = this.registerform.value
     if(registered.password!=registered.password1){
@@ -48,14 +47,15 @@ export class RegisterComponent implements OnInit {
                 this.candidatservice.add_candidat(this.registerform.value)
           .subscribe((response) => {
               alert("Succès enregitrement")
-              this.registerserve.candidatserv = response
-              this.router.navigate(['/candidat/setcv']);
-            //  this.router.navigate(['/candidat/login']);
+              //this.registerserve.userconnectservice = response
+             // this.router.navigate(['/candidat/setcv']);
+              this.router.navigate(['/candidat/login']);
               //console.log(response)
 
           },err=>{
+            this.messageconfirmpassword = err
           console.log(err)
-        }) 
+        })
 
     }
 
@@ -67,7 +67,7 @@ export class RegisterComponent implements OnInit {
 
 
   goToConnexion() {
-    
+
   this.router.navigate(['/users'],
     {
       queryParams: { filter: 'new' },

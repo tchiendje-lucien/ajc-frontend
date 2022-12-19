@@ -31,9 +31,7 @@ export class AuthService implements CanActivate {
     return Math.floor(new Date().getTime() / 1000) >= expiry;
   }
 
-  canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
+  canActivate(route: ActivatedRouteSnapshot,state: RouterStateSnapshot
   ): boolean | Promise<boolean> | Observable<boolean> {
     console.log("OnlyLoggedInUsers");
     if (

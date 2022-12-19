@@ -83,7 +83,16 @@
             <h4 class="text-center">Liste des offres</h4>
             <div
               class="col-md-12 p-3"
-              *ngFor="let offreEmploi of offreEmploisList; let i = index"
+              *ngFor="
+                let offreEmploi of offreEmploisList
+                  | paginate
+                    : {
+                        itemsPerPage: 2,
+                        currentPage: p_listOffre,
+                        id: 'p_listOffre_id'
+                      };
+                let i = index
+              "
             >
               <div class="card mt-3" style="border-radius: 15px">
                 <div class="card-body p-4">
@@ -93,7 +102,9 @@
                         [src]="
                           offreEmploi.image == null
                             ? defaultOffreImage()
-                            : offersService.host + '/imageOffre/' + offreEmploi.oid
+                            : offersService.host +
+                              '/imageOffre/' +
+                              offreEmploi.oid
                         "
                         alt="Generic placeholder image"
                         class="img-fluid"
@@ -136,7 +147,10 @@
                         <a
                           type="button"
                           class="btn btn-outline-primary me-1 flex-grow-1"
-                          [routerLink]="['/entreprise/detail-offers/', offreEmploi.oid]"
+                          [routerLink]="[
+                            '/entreprise/detail-offers/',
+                            offreEmploi.oid
+                          ]"
                         >
                           Voir plus
                         </a>
@@ -152,9 +166,10 @@
                 </div>
               </div>
             </div>
-            <div>
+            <div class="d-flex justify-content-center">
               <pagination-controls
-                (pageChange)="p_academicLevel = $event"
+                id="p_listOffre_id"
+                (pageChange)="p_listOffre = $event"
               ></pagination-controls>
             </div>
           </div>

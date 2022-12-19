@@ -24,7 +24,8 @@ export class ListOfferComponent implements OnInit {
 
   //Another proprieties
   offreFile: File;
-  testImage
+  testImage;
+  p_listOffre: number = 1;
 
   constructor(
     public offersService: OffersService,
@@ -69,7 +70,7 @@ export class ListOfferComponent implements OnInit {
     console.log(filename);
     this.offersService.getImageOffre(filename).subscribe((res) => {
       this.testImage = URL.createObjectURL(res);
-      console.log(this.testImage)
+      console.log(this.testImage);
       //window.open(fileURL, "_blank");
     });
   }

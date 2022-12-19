@@ -6,6 +6,7 @@ import { OffersService } from "../../../services/entrepriseServices/offers/offer
 import { Router } from "@angular/router";
 import { HttpClient } from "@angular/common/http";
 import { myConst } from "../../../models/entreprise/settings";
+import { RegisterService } from "src/app/services/candidat/register.service";
 
 @Component({
   selector: "app-list-offer",
@@ -26,10 +27,12 @@ export class ListOfferComponent implements OnInit {
   offreFile: File;
   testImage
 
+
   constructor(
     public offersService: OffersService,
     private router: Router,
-    private http: HttpClient
+    private http: HttpClient,
+    public registerService: RegisterService
   ) {}
 
   ngOnInit() {

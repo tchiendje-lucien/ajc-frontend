@@ -110,6 +110,27 @@
                 </div>
               </div>
 
+              <div class="row h-25 border mt-3"></div>
+
+              <div class="row mt-3">
+                <div class="form-group col-md-3">
+                  <label for="fonction">Fonction</label>
+                  <input type="tel" class="form-control" id="fonction" placeholder="fonction" name="fonction"
+                    formControlName="fonction">
+                </div>
+                <div class="form-group col-md-3">
+                  <label for="nbreanneeexp">Nbre année experience</label>
+                  <input type="number" class="form-control" id="nbreanneeexp" placeholder="" name="nbreanneeexp"
+                    formControlName="nbreanneeexp">
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="objectif">Objectif</label>
+                  <textarea class="form-control" id="objectif" rows="3" formControlName="objectif" name="objectif"
+                    placeholder="Votre objectif"></textarea>
+                </div>
+              </div>
+
+
               <div class=" row col-md-12 justify-content-end mt-2">
                 <button type="submit" class="btn btn-primary btn-sm col-md-2"
                   [disabled]="!identiteForm.valid">Enregistrer</button>
@@ -236,6 +257,11 @@
                   <label for="datefin">Date fin</label>
                   <input type="date" class="form-control" id="datefin" name="datefin" formControlName="datefin">
                 </div>
+                <div class="form-group col-md-4">
+                  <label for="etablissement">Etabilissement</label>
+                  <input type="text" class="form-control" id="etablissement" name="datefin"
+                    formControlName="etablissement">
+                </div>
               </div>
               <div class="row">
                 <div class="form-group col-md-4">
@@ -281,6 +307,7 @@
                   <th scope="col">#</th>
                   <th scope="col">Début</th>
                   <th scope="col">Fin</th>
+                  <th scope="col">Etablissenement</th>
                   <th scope="col">Domaine</th>
                   <th scope="col">Specialité</th>
                   <th scope="col">Niveau</th>
@@ -296,6 +323,7 @@
                   <th scope="row">{{s.oid}}</th>
                   <td>{{s.datedebut}}</td>
                   <td>{{s.datefin}}</td>
+                  <td>{{s.etablissement}}</td>
                   <td>{{s.domaine}}</td>
                   <td>{{s.specialite}}</td>
                   <td>{{s.niveau}}</td>

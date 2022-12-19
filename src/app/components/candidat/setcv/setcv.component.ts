@@ -52,7 +52,10 @@ export class SetcvComponent implements OnInit {
         pays :["", Validators.required],
         ville :["", Validators.required],
         telephone1 :["", Validators.required],
-        telephone2 :[""]
+        telephone2 :[""],
+        nbreanneeexp : ["",Validators.required],
+        fonction : ["", Validators.required],
+        objectif : [""]
     })
      this.listPays()
 
@@ -70,7 +73,8 @@ export class SetcvComponent implements OnInit {
          specialite : ['',Validators.required],
 	       niveau : ['',Validators.required],
 	       pays : ['',Validators.required],
-         ville : ['',Validators.required]
+         ville : ['',Validators.required],
+         etablissement : ['',Validators.required]
     })
 
     this.experienceForm = this.fb.group({
@@ -118,7 +122,7 @@ export class SetcvComponent implements OnInit {
          .subscribe(data=>{
 
             this.candidat=data
-            this.registerservice.userconnectservice=this.candidat
+            
             this.competence=this.candidat.competence
             this.scolarite=this.candidat.scolarite
             this.experiencepro=this.candidat.experience
@@ -137,7 +141,10 @@ export class SetcvComponent implements OnInit {
                 pays :this.candidat.pays,
                 ville :this.candidat.ville,
                 telephone1 :this.candidat.telephone1,
-                telephone2 :this.candidat.telephone2
+                telephone2 :this.candidat.telephone2,
+                nbreanneeexp : this.candidat.nbreanneeexp,
+                objectif : this.candidat.objectif,
+                fonction : this.candidat.fonction
             })
 
            // Loisir     
@@ -262,7 +269,8 @@ onRazScolarite(){
          specialite : '',
 	       niveau : '',
 	       pays : '',
-         ville : ''
+         ville : '',
+         etablissement : ''
     })
   }
 

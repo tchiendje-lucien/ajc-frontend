@@ -1,6 +1,7 @@
 import { HttpBackend, HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from "@auth0/angular-jwt";
+import { AppComponent } from 'src/app/app.component';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class RegisterService {
   candidat : string;
   roles : Array<string>;
   tokenType: String = 'Bearer'
-  userconnectservice;
+
 
   constructor( private http:HttpClient, backend: HttpBackend) { 
     this.customHttpClient = new HttpClient(backend);
@@ -29,6 +30,10 @@ export class RegisterService {
      return this.http.post(this.host+"/edit_candidat",candidat)
   }
 
+  list_candidat(){
+     return this.http.get(this.host+"/list_candidat")
+  }
+
   load_candidat(){
     console.log(this.tokenType+' '+this.getToken())
     return this.http.get(this.host+"/load_candidat")
@@ -39,10 +44,7 @@ export class RegisterService {
      
   }
 
-  candidatConnected(){
-    return this.userconnectservice.prenom
-  }
-
+ 
 
   add_competence(competence){    
     return this.http.post(this.host+"/add_competence",competence)
@@ -128,7 +130,7 @@ export class RegisterService {
   parseJWT(){
       let jwtHelper=new JwtHelperService();
       let objJWT=jwtHelper.decodeToken(this.jwt);
-      this.candidat=objJWT.obj;
+      this.candidat=objJWT.sub;
       //console.log(this.candidat)
       this.roles=objJWT.roles;
   }
@@ -154,6 +156,9 @@ export class RegisterService {
     this.loadToken()
     return this.roles
   }
+
+
+
 
   toDeconnected(){
     localStorage.removeItem('token')

@@ -32,6 +32,7 @@ import { UpdateAskProfileComponent } from './components/entrepriseComponents/upd
 import { SetcvComponent } from './components/candidat/setcv/setcv.component';
 import { LoginEntrepriseComponent } from './components/entrepriseComponents/login-entreprise/login-entreprise.component';
 import { RegistercandidatComponent } from "./components/candidat/registercandidat/registercandidat.component";
+import { CandidatlistComponent } from "./components/candidat/candidatlist/candidatlist.component";
 
 const appRoutes: Routes = [
   // {
@@ -193,6 +194,11 @@ const appRoutes: Routes = [
   {
     path: "candidat/login",
     component: LoginComponent
+  },
+
+  {
+    path: "candidat/list-candidat",
+    component: CandidatlistComponent
   },
 
 ];

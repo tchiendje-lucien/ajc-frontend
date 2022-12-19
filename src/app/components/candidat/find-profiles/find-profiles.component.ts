@@ -8,6 +8,9 @@ import {
 } from "../../../models/entreprise/settings";
 import { RespoEntreprise } from "../../../models/entreprise/representants";
 import { EntrepriseAccount } from "../../../models/entreprise/entreprise";
+import { RegisterService } from "src/app/services/candidat/register.service";
+import * as moment from 'moment';
+import { THROW_IF_NOT_FOUND } from "@angular/core/src/di/injector";
 
 @Component({
   selector: "app-find-profiles",
@@ -23,6 +26,8 @@ export class FindProfilesComponent implements OnInit {
   errorClass: ErrorClass;
   successClass;
   SuccessClass;
+  listCandidat;
+   age
 
   //Model arrays
   paysList: Pays[];
@@ -35,15 +40,36 @@ export class FindProfilesComponent implements OnInit {
 
   constructor(
     private entrepriseServices: EntrepriseService,
-    private router: Router
+    private router: Router,
+    private registerservice:RegisterService
+
   ) {}
 
   ngOnInit() {
     this.pays = new Pays();
     this.entrepriseAccount = new EntrepriseAccount();
     this.respoEntreprise = new RespoEntreprise();
-    this.find_user();
+    // this.find_user();
+    this.list_candidat()
   }
+
+  list_candidat(){
+
+    this.registerservice.list_candidat()
+   .subscribe((response) => {
+    console.log(response)
+       this.listCandidat = response
+     },err=>{
+              console.log(err)
+        })
+
+  }
+
+  public CalculateAge(birthdate): number
+    {
+      
+      return moment().diff(birthdate, 'years');
+   }   
 
   find_user() {
     this.entrepriseServices.find_user().subscribe({

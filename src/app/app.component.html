@@ -105,15 +105,16 @@
         <li *ngIf="isAuthenticated() && isCandidat()" class="nav-item dropdown float-lg-end" style="margin-left: 15%">
           <a class="nav-link dropdown-toggle text-nowrap px-3" data-toggle="dropdown" href="#" role="button"
             aria-haspopup="true" aria-expanded="false">
-            <img class="user-avatar rounded-circle mr-2" src="./assets/img/rh..-1024x1024.jpg" width="50"
-              alt="User Avatar" />
-            <span class="d-none d-md-inline-block">{{candidatconnecter}}</span>
+            <img class="user-avatar rounded-circle mr-2" src="./assets/img/photo/logoconnect1.jpg" width="50"
+              alt="User Avatar" />&nbsp;
+            <span class="d-none d-md-inline-block">{{userconnecter}}</span>
           </a>
           <ul class="dropdown-menu dropdown-menu-small">
             <a class="dropdown-item" routerLink="">
               <i class="fa fa-book" aria-hidden="true"></i> &nbsp;Mes candidatures</a>
-            <a class="dropdown-item" routerLink="">
-              <span><i class="fa fa-users" aria-hidden="true"></i> &nbsp;Alertes</span></a>
+            <a class="dropdown-item" routerLink="/candidat/list-candidat">
+              <span><i class="fa fa-users" aria-hidden="true"></i>
+                &nbsp;Alertes</span></a>
             <a class="dropdown-item" routerLink="/candidat/setcv">
               <span><i class="fa fa-user" aria-hidden="true"></i> &nbsp;Mon compte</span></a>
             <div class="dropdown-divider"></div>

@@ -43,6 +43,7 @@ import { SetcvComponent } from './components/candidat/setcv/setcv.component';
 import { LoginEntrepriseComponent } from './components/entrepriseComponents/login-entreprise/login-entreprise.component';
 import { LoginComponent } from "./components/candidat/login/login.component";
 import { RegistercandidatComponent } from "./components/candidat/registercandidat/registercandidat.component";
+import { CandidatlistComponent } from './components/candidat/candidatlist/candidatlist.component';
 
 
  
@@ -87,6 +88,7 @@ import { RegistercandidatComponent } from "./components/candidat/registercandida
     SetcvComponent,
     LoginEntrepriseComponent,
     RegistercandidatComponent,
+    CandidatlistComponent,
   ],
   imports: [
     BrowserModule,

@@ -14,7 +14,8 @@ import {filter} from 'rxjs/operators';
 export class AppComponent implements OnInit{
   title = 'ajc-fontend';
   //currentRoute: string;
-  candidatconnecter: String;
+  userconnecter:String
+
 
   constructor(public usersService:UsersService, private registerservice:RegisterService, private router:Router){
        // deconnecter pour obtenir la route corante
@@ -42,6 +43,7 @@ export class AppComponent implements OnInit{
   }
 
   isAuthenticated(){
+    this.userconnecter=this.registerservice.candidat
     return this.registerservice.isAuthenticated()
   }
 
@@ -50,9 +52,5 @@ export class AppComponent implements OnInit{
        // window.location.reload();             
   }
 
-  candadatConnected(){
-    this.candidatconnecter = this.registerservice.candidatConnected()
-  }
-
-
+ 
 }

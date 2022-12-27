@@ -31,7 +31,17 @@ export class AuthService implements CanActivate {
     return Math.floor(new Date().getTime() / 1000) >= expiry;
   }
 
-  canActivate(route: ActivatedRouteSnapshot,state: RouterStateSnapshot
+  logout() {
+    localStorage.removeItem("token");
+    localStorage.removeItem("entreprise_oid");
+    localStorage.clear();
+    console.log(localStorage.getItem("token"))
+    this.router.navigate(["entreprise/login"]);
+  }
+
+  canActivate(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
   ): boolean | Promise<boolean> | Observable<boolean> {
     console.log("OnlyLoggedInUsers");
     if (
@@ -39,9 +49,11 @@ export class AuthService implements CanActivate {
       localStorage.getItem("token") != null
     ) {
       if (this.isTokenExpired(localStorage.getItem("token"))) {
-        console.log(this.isTokenExpired(localStorage.getItem("token")));
-        console.log(localStorage.getItem("token"));
-        this.router.navigate(["entreprise/login"]);
+        // console.log(this.isTokenExpired(localStorage.getItem("token")));
+        // console.log(localStorage.getItem("token"));
+        this.logout();
+        // localStorage.clear();
+        // this.router.navigate(["entreprise/login"]);
         return false;
       } else {
         return true;
@@ -57,7 +69,7 @@ export class AuthService implements CanActivate {
   providedIn: "root",
 })
 export class AuthServiceCandidtat implements CanActivate {
-  constructor( private router: Router) {}
+  constructor(private router: Router) {}
 
   // canActivate(
   //   route: ActivatedRouteSnapshot,

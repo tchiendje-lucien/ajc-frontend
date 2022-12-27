@@ -1,6 +1,19 @@
 <main id="main">
   <!-- ======= About Section ======= -->
   <section id="about" class="about mt-5">
+    <div class="position-fixed bottom-0 start-0 p-3" style="z-index: 11">
+      <!-- <div id="liveToast"  role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header bg-success">
+          <img src="..." class="rounded me-2" alt="...">
+          <strong class="me-auto">Bootstrap</strong>
+          <small>11 mins ago</small>
+          <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+          Hello, world! This is a toast message.
+        </div>
+      </div> -->
+    </div>
     <div class="container" data-aos="fade-up">
       <div class="row gx-5">
         <div class="col-md-4">
@@ -8,11 +21,7 @@
             <h4 class="text-center">Filtres</h4>
             <div class="col-sm-12">
               <label for="email">Secteur d'activité</label>
-              <select
-                class="form-select"
-                aria-label="Default select example"
-                formControlName="typeEmploi"
-              >
+              <select class="form-select" aria-label="Default select example">
                 <option
                   class="dropdown-item"
                   disabled
@@ -27,11 +36,7 @@
             </div>
             <div class="col-sm-12 mt-3">
               <label for="email">Langues</label>
-              <select
-                class="form-select"
-                aria-label="Default select example"
-                formControlName="typeEmploi"
-              >
+              <select class="form-select" aria-label="Default select example">
                 <option
                   class="dropdown-item"
                   disabled
@@ -46,11 +51,7 @@
             </div>
             <div class="col-sm-12 mt-3">
               <label for="email">Pays</label>
-              <select
-                class="form-select"
-                aria-label="Default select example"
-                formControlName="typeEmploi"
-              >
+              <select class="form-select" aria-label="Default select example">
                 <option
                   class="dropdown-item"
                   disabled
@@ -87,107 +88,123 @@
                 Rechercher
               </button>
             </div>
+            <div class="d-flex justify-content-center mt-3">
+              <button
+                type="submit"
+                class="btn btn-primary btn-rounded col-md-8"
+                (click)="testToast()"
+              >
+                Test Toast
+              </button>
+            </div>
           </div>
         </div>
+
+
         <div class="col">
+
           <div class="p-3 border bg-light">
             <h4 class="text-center">Liste des profils</h4>
             <div class="col-md-12 p-3">
-              <div class="card mt-3" style="border-radius: 15px">
+              <div
+                *ngFor="
+                  let c of listCandidat
+                    | paginate
+                      : {
+                          itemsPerPage: 5,
+                          currentPage: p_profile,
+                          id: 'p_profile_id'
+                        };
+                  let i = index
+                "
+                class="card mt-3"
+                style="border-radius: 15px"
+              >
                 <div class="card-body p-4">
                   <div class="d-flex text-black">
                     <div class="flex-shrink-0">
+                      <!-- <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp"
+                        alt="Generic placeholder image" class="img-fluid" style="width: 180px; border-radius: 10px" /> -->
                       <img
-                        src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp"
+                        src="./assets/img/photo/candidatHomme.jpg"
                         alt="Generic placeholder image"
                         class="img-fluid"
-                        style="width: 180px; border-radius: 10px"
+                        style="width: 120px; border-radius: 10px"
                       />
                     </div>
                     <div class="flex-grow-1 ms-3">
-                      <h5 class="mb-1">Lucien Didier</h5>
-                      <p class="mb-2 pb-1" style="color: #2b2a2a">
-                        Ingenieur IT
-                      </p>
-                      <div
-                        class="d-flex justify-content-start rounded-3 p-2 mb-2"
-                        style="background-color: #efefef"
-                      >
+                      <h5 class="mb-1">
+                        {{ c.civilite }} {{ c.nom }} {{ c.prenom }}
+                      </h5>
+                      <div class="d-flex justify-content-start bg-light">
                         <div>
-                          <p class="small text-muted mb-1">Age</p>
-                          <p class="mb-0">24 ans</p>
-                        </div>
-                        <div class="px-3">
-                          <p class="small text-muted mb-1">Pays</p>
-                          <p class="mb-0">Cameroun</p>
+                          <p class="pb-1 m-1" style="color: #2b2a2a">
+                            <b>{{ c.fonction }}</b>
+                          </p>
                         </div>
                         <div>
-                          <p class="small text-muted mb-1">Ville</p>
-                          <p class="mb-0">Douala</p>
+                          <p class="m-1" style="color: green">
+                            {{ CalculateAge(c.datenaissance) }} ans /
+                          </p>
+                        </div>
+                        <div>
+                          <p class="m-1" style="color: green">
+                            {{ c.nbreanneeexp }} ans exp
+                          </p>
+                        </div>
+                        <div>
+                          <p class="m-1" style="color: rgb(13, 14, 13)">
+                            {{ c.ville }} {{ c.pays }}
+                          </p>
                         </div>
                       </div>
+                      <div class="flex-grow-1 ms-2 row border m-1">
+                        <div class="col-3" style="color: green">
+                          Langue(s) :
+                        </div>
+                        <div
+                          class="d-flex w-auto inline-block"
+                          *ngFor="let l of c.langue"
+                          style="font-style: italic"
+                        >
+                          {{ l.langue }};
+                        </div>
+                      </div>
+                      <div class="flex-grow-1 ms-2 row border m-1">
+                        <div class="col-4" style="color: green">
+                          Competence(s):
+                        </div>
+                        <div
+                          class="d-flex w-auto inline-block"
+                          *ngFor="let cp of c.competence; let isFirst = first"
+                          style="font-style: italic"
+                        >
+                          {{ cp.domaine }};
+                        </div>
+                      </div>
+                      <div class="flex-grow-1 ms-2 row border m-1">
+                        <div class="col-3" style="color: green">Ecole(s) :</div>
+                        <div
+                          class="d-flex w-auto inline-block"
+                          *ngFor="let s of c.scolarite; let isFirst = first"
+                          style="font-style: italic"
+                        >
+                          {{ s.etablissement }};
+                        </div>
+                      </div>
+
                       <div class="d-flex pt-1">
                         <button
                           type="button"
                           class="btn btn-outline-primary me-1 flex-grow-1"
                           (click)="find_profile()"
                         >
-                          Voir plus
+                          CV complet
                         </button>
                         <button
                           type="button"
                           class="btn btn-primary flex-grow-1"
-                        >
-                          Le chopper
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="card mt-3" style="border-radius: 15px">
-                <div class="card-body p-4">
-                  <div class="d-flex text-black">
-                    <div class="flex-shrink-0">
-                      <img
-                        src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp"
-                        alt="Generic placeholder image"
-                        class="img-fluid"
-                        style="width: 180px; border-radius: 10px"
-                      />
-                    </div>
-                    <div class="flex-grow-1 ms-3">
-                      <h5 class="mb-1">Luc Walker</h5>
-                      <p class="mb-2 pb-1" style="color: #2b2a2a">
-                        Ingenieur IT
-                      </p>
-                      <div
-                        class="d-flex justify-content-start rounded-3 p-2 mb-2"
-                        style="background-color: #efefef"
-                      >
-                        <div>
-                          <p class="small text-muted mb-1">Age</p>
-                          <p class="mb-0">24 ans</p>
-                        </div>
-                        <div class="px-3">
-                          <p class="small text-muted mb-1">Pays</p>
-                          <p class="mb-0">Cameroun</p>
-                        </div>
-                        <div>
-                          <p class="small text-muted mb-1">Ville</p>
-                          <p class="mb-0">Douala</p>
-                        </div>
-                      </div>
-                      <div class="d-flex pt-1">
-                        <button
-                          type="button"
-                          class="btn btn-outline-primary me-1 flex-grow-1"
-                        >
-                          Voir plus
-                        </button>
-                        <button
-                          type="button"
-                          class="btn btn-primary flex-grow-1"
+                          (click)="create_chopper(c)"
                         >
                           Le chopper
                         </button>
@@ -197,9 +214,10 @@
                 </div>
               </div>
             </div>
-            <div>
+            <div class="d-flex justify-content-center">
               <pagination-controls
-                (pageChange)="p_academicLevel = $event"
+                id="p_profile_id"
+                (pageChange)="p_profile = $event"
               ></pagination-controls>
             </div>
           </div>

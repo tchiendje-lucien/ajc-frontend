@@ -1,8 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@ng-select/ng-select/themes/default.theme.css";
+@import '~ngx-toastr/toastr.css';
 
-.shadow-div {
+.toast-bootstrap-compatibility-fix {
+  opacity:1;
+}
+
+/* .shadow-div {
   border-radius: 6px;
   box-shadow: 0 1px 8px #6f6f72;
   background-color: #ffffff;
-}
+} */

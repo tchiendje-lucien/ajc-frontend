@@ -3,14 +3,14 @@
   id="header"
   class="fixed-top d-flex align-items-center header-transparent bg-light"
 >
-<div class="col-lg-2 col-md-4">
-  <img
-    src="./assets/img/photo/WhatsApp Image 2022-12-15 at 13.44.50.jpeg" height="90px"
-    alt=""
-  />
-</div>
+  <div class="col-lg-2 col-md-4">
+    <img
+      src="./assets/img/photo/WhatsApp Image 2022-12-15 at 13.44.50.jpeg"
+      height="90px"
+      alt=""
+    />
+  </div>
   <div class="container d-flex align-items-center">
-
     <!-- Uncomment below if you prefer to use an image logo -->
     <!-- <a href="index.html" class="logo me-auto"><img src="./assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
@@ -119,8 +119,9 @@
         <li
           class="nav-item dropdown"
           style="margin-left: 9%"
-          *ngIf="isAuthenticatedEntreprise() && users.role == 'Entreprise'"
+          *ngIf="isAuthenticatedEntreprise()"
         >
+        <!-- {{ users.entrepriseAccount.name }} -->
           <a
             class="nav-link dropdown-toggle text-nowrap px-3"
             data-toggle="dropdown"
@@ -188,20 +189,18 @@
           >
             <img
               class="user-avatar rounded-circle mr-2"
-              src="./assets/img/rh..-1024x1024.jpg"
+              src="./assets/img/photo/logoconnect1.jpg"
               width="50"
               alt="User Avatar"
-            />
-            <span class="d-none d-md-inline-block">{{
-              candidatconnecter
-            }}</span>
+            />&nbsp;
+            <span class="d-none d-md-inline-block">{{ userconnecter }}</span>
           </a>
           <ul class="dropdown-menu dropdown-menu-small">
             <a class="dropdown-item" routerLink="">
               <i class="fa fa-book" aria-hidden="true"></i> &nbsp;Mes
               candidatures</a
             >
-            <a class="dropdown-item" routerLink="">
+            <a class="dropdown-item" routerLink="/candidat/list-candidat">
               <span
                 ><i class="fa fa-users" aria-hidden="true"></i>
                 &nbsp;Alertes</span

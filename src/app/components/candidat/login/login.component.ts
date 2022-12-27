@@ -44,11 +44,10 @@ export class LoginComponent implements OnInit {
       .subscribe((response) => {
            let jwt=response.headers.get('Authorization');
            this.registerservice.saveToken(jwt);
-           console.log(jwt)
-           this.registerservice.userconnectservice=user          
+           console.log(jwt)    
            this.router.navigate(['entreprise/list-offers']);
           // this.router.navigate(['/candidat/setcv']);
-
+          
         },err=>{
       console.log(err)
     })

@@ -45,6 +45,9 @@ import { LoginComponent } from "./components/candidat/login/login.component";
 import { MyAccountComponent } from "./components/entrepriseComponents/my-account/my-account.component";
 import { UpdateMyAccountComponent } from "./components/entrepriseComponents/update-my-account/update-my-account.component";
 import { RegistercandidatComponent } from "./components/candidat/registercandidat/registercandidat.component";
+import { CandidatlistComponent } from "./components/candidat/candidatlist/candidatlist.component";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { ToastrModule } from "ngx-toastr";
 
 @NgModule({
   declarations: [
@@ -87,6 +90,7 @@ import { RegistercandidatComponent } from "./components/candidat/registercandida
     MyAccountComponent,
     UpdateMyAccountComponent,
     RegistercandidatComponent,
+    CandidatlistComponent,
   ],
   imports: [
     BrowserModule,
@@ -98,6 +102,14 @@ import { RegistercandidatComponent } from "./components/candidat/registercandida
     Ng2SearchPipeModule,
     NgxPaginationModule,
     NgSelectModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      timeOut: 6000,
+      // toastClass: 'toast toast-bootstrap-compatibility-fix',
+      // enableHtml: true ,
+      positionClass: 'toast-bottom-left',
+      preventDuplicates: true,
+    }),
   ],
   providers: [
     {

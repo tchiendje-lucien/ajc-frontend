@@ -4,6 +4,9 @@ import { Router } from "@angular/router";
 import { JwtHelperService } from "@auth0/angular-jwt";
 import { EntrepriseService } from "../../../services/entrepriseServices/entreprise/entreprise.service";
 import * as $ from "jquery";
+import { RegisterService } from "src/app/services/candidat/register.service";
+import { AppComponent } from "../../../app.component";
+import { UsersService } from "../../../services/userServices/users.service";
 
 @Component({
   selector: "app-login-entreprise",
@@ -18,11 +21,13 @@ export class LoginEntrepriseComponent implements OnInit {
   constructor(
     private formbulder: FormBuilder,
     private entrepriseServices: EntrepriseService,
-    private router: Router
+    private router: Router,
+    private usersService: UsersService
   ) {}
 
   ngOnInit() {
     // this.find_user();
+    // console.log(localStorage.getItem("token"));
   }
 
   loginForm = this.formbulder.group({
@@ -36,6 +41,7 @@ export class LoginEntrepriseComponent implements OnInit {
   get password_login() {
     return this.loginForm.get("password");
   }
+
   login_user() {
     let jwtHelper = new JwtHelperService();
     if (this.loginForm.valid) {
@@ -47,18 +53,15 @@ export class LoginEntrepriseComponent implements OnInit {
       };
       this.entrepriseServices.login(user).subscribe({
         next: (response) => {
+          console.log;
           let token = response.headers.get("Authorization");
           let statusCode = response.headers.get("status");
           localStorage.setItem("token", token);
-          // this.find_user()
-          this.router.navigate(["candidate/find-profile"]);
-          // window.location.href("candidate/find-profile")
+          // this.router.navigate(["candidate/find-profile"]);
+          window.location.href = "candidate/find-profile"
           console.log(response);
-          // console.log(localStorage.getItem("token"));
         },
         error: (err) => {
-          // let statusCode = err.headers.get("status");
-          // console.log(statusCode);
           this.loginError.status = 403;
           this.loginError.message = "Identifiant ou mot de passe erroné";
           $(".error-div").show();

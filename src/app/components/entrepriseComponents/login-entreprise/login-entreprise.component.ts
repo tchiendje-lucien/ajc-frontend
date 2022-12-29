@@ -4,9 +4,8 @@ import { Router } from "@angular/router";
 import { JwtHelperService } from "@auth0/angular-jwt";
 import { EntrepriseService } from "../../../services/entrepriseServices/entreprise/entreprise.service";
 import * as $ from "jquery";
-import { RegisterService } from "src/app/services/candidat/register.service";
-import { AppComponent } from "../../../app.component";
 import { UsersService } from "../../../services/userServices/users.service";
+import { Users } from "../../../models/entreprise/users";
 
 @Component({
   selector: "app-login-entreprise",
@@ -14,6 +13,8 @@ import { UsersService } from "../../../services/userServices/users.service";
   styleUrls: ["./login-entreprise.component.css"],
 })
 export class LoginEntrepriseComponent implements OnInit {
+  users: Users;
+
   loginError = {
     message: null,
     status: null,
@@ -26,6 +27,7 @@ export class LoginEntrepriseComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.users = new Users();
     // this.find_user();
     // console.log(localStorage.getItem("token"));
   }
@@ -57,8 +59,18 @@ export class LoginEntrepriseComponent implements OnInit {
           let token = response.headers.get("Authorization");
           let statusCode = response.headers.get("status");
           localStorage.setItem("token", token);
-          // this.router.navigate(["candidate/find-profile"]);
-          window.location.href = "candidate/find-profile"
+          this.entrepriseServices.find_user().subscribe({
+            next: (response1) => {
+              this.users = response1 as Users;
+              localStorage.setItem("logo", this.users.entrepriseAccount.logo);
+              localStorage.setItem("name", this.users.entrepriseAccount.name);
+              this.router.navigate(["candidate/find-profile"]);
+            },
+            error: (err1) => {
+              console.log(err1.error);
+            },
+          });
+          // window.location.href = "candidate/find-profile";
           console.log(response);
         },
         error: (err) => {
@@ -79,6 +91,7 @@ export class LoginEntrepriseComponent implements OnInit {
   find_user() {
     this.entrepriseServices.find_user().subscribe({
       next: (response1) => {
+        this.users = response1 as Users;
         console.log(response1);
       },
       error: (err1) => {

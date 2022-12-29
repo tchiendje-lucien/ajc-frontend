@@ -97,14 +97,51 @@
                 Test Toast
               </button>
             </div>
+            <div class="d-flex justify-content-center mt-3">
+              <button
+                type="submit"
+                class="btn btn-primary btn-rounded col-md-8"
+                (click)="testSpinner()"
+              >
+                Test Spinner
+              </button>
+            </div>
           </div>
         </div>
 
-
         <div class="col">
-
           <div class="p-3 border bg-light">
             <h4 class="text-center">Liste des profils</h4>
+            <div
+              class="mt-5"
+              *ngIf="listCandidatLength == 0"
+            >
+              <div class="d-flex justify-content-center">
+                <img
+                  src="./assets/img/images__2_-removebg-preview.png"
+                  alt="Generic placeholder image"
+                />
+              </div>
+              <div class="d-flex justify-content-center">
+                <h5 class="text-center">Aucun resultat</h5>
+              </div>
+            </div>
+            <div
+              class="d-flex justify-content-center mt-5"
+              style="position: relative"
+            >
+              <ngx-spinner
+                bdColor="rgba(51,51,51,0.8)"
+                size="medium"
+                color="rgb(11, 228, 65)"
+                type="square-jelly-box"
+                [fullScreen]="false"
+              >
+                <!-- <p style="font-size: 20px; color: rgb(11, 228, 65)">
+                  Loading...
+                </p> -->
+              </ngx-spinner>
+            </div>
             <div class="col-md-12 p-3">
               <div
                 *ngFor="

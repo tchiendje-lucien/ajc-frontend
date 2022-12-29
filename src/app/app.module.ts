@@ -48,6 +48,7 @@ import { RegistercandidatComponent } from "./components/candidat/registercandida
 import { CandidatlistComponent } from "./components/candidat/candidatlist/candidatlist.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ToastrModule } from "ngx-toastr";
+import { NgxSpinnerModule } from "ngx-spinner";
 
 @NgModule({
   declarations: [
@@ -103,8 +104,9 @@ import { ToastrModule } from "ngx-toastr";
     NgxPaginationModule,
     NgSelectModule,
     BrowserAnimationsModule,
+    NgxSpinnerModule,
     ToastrModule.forRoot({
-      timeOut: 6000,
+      timeOut: 3000,
       // toastClass: 'toast toast-bootstrap-compatibility-fix',
       // enableHtml: true ,
       positionClass: 'toast-bottom-left',

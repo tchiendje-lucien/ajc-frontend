@@ -17,6 +17,9 @@ export class AppComponent implements OnInit {
   users: Users;
   userconnecter: String;
   entrepriseAccount: EntrepriseAccount;
+  name: String;
+  logo: String;
+  entreprise_oid: number;
 
   constructor(
     public usersService: UsersService,
@@ -42,7 +45,13 @@ export class AppComponent implements OnInit {
   isAuthenticatedEntreprise() {
     // return this.registerservice.isAuthenticated();
     if (this.usersService.isLoggedIn()) {
-      this.find_user();
+      this.name = localStorage.getItem("name");
+      this.logo = localStorage.getItem("logo");
+      this.entreprise_oid = Number(
+        atob(localStorage.getItem("entreprise_oid"))
+      );
+      // this.find_user();
+
       return true;
     } else {
       return false;

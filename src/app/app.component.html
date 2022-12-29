@@ -119,7 +119,7 @@
         <li
           class="nav-item dropdown"
           style="margin-left: 9%"
-          *ngIf="isAuthenticatedEntreprise()"
+          *ngIf="isAuthenticatedEntreprise() && isEntreprise()"
         >
         <!-- {{ users.entrepriseAccount.name }} -->
           <a
@@ -133,17 +133,17 @@
             <img
               class="user-avatar rounded-circle mr-2"
               [src]="
-                users.entrepriseAccount.logo == null
+              logo == null
                   ? entrepriseService.defaultEntrepriseImage()
                   : entrepriseServices.host +
                     '/imageEntreprise/' +
-                    users.entrepriseAccount.oid
+                    entreprise_oid
               "
               width="50"
               alt="User Avatar"
             />
             <span class="d-none d-md-inline-block"
-              >&nbsp; {{ users.entrepriseAccount.name }}</span
+              >&nbsp; {{name}}</span
             >
           </a>
           <ul class="dropdown-menu dropdown-menu-small">

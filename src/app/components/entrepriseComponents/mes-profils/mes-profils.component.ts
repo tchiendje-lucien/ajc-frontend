@@ -6,6 +6,7 @@ import { AskProfileService } from "../../../services/entrepriseServices/askProfi
 import { ChopperCandidatService } from "../../../services/entrepriseServices/chopperCandidat/chopper-candidat.service";
 import { SettingsService } from "../../../services/settings/settings.service";
 import { ToastrService } from "ngx-toastr";
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: "app-mes-profils",
@@ -15,9 +16,11 @@ import { ToastrService } from "ngx-toastr";
 export class MesProfilsComponent implements OnInit {
   demandeProfil: DemandeProfil;
   demandeProfilList: DemandeProfil[];
+  demandeProfilListLength: number = 0;
   datePipe = new DatePipe("en-US");
   todayDate = this.datePipe.transform(new Date(), "yyyy-MM-dd");
   chopperList: any;
+  chopperLength: number = 0;
   p_myProfils: number = 1;
   p_myAskProfils: number = 1;
 
@@ -26,7 +29,8 @@ export class MesProfilsComponent implements OnInit {
     private route: Router,
     private chopperCandidatService: ChopperCandidatService,
     public settingsService: SettingsService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private spinner: NgxSpinnerService
   ) {}
 
   ngOnInit() {
@@ -36,13 +40,15 @@ export class MesProfilsComponent implements OnInit {
   }
 
   list_ask_profile() {
+    this.spinner.show();
     let entrepriseAccount = {
       oid: atob(localStorage.getItem("entreprise_oid")),
     };
     this.askProfileService.list_ask_profile(entrepriseAccount).subscribe({
       next: (response) => {
+        this.spinner.hide();
         this.demandeProfilList = response as Array<DemandeProfil>;
-        // console.log(this.demandeProfilList);
+        this.demandeProfilListLength = this.demandeProfilList.length;
       },
       error: (err) => {
         console.log(err.error);
@@ -57,7 +63,8 @@ export class MesProfilsComponent implements OnInit {
     this.chopperCandidatService.list_chopper(entrepriseAccount).subscribe({
       next: (response) => {
         this.chopperList = response;
-        console.log(this.chopperList);
+        this.chopperLength = this.chopperList.length
+        // console.log(this.chopperList);
       },
       error: (err) => {
         console.log(err.error);

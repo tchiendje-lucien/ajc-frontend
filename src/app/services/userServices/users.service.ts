@@ -26,14 +26,14 @@ export class UsersService {
       localStorage.getItem("token") != null
     ) {
       if (this.authService.isTokenExpired(localStorage.getItem("token"))) {
-        console.log("genial expire" + localStorage.getItem("token"));
+        // console.log("genial expire" + localStorage.getItem("token"));
         return false;
       } else {
-        console.log(localStorage.getItem("token"));
+        // console.log(localStorage.getItem("token"));
         return true;
       }
     } else {
-      console.log("genie");
+      // console.log("genie");
       return false;
     }
   }

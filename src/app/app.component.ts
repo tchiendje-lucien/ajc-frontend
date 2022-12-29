@@ -32,7 +32,7 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.users = new Users();
     this.registerservice.loadToken();
-    // console.log(this.router.url)
+    console.log(atob(localStorage.getItem("entreprise_oid")))
     this.entrepriseAccount = new EntrepriseAccount();
     this.users = new Users();
     // this.find_user();

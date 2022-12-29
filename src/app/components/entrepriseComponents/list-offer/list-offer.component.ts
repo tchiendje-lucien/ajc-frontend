@@ -81,4 +81,9 @@ export class ListOfferComponent implements OnInit {
   defaultOffreImage() {
     return "assets/img/téléchargement (1).jpg";
   }
+
+   postulerOffre(oidoffreemploi){
+     this.router.navigate(['candidat/apply-offer/',oidoffreemploi]);
+   }
+
 }

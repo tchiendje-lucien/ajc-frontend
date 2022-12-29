@@ -64,6 +64,10 @@ export class LoginEntrepriseComponent implements OnInit {
               this.users = response1 as Users;
               localStorage.setItem("logo", this.users.entrepriseAccount.logo);
               localStorage.setItem("name", this.users.entrepriseAccount.name);
+              localStorage.setItem(
+                "entreprise_oid",
+                String(btoa(String(this.users.entrepriseAccount.oid)))
+              );
               this.router.navigate(["candidate/find-profile"]);
             },
             error: (err1) => {

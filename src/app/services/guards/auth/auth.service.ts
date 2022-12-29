@@ -34,8 +34,8 @@ export class AuthService implements CanActivate {
   logout() {
     localStorage.removeItem("token");
     localStorage.removeItem("entreprise_oid");
-    localStorage.clear();
     console.log(localStorage.getItem("token"))
+    localStorage.clear();
     this.router.navigate(["entreprise/login"]);
   }
 

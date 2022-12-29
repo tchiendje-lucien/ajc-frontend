@@ -49,6 +49,9 @@ import { CandidatlistComponent } from "./components/candidat/candidatlist/candid
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ToastrModule } from "ngx-toastr";
 import { NgxSpinnerModule } from "ngx-spinner";
+import { PostuleroffreComponent } from './components/candidat/postuleroffre/postuleroffre.component';
+
+
 
 @NgModule({
   declarations: [
@@ -92,6 +95,7 @@ import { NgxSpinnerModule } from "ngx-spinner";
     UpdateMyAccountComponent,
     RegistercandidatComponent,
     CandidatlistComponent,
+    PostuleroffreComponent,
   ],
   imports: [
     BrowserModule,

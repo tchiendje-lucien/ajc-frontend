@@ -53,7 +53,7 @@ export class FindProfilesComponent implements OnInit {
 
   ngOnInit() {
     console.log("je suis icic");
-    console.log("un exprire" + localStorage.getItem("token"));
+    console.log(atob(localStorage.getItem("entreprise_oid")))
     this.pays = new Pays();
     this.entrepriseAccount = new EntrepriseAccount();
     this.respoEntreprise = new RespoEntreprise();
@@ -107,7 +107,7 @@ export class FindProfilesComponent implements OnInit {
   create_chopper(index) {
     let chopper = {
       entrepriseAccount: {
-        oid: atob(localStorage.getItem("entreprise_oid")),
+        oid: Number(atob(localStorage.getItem("entreprise_oid"))),
       },
       candidat: { oid: index.oid },
     };

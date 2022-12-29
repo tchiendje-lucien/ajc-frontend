@@ -9,12 +9,7 @@
             <div class="col-sm-12">
               <label for="email">Secteur d'activité</label>
               <select class="form-select" aria-label="Default select example">
-                <option
-                  class="dropdown-item"
-                  disabled
-                  selected
-                  value="undefined"
-                >
+                <option class="dropdown-item" disabled selected value="undefined">
                   Selectionner
                 </option>
                 <option value="Temps plein">Temps plein</option>
@@ -24,12 +19,7 @@
             <div class="col-sm-12 mt-3">
               <label for="email">Pays</label>
               <select class="form-select" aria-label="Default select example">
-                <option
-                  class="dropdown-item"
-                  disabled
-                  selected
-                  value="undefined"
-                >
+                <option class="dropdown-item" disabled selected value="undefined">
                   Selectionner
                 </option>
                 <option value="Temps plein">Temps plein</option>
@@ -38,21 +28,12 @@
             </div>
             <div class="col-sm-12 mt-3">
               <label for="email">Villes</label>
-              <input
-                type="text"
-                class="form-control"
-                placeholder="Nom de la ville"
-              />
+              <input type="text" class="form-control" placeholder="Nom de la ville" />
             </div>
             <div class="col-sm-12 mt-3">
               <label for="email">Type de contrat</label>
               <select class="form-select" aria-label="Default select example">
-                <option
-                  class="dropdown-item"
-                  disabled
-                  selected
-                  value="undefined"
-                >
+                <option class="dropdown-item" disabled selected value="undefined">
                   Selectionner
                 </option>
                 <option value="Temps plein">Temps plein</option>
@@ -61,10 +42,7 @@
             </div>
 
             <div class="d-flex justify-content-center mt-3">
-              <button
-                type="submit"
-                class="btn btn-primary btn-rounded col-md-8"
-              >
+              <button type="submit" class="btn btn-primary btn-rounded col-md-8">
                 Rechercher
               </button>
             </div>
@@ -81,83 +59,45 @@
         <div class="col">
           <div class="p-3 border bg-light">
             <h4 class="text-center">Liste des offres</h4>
-            <div
-              class="col-md-12 p-3"
-              *ngFor="
-                let offreEmploi of offreEmploisList
-                  | paginate
-                    : {
-                        itemsPerPage: 10,
-                        currentPage: p_listOffre,
-                        id: 'p_listOffre_id'
-                      };
-                let i = index
-              "
-            >
+            <div class="col-md-12 p-3" *ngFor="let offreEmploi of offreEmploisList; let i = index">
               <div class="card mt-3" style="border-radius: 15px">
                 <div class="card-body p-4">
                   <div class="d-flex text-black">
                     <div class="flex-shrink-0">
-                      <img
-                        [src]="
+                      <img [src]="
                           offreEmploi.image == null
                             ? defaultOffreImage()
-                            : offersService.host +
-                              '/imageOffre/' +
-                              offreEmploi.oid
-                        "
-                        alt="Generic placeholder image"
-                        class="img-fluid"
-                        style="width: 160px; border-radius: 10px"
-                      />
+                            : offersService.host + '/imageOffre/' + offreEmploi.oid
+                        " alt="Generic placeholder image" class="img-fluid"
+                        style="width: 160px; border-radius: 10px" />
                     </div>
                     <div class="flex-grow-1 ms-3">
                       <h5 class="mb-1">{{ offreEmploi.title }}</h5>
                       <p class="mb-2 pb-1" style="color: #2b2a2a">
                         {{ offreEmploi.activitySectors.name }}
                       </p>
-                      <div
-                        class="d-flex justify-content-start rounded-3 p-2 mb-2"
-                        style="background-color: #efefef"
-                      >
+                      <div class="d-flex justify-content-start rounded-3 p-2 mb-2" style="background-color: #efefef">
                         <div class="px-3">
                           <p class="mb-0">
-                            <i
-                              class="fa fa-map-marker"
-                              aria-hidden="true"
-                              style="color: rgb(0, 255, 21)"
-                            ></i
-                            >&nbsp;{{ offreEmploi.pays }} -
+                            <i class="fa fa-map-marker" aria-hidden="true" style="color: rgb(0, 255, 21)"></i>&nbsp;{{
+                            offreEmploi.pays }} -
                             {{ offreEmploi.ville }}
                           </p>
                         </div>
                         <div>
                           <p class="mb-0">
-                            <i
-                              class="fa fa-file-text-o"
-                              aria-hidden="true"
-                              style="color: rgb(0, 255, 21)"
-                            ></i
-                            >&nbsp;{{ offreEmploi.typeContrat }} -
+                            <i class="fa fa-file-text-o" aria-hidden="true" style="color: rgb(0, 255, 21)"></i>&nbsp;{{
+                            offreEmploi.typeContrat }} -
                             {{ offreEmploi.typeEmploi }}
                           </p>
                         </div>
                       </div>
                       <div class="d-flex pt-1">
-                        <a
-                          type="button"
-                          class="btn btn-outline-primary me-1 flex-grow-1"
-                          [routerLink]="[
-                            '/entreprise/detail-offers/',
-                            offreEmploi.oid
-                          ]"
-                        >
+                        <a type="button" class="btn btn-outline-primary me-1 flex-grow-1"
+                          [routerLink]="['/entreprise/detail-offers/', offreEmploi.oid]">
                           Voir plus
                         </a>
-                        <a
-                          class="btn btn-primary flex-grow-1"
-                          (click)="getImageOffre(offreEmploi.image)"
-                        >
+                        <a class="btn btn-primary flex-grow-1" (click)="getImageOffre(offreEmploi.image)">
                           Postuler
                         </a>
                       </div>
@@ -166,11 +106,8 @@
                 </div>
               </div>
             </div>
-            <div class="d-flex justify-content-center">
-              <pagination-controls
-                id="p_listOffre_id"
-                (pageChange)="p_listOffre = $event"
-              ></pagination-controls>
+            <div>
+              <pagination-controls (pageChange)="p_academicLevel = $event"></pagination-controls>
             </div>
           </div>
         </div>

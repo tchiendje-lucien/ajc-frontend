@@ -70,9 +70,10 @@ export class FindProfilesComponent implements OnInit {
     );
   }
 
-  public CalculateAge(birthdate): number {
-    return moment().diff(birthdate, "years");
-  }
+  public CalculateAge(birthdate): number
+    {
+      return moment().diff(birthdate, 'years');
+   }   
 
   find_user() {
     console.log("je suis icic")
@@ -95,31 +96,15 @@ export class FindProfilesComponent implements OnInit {
     });
   }
 
-  find_profile() {
-    this.router.navigate(["candidate/profile-detail"]);
+  find_profile(candidat){
+    console.log(candidat.oid)
+    if(this.registerservice.isAuthenticated() && this.registerservice.isCandidat()){
+       this.router.navigate(["candidate/profile-detail",candidat.oid])
+    }else{
+       this.router.navigate(["candidate/login"])
+    }
+    
   }
 
-  create_chopper(index) {
-    let chopper = {
-      entrepriseAccount: {
-        oid: atob(localStorage.getItem("entreprise_oid")),
-      },
-      candidat: { oid: index.oid },
-    };
-    // console.log(chopper);
-    this.chopperCandidatService.create_chopper(chopper).subscribe({
-      next: (response) => {
-        this.toastr.success(response["message"], "Success");
-        // alert(response["message"]);
-      },
-      error: (err) => {
-        console.log(err.error);
-      },
-    });
-  }
 
-  testToast() {
-    // alert("ceci est un test")
-    this.toastr.success("Hello world!", "Hello world!");
-  }
 }

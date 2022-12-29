@@ -33,8 +33,10 @@ import { MesProfilsComponent } from './components/entrepriseComponents/mes-profi
 import { UpdateAskProfileComponent } from './components/entrepriseComponents/update-ask-profile/update-ask-profile.component';
 import { SetcvComponent } from './components/candidat/setcv/setcv.component';
 import { LoginEntrepriseComponent } from './components/entrepriseComponents/login-entreprise/login-entreprise.component';
-import { RegistercandidatComponent } from './components/candidat/registercandidat/registercandidat.component';
-import { CandidatlistComponent } from './components/candidat/candidatlist/candidatlist.component';
+import { RegistercandidatComponent } from "./components/candidat/registercandidat/registercandidat.component";
+import { CandidatlistComponent } from "./components/candidat/candidatlist/candidatlist.component";
+import { PostuleroffreComponent } from "./components/candidat/postuleroffre/postuleroffre.component";
+
 
 const appRoutes: Routes = [
   // {
@@ -140,8 +142,8 @@ const appRoutes: Routes = [
     component: CreateOffreComponent,
   },
   {
-    path: "candidate/profile-detail",
-    canActivate: [AuthService],
+    path: "candidate/profile-detail/:idcandidat",
+    //canActivate: [AuthService],
     component: ProfileDetailComponent,
   },
   {
@@ -215,6 +217,11 @@ const appRoutes: Routes = [
   {
     path: "candidat/list-candidat",
     component: CandidatlistComponent
+  },
+
+    {
+    path: "candidat/apply-offer/:oidoffreemploi",
+    component: PostuleroffreComponent
   },
 
 ];

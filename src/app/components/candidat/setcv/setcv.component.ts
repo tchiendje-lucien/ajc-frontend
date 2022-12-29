@@ -21,7 +21,10 @@ export class SetcvComponent implements OnInit {
   experienceForm: FormGroup
   langueForm: FormGroup
   loisirForm: FormGroup
+  uploadCvForm : FormGroup
   cssvalidator
+  validatorupload: string
+  selectedFileCv: File;
  
   listlangue=['Français', 'Anglais', 'Chinoi', 'Espagnol', 'Allemand', 'Arable']
   listniveaulangue=['Scolaire','Intermedaire','Soutenu']
@@ -92,6 +95,11 @@ export class SetcvComponent implements OnInit {
      this.loisirForm = this.fb.group({
       oid : "",
       loisir: ["",Validators.required]
+    })
+
+    this.uploadCvForm = this.fb.group({
+      chemincv: ["",Validators.required],
+      cv : [""]
     })
             
   }
@@ -165,7 +173,11 @@ export class SetcvComponent implements OnInit {
                                      lue: langue[i].lue, 
                                      ecrit: langue[i].ecrit
                                });
-   }
+               }
+
+                this.uploadCvForm.patchValue({
+                  cv: this.candidat.cv
+                })
 
 
             //this.registerservice.candidatserv=this.candidat
@@ -532,6 +544,54 @@ onSaveLangue(index){
     //this.langueArray.splice(index, 1);
 
   }
+
+  uploadCv(){
+
+     console.log(this.uploadCvForm.value)
+     const formdata = new FormData();
+     formdata.append('file',this.selectedFileCv)
+     formdata.append('candidat',this.registerservice.candidat)
+    console.log(formdata);
+    this.registerservice.uploadFileCv(formdata)
+    .subscribe(response=>{
+         console.log(response)
+         if (response.status == 200) {
+           this.ngOnInit();
+           alert("Cv successfully uploaded.");
+        }
+    },err=>{
+      console.log(err)
+    })
+  }
+
+  deleteCv(){
+      console.log(this.uploadCvForm.get('cv').value)
+      this.registerservice.deleteFileCv(this.uploadCvForm.get('cv').value)
+      .subscribe(response=>{
+            if(response.status==200){
+              this.ngOnInit();
+              alert(" Delete successful")
+            }
+      },err=>{
+         console.log(err)
+      })
+  }
+
+  readFile(fileEvent: any) {
+   const file = fileEvent.target.files[0];
+   this.selectedFileCv = fileEvent.target.files[0];
+   //2.6Mo
+   if((file.type=='application/pdf' || file.type=='image/jpeg' || file.type=='image/png')){
+       if(file.size<=2676245){
+          this.validatorupload = ''
+       }else{
+          this.validatorupload = 'Taille superieur a 2.5Mo'
+       }      
+   }else{
+      this.validatorupload = 'Type de fichier accepté : pdf/jpeg/png'
+   }
+
+}
 
 
 

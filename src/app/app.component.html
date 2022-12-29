@@ -1,14 +1,7 @@
 <!-- ======= Header ======= -->
-<header
-  id="header"
-  class="fixed-top d-flex align-items-center header-transparent bg-light"
->
+<header id="header" class="fixed-top d-flex align-items-center header-transparent bg-light">
   <div class="col-lg-2 col-md-4">
-    <img
-      src="./assets/img/photo/WhatsApp Image 2022-12-15 at 13.44.50.jpeg"
-      height="90px"
-      alt=""
-    />
+    <img src="./assets/img/photo/WhatsApp Image 2022-12-15 at 13.44.50.jpeg" height="90px" alt="" />
   </div>
   <div class="container d-flex align-items-center">
     <!-- Uncomment below if you prefer to use an image logo -->
@@ -24,9 +17,7 @@
       <ul>
         <li><a class="nav-link scrollto" href="/">Acceuil</a></li>
         <li class="dropdown">
-          <a
-            ><span>Qui sommes nous?</span> <i class="bi bi-chevron-down"></i
-          ></a>
+          <a>Qui sommes nous?<i class="bi bi-chevron-down"></i></a>
           <ul>
             <li>
               <a routerLink="qui-sommes-nous/notre-vision">Notre vision</a>
@@ -38,9 +29,7 @@
               <a routerLink="qui-sommes-nous/nos-valeurs">Nos valeurs</a>
             </li>
             <li>
-              <a routerLink="qui-sommes-nous/notre-politique"
-                >Notre politique</a
-              >
+              <a routerLink="qui-sommes-nous/notre-politique">Notre politique</a>
             </li>
           </ul>
         </li>
@@ -48,56 +37,36 @@
           <a><span>Nos services</span> <i class="bi bi-chevron-down"></i></a>
           <ul>
             <li>
-              <a routerLink="nos-services/placement-du-personnel"
-                >Mise à la disposition du personnel</a
-              >
+              <a routerLink="nos-services/placement-du-personnel">Mise à la disposition du personnel</a>
             </li>
             <li>
-              <a routerLink="nos-services/management-des-rh"
-                >Management des ressources humaines</a
-              >
+              <a routerLink="nos-services/management-des-rh">Management des ressources humaines</a>
             </li>
             <li>
-              <a routerLink="nos-services/audit-des-rh"
-                >Audit des ressources humaines</a
-              >
+              <a routerLink="nos-services/audit-des-rh">Audit des ressources humaines</a>
             </li>
             <li>
-              <a routerLink="nos-services/fiscalite-administrative"
-                >Fiscalité administrative</a
-              >
+              <a routerLink="nos-services/fiscalite-administrative">Fiscalité administrative</a>
             </li>
             <li><a routerLink="nos-services/fomration">Fomations</a></li>
           </ul>
         </li>
         <li class="dropdown">
-          <a href="#"
-            ><span>Candidat</span> <i class="bi bi-chevron-down"></i
-          ></a>
+          <a [routerLink]="!isAuthenticated()? 'candidat/login':'entreprise/list-offers'"><span>Candidat</span> <i
+              class="bi bi-chevron-down"></i></a>
           <ul>
             <li>
-              <a
-                [routerLink]="
-                  !isAuthenticated()
-                    ? 'candidat/login'
-                    : 'entreprise/list-offers'
-                "
-                >Trouver un emploi</a
-              >
+              <a [routerLink]="!isAuthenticated()? 'candidat/login' : 'entreprise/list-offers'">Trouver un emploi</a>
             </li>
             <li><a routerLink=" errors/setting">Deposer votre dossier</a></li>
             <li><a routerLink="errors/setting">Candidature spontanée</a></li>
             <li>
-              <a *ngIf="!isAuthenticated()" routerLink="candidat/login"
-                >Se connecter</a
-              >
+              <a *ngIf="!isAuthenticated()" routerLink="candidat/login">Se connecter</a>
             </li>
           </ul>
         </li>
         <li class="dropdown">
-          <a href="#"
-            ><span>Entreprise</span> <i class="bi bi-chevron-down"></i
-          ></a>
+          <a routerLink="candidate/find-profile"><span>Entreprise</span> <i class="bi bi-chevron-down"></i></a>
           <ul>
             <li>
               <a routerLink="candidate/find-profile">Recherche de profile</a>
@@ -116,108 +85,56 @@
         <!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
 
         <!-- /////////////// Entreprise //////////////////// -->
-        <li
-          class="nav-item dropdown"
-          style="margin-left: 9%"
-          *ngIf="isAuthenticatedEntreprise()"
-        >
-        <!-- {{ users.entrepriseAccount.name }} -->
-          <a
-            class="nav-link dropdown-toggle text-nowrap px-3"
-            data-toggle="dropdown"
-            href="#"
-            role="button"
-            aria-haspopup="true"
-            aria-expanded="false"
-          >
-            <img
-              class="user-avatar rounded-circle mr-2"
-              [src]="
+        <li class="nav-item dropdown" style="margin-left: 9%" *ngIf="isAuthenticatedEntreprise()">
+          <!-- {{ users.entrepriseAccount.name }} -->
+          <a class="nav-link dropdown-toggle text-nowrap px-3" data-toggle="dropdown" href="#" role="button"
+            aria-haspopup="true" aria-expanded="false">
+            <img class="user-avatar rounded-circle mr-2" [src]="
                 users.entrepriseAccount.logo == null
                   ? entrepriseService.defaultEntrepriseImage()
                   : entrepriseServices.host +
                     '/imageEntreprise/' +
                     users.entrepriseAccount.oid
-              "
-              width="50"
-              alt="User Avatar"
-            />
-            <span class="d-none d-md-inline-block"
-              >&nbsp; {{ users.entrepriseAccount.name }}</span
-            >
+              " width="50" alt="User Avatar" />
+            <span class="d-none d-md-inline-block">&nbsp; {{ users.entrepriseAccount.name }}</span>
           </a>
           <ul class="dropdown-menu dropdown-menu-small">
             <a class="dropdown-item" routerLink="entreprise/my-publications">
               <i class="fa fa-book" aria-hidden="true"></i> &nbsp;Mes
-              publications</a
-            >
+              publications</a>
             <a class="dropdown-item" routerLink="entreprise/my-profile">
-              <span
-                ><i class="fa fa-users" aria-hidden="true"></i> &nbsp;Mes
-                profil</span
-              ></a
-            >
+              <span><i class="fa fa-users" aria-hidden="true"></i> &nbsp;Mes
+                profil</span></a>
             <a class="dropdown-item" routerLink="entreprise/my-account">
-              <span
-                ><i class="fa fa-user" aria-hidden="true"></i> &nbsp;Mon
-                compte</span
-              ></a
-            >
+              <span><i class="fa fa-user" aria-hidden="true"></i> &nbsp;Mon
+                compte</span></a>
             <div class="dropdown-divider"></div>
-            <a
-              class="dropdown-item text-danger"
-              (click)="usersService.logout()"
-            >
+            <a class="dropdown-item text-danger" (click)="usersService.logout()">
               <i class="fa fa-sign-out" aria-hidden="true"></i>Deconnexion
             </a>
           </ul>
         </li>
 
         <!-- /////////////// CANDIDAT //////////////////// -->
-        <li
-          *ngIf="isAuthenticated() && isCandidat()"
-          class="nav-item dropdown float-lg-end"
-          style="margin-left: 15%"
-        >
-          <a
-            class="nav-link dropdown-toggle text-nowrap px-3"
-            data-toggle="dropdown"
-            href="#"
-            role="button"
-            aria-haspopup="true"
-            aria-expanded="false"
-          >
-            <img
-              class="user-avatar rounded-circle mr-2"
-              src="./assets/img/photo/logoconnect1.jpg"
-              width="50"
-              alt="User Avatar"
-            />&nbsp;
+        <li *ngIf="isAuthenticated() && isCandidat()" class="nav-item dropdown float-lg-end" style="margin-left: 15%">
+          <a class="nav-link dropdown-toggle text-nowrap px-3" data-toggle="dropdown" href="#" role="button"
+            aria-haspopup="true" aria-expanded="false">
+            <img class="user-avatar rounded-circle mr-2" src="./assets/img/photo/logoconnect1.jpg" width="40"
+              alt="User Avatar" />&nbsp;
             <span class="d-none d-md-inline-block">{{ userconnecter }}</span>
           </a>
           <ul class="dropdown-menu dropdown-menu-small">
             <a class="dropdown-item" routerLink="">
               <i class="fa fa-book" aria-hidden="true"></i> &nbsp;Mes
-              candidatures</a
-            >
+              candidatures</a>
             <a class="dropdown-item" routerLink="/candidat/list-candidat">
-              <span
-                ><i class="fa fa-users" aria-hidden="true"></i>
-                &nbsp;Alertes</span
-              ></a
-            >
+              <span><i class="fa fa-users" aria-hidden="true"></i>
+                &nbsp;Alertes</span></a>
             <a class="dropdown-item" routerLink="/candidat/setcv">
-              <span
-                ><i class="fa fa-user" aria-hidden="true"></i> &nbsp;Mon
-                compte</span
-              ></a
-            >
+              <span><i class="fa fa-user" aria-hidden="true"></i> &nbsp;Mon
+                compte</span></a>
             <div class="dropdown-divider"></div>
-            <a
-              class="dropdown-item text-danger"
-              [routerLink]="['/']"
-              (click)="toDeconnected()"
-            >
+            <a class="dropdown-item text-danger" [routerLink]="['/']" (click)="toDeconnected()">
               <i class="fa fa-sign-out" aria-hidden="true"></i>Se deconnecter
             </a>
           </ul>
@@ -234,6 +151,5 @@
 
 <app-footer></app-footer>
 
-<a href="#" class="back-to-top d-flex align-items-center justify-content-center"
-  ><i class="bi bi-arrow-up-short"></i
-></a>
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+    class="bi bi-arrow-up-short"></i></a>

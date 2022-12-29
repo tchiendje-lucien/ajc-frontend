@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RegisterService } from 'src/app/services/candidat/register.service';
 
 @Component({
   selector: 'app-our-missions',

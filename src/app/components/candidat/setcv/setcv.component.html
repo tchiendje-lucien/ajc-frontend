@@ -181,7 +181,7 @@
                 <div class="form-group col-md-8">
                   <label for="detail">Detail du domaine</label>
                   <textarea class="form-control" id="detail" rows="5" formControlName="detail" name="detail"
-                    placeholder="Detail domaine de competence"></textarea>
+                    placeholder="Detail domaine de competence" style="overflow: scroll; white-space: pre;"></textarea>
                 </div>
               </div>
 
@@ -232,7 +232,7 @@
             <div class="row">
               <div class="col-1"><i class="fa fa-check-circle" aria-hidden="true"
                   [ngClass]="scolarite!='' ? 'champok': 'champmonok'"></i></div>
-              <div class="col-md-auto">colarité</div>
+              <div class="col-md-auto">Scolarité</div>
             </div>
           </button>
         </h2>
@@ -351,7 +351,7 @@
             aria-controls="panelsStayOpen-collapseFour">
             <div class="row">
               <div class="col-1"><i class="fa fa-check-circle" aria-hidden="true"
-                  [ngClass]="Experience!='' ? 'champok': 'champmonok'"></i></div>
+                  [ngClass]="experiencepro!='' ? 'champok': 'champmonok'"></i></div>
               <div class="col-md-auto">Experience professionnelle</div>
             </div>
           </button>
@@ -408,7 +408,7 @@
                 <div class="form-group col-md-8">
                   <label for="detail">Tâches</label>
                   <textarea class="form-control" id="tache" rows="5" formControlName="tache" name="tache"
-                    placeholder="Liste des tâches"></textarea>
+                    placeholder="Liste des tâches" style="overflow: scroll; white-space: pre;"></textarea>
                 </div>
               </div>
 
@@ -545,6 +545,49 @@
             </div>
 
 
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="panelsStayOpen-headingSix">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#panelsStayOpen-collapseSix" aria-expanded="false"
+            aria-controls="panelsStayOpen-collapseSix">
+            <div class="row">
+              <div class="col-1"><i class="fa fa-check-circle" aria-hidden="true"
+                  [ngClass]="langue!='' && loisir!='' ? 'champok': 'champmonok'"></i></div>
+              <div class="col-md-auto">Telecharger votre cv</div>
+            </div>
+
+          </button>
+        </h2>
+        <div id="panelsStayOpen-collapseSix" class="accordion-collapse collapse"
+          aria-labelledby="panelsStayOpen-headingSix">
+          <div class="accordion-body">
+
+            <form [formGroup]="uploadCvForm">
+              <div class="row">
+                <div class="form-group col-md-4">
+                  <label for="chemincv"></label>
+                  <input type="file" accept="image/jpeg,image/png,application/pdf" class="form-control" id="chemincv"
+                    placeholder="Choisir le cv" name="chemincv" formControlName="chemincv" (change)="readFile($event)">
+                </div>
+                <div class=" col-md-2 mt-3">
+                  <button id="bt" type="submit" class="btn btn-primary btn-sm mt-2"
+                    [disabled]="!uploadCvForm.valid || validatorupload!=''" (click)="uploadCv()">Sauvegarder</button>
+                  <h6 style="color: red; font-size: 12;">{{validatorupload}}</h6>
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="cv"></label>
+                  <input type="text" class="form-control" id="cv" name="cv" formControlName="cv" disabled>
+                </div>
+                <div class=" col-md-2 mt-3">
+                  <button id="bt" type="button" class="btn btn-primary btn-sm mt-2" (click)="deleteCv()"
+                    [disabled]="!uploadCvForm.get('cv').value">Suprimer</button>
+                </div>
+              </div>
+            </form>
           </div>
         </div>
       </div>

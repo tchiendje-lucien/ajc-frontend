@@ -1,141 +1,104 @@
 <main id="main">
-  <!-- ======= About Section ======= -->
-  <section id="about" class="about mt-5">
-    <div
-      class="container-fluid col-md-8 d-flex justify-content-center p-3"
-      data-aos="fade-up"
-    >
-      <div class="justify-content-center">
-        <h4 class="text-center"><b>CONNEXION A UN COMPTE ENTREPRISE</b></h4>
-        <p class="text-center">
-          Si vous ne possedez pas encore un compte pour votre entreprise, creer
-          en un en cliquant sur
-          <a routerLink="/entreprise/register" class="text-primary">
-            s'inscrire</a
-          >
-        </p>
-        <div class="row">
-          <div class="col-sm-12">
-            <!-- Authentication card start -->
+  <section id="about" style="margin: 7%; ">
 
-            <form
-              class="md-float-material form-material"
-              #localFormLogin="ngForm"
-              [formGroup]="loginForm"
-              (ngSubmit)="login_user()"
-            >
-              <!-- <div class="text-center">
-                <img src="./assets/images/AJC_logo.jpg" alt="logo.png" height="100" />
-              </div> -->
-              <div class="auth-box card p-3 login-div">
-                <div class="card-block">
-                  <!-- <div class="row m-b-20">
-                    <div class="col-md-12">
-                      <h3 class="text-center">Connexion</h3>
-                    </div>
-                  </div> -->
-                  <!-- <div
-                    class="alert alert-danger"
-                    role="alert"
-                    style="background-color: #f8d7da"
-                    [hidden]="login_error"
-                  >
-                    <span
-                      >Identifiant ou mot de passe erroné</span
-                    >
-                  </div> -->
-                  <div
-                    class="alert alert-danger alert-dismissible fade show error-div"
-                    role="alert"
-                    *ngIf="loginError.status == 403"
-                  >
-                    {{ loginError.message }}
-                    <button
-                      type="button"
-                      class="btn-close"
-                      data-bs-dismiss="alert"
-                      aria-label="Close"
-                    ></button>
-                  </div>
-                  <div class="form-group d-flex justify-content-center">
-                    <div class="col-sm-8">
-                      <label for="email">Identifiant</label>
-                      <input
-                        type="text"
-                        class="form-control"
-                        placeholder="Identifiant"
-                        formControlName="entrepriseId"
-                      />
-                      <div>
-                        <span
-                          *ngIf="
-                            localFormLogin.submitted &&
-                            entrepriseId_login.invalid
-                          "
-                          style="color: red"
-                          >champ obligatoire</span
-                        >
-                      </div>
-                      <!-- <input
-                      type="hidden"
-                      class="form-control"
-                      formControlName="oid"
-                    /> -->
-                    </div>
-                  </div>
-                  <div class="form-group d-flex justify-content-center mt-3">
-                    <div class="col-sm-8">
-                      <label for="email">Mot de passe</label>
-                      <input
-                        type="password"
-                        class="form-control"
-                        placeholder="Mot de passe"
-                        formControlName="password"
-                      />
-                      <div>
-                        <span
-                          *ngIf="
-                            localFormLogin.submitted && password_login.invalid
-                          "
-                          style="color: red"
-                          >champ obligatoire</span
-                        >
-                      </div>
-                    </div>
-                  </div>
 
-                  <div class="row m-t-25 text-left mt-3">
-                    <div class="col-sm-10 d-flex justify-content-end">
-                      <div class="text-right f-right">
-                        <a
-                          routerLink="/entreprise/forgot-password"
-                          class="text-right f-w-600"
-                        >
-                          Mot de passe oublié?</a
-                        >
-                      </div>
-                    </div>
+    <div class="container shadow-div border rounded-4" data-aos="zoom-in">
+
+      <div class="row m-3">
+        <div class="col-md-12 mt-2 text-center">
+          <h4 style="color: green;"><strong>Espace entreprise</strong> </h4>
+        </div>
+        <div class="col-md-12 mt-2">
+          <h5>Veuillez fournir les renseignements suivants</h5>
+        </div>
+
+        <div class="col-md-12 mt-2">
+
+          <form class="md-float-material form-material" #localFormLogin="ngForm" [formGroup]="loginForm"
+            (ngSubmit)="login_user()">
+            <!-- <div class="text-center">
+                          <img src="./assets/images/AJC_logo.jpg" alt="logo.png" height="100" />
+                        </div> -->
+            <div class="col-md-12" style=" border: none;">
+
+              <!-- <div class="row m-b-20">
+                              <div class="col-md-12">
+                                <h3 class="text-center">Connexion</h3>
+                              </div>
+                            </div> -->
+              <!-- <div
+                              class="alert alert-danger"
+                              role="alert"
+                              style="background-color: #f8d7da"
+                              [hidden]="login_error"
+                            >
+                              <span
+                                >Identifiant ou mot de passe erroné</span
+                              >
+                            </div> -->
+              <div class="alert alert-danger alert-dismissible fade show error-div" role="alert"
+                *ngIf="loginError.status == 403">
+                {{ loginError.message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+              <div class="form-group d-flex justify-content-center">
+                <div class="col-md-12">
+                  <label for="email">Identifiant</label>
+                  <input type="text" class="form-control" placeholder="Identifiant" formControlName="entrepriseId" />
+                  <div>
+                    <span *ngIf="
+                                      localFormLogin.submitted &&
+                                      entrepriseId_login.invalid
+                                    " style="color: red">champ obligatoire</span>
                   </div>
-                  <div class="row m-t-30 p-2 mt-3">
-                    <div class="col-md-12 d-flex justify-content-center">
-                      <button
-                        type="submit"
-                        class="btn btn-primary btn-md btn-block waves-effect waves-light text-center m-b-20 col-md-8"
-                      >
-                        Connexion
-                      </button>
-                    </div>
+                  <!-- <input
+                                type="hidden"
+                                class="form-control"
+                                formControlName="oid"
+                              /> -->
+                </div>
+              </div>
+              <div class="form-group d-flex justify-content-center mt-3">
+                <div class="col-md-12">
+                  <label for="email">Mot de passe</label>
+                  <input type="password" class="form-control" placeholder="Mot de passe" formControlName="password" />
+                  <div>
+                    <span *ngIf="
+                                      localFormLogin.submitted && password_login.invalid
+                                    " style="color: red">champ obligatoire</span>
                   </div>
                 </div>
               </div>
-            </form>
-            <!-- end of form -->
-          </div>
-          <!-- end of col-sm-12 -->
+
+              <div class="col-md-12 mt-3 mb-3">
+                <a routerLink="/entreprise/forgot-password" class="text-right f-w-600">
+                  Mot de passe oublié?</a>
+              </div>
+              <div class="col-md-12">
+                <button type="submit"
+                  class="btn col-md-12 btn-primary btn-md btn-block waves-effect waves-light text-center m-b-20 col-md-8"
+                  style="background-color: #03224c; 
+          border-color: #03224c;">
+                  Connexion
+                </button>
+              </div>
+
+            </div>
+          </form>
+          <!-- end of form -->
+
         </div>
+        <div class="col-md-12 mt-4 mb-4  border-top">
+          <div class="col pt-2">
+            <h6> Vous n'avez ps de compte ?</h6>
+          </div>
+          <button type="submit" class="btn btn-primary col-md-12" style="background-color: #03224c; 
+          border-color: #03224c;">Creer un
+            compte</button>
+        </div>
+
       </div>
     </div>
-    <div class="mt-1"></div>
+
   </section>
-  <!-- End About Section -->
 </main>

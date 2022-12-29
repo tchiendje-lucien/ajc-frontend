@@ -1,115 +1,159 @@
-<main id="main">
-  <!-- ======= About Section ======= -->
-  <section id="about" class="about mt-5">
-    <div class="container" data-aos="fade-up">
-      <div class="row gx-5">
-        <div class="col-md-4">
-          <div class="p-3 border bg-light">
-            <h4 class="text-center">Profils similaire</h4>
-            <div class="card mt-3" style="border-radius: 15px">
-              <div class="card-body p-4">
-                <div class="d-flex text-black">
-                  <div class="flex-shrink-0">
-                    <img
-                      src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp"
-                      alt="Generic placeholder image"
-                      class="img-fluid"
-                      style="width: 100px; border-radius: 10px"
-                    />
-                  </div>
-                  <div class="flex-grow-1 ms-3">
-                    <h5 class="mb-1">Lucien Didier</h5>
-                    <p class="mb-2 pb-1" style="color: #2b2a2a">Ingenieur IT</p>
-
-                    <div class="d-flex pt-1">
-                      <button
-                        type="button"
-                        class="btn btn-outline-primary me-1 flex-grow-1"
-                      >
-                        Voir plus
-                      </button>
-                      <button type="button" class="btn btn-primary flex-grow-1">
-                        Le chopper
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+<div class="container ma_div">
+  <div class="row border p-1">
+    <div class="col border m-2 rounded-2 min-vh-100">
+      <div class="row text-white rounded-top" style="background-color: #03224c; height: 15%;">
+        <div class="col-2 ms-4 mt-4 d-flex flex-column" style="width: 150px">
+          <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp"
+            alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2"
+            style="width: 150px; z-index: 1" />
         </div>
         <div class="col">
-          <div class="p-3 border">
-            <div class="col-md-12 p-3">
-              <div class="col-md-12">
-                <div class="card">
-                  <div
-                    class="rounded-top text-white d-flex flex-row"
-                    style="background-color: #000; height: 200px"
-                  >
-                    <div
-                      class="ms-4 mt-5 d-flex flex-column"
-                      style="width: 150px"
-                    >
-                      <img
-                        src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp"
-                        alt="Generic placeholder image"
-                        class="img-fluid img-thumbnail mt-4 mb-2"
-                        style="width: 150px; z-index: 1"
-                      />
-                    </div>
-                    <div class="ms-3" style="margin-top: 130px">
-                      <h5>Lucien Didier</h5>
-                      <p>Ingenieur IT</p>
-                    </div>
-                  </div>
-                  <div class="p-4 text-black">
-                    <div class="d-flex justify-content-end text-center py-1">
-                      <div>
-                        <p class="small text-muted mb-1">Age</p>
-                        <p class="mb-0">24 ans</p>
-                      </div>
-                      <div class="px-3">
-                        <p class="small text-muted mb-1">Pays</p>
-                        <p class="mb-0">Cameroun</p>
-                      </div>
-                      <div>
-                        <p class="small text-muted mb-1">Ville</p>
-                        <p class="mb-0">Douala</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="card-body text-black">
-                    <div class="mb-5">
-                      <p class="lead fw-normal mb-1">Experience Academique </p>
-                      <div class="p-4" style="background-color: #f8f9fa">
-                        <p class="font-italic mb-1"><i class="fa fa-graduation-cap">&nbsp;</i>Web Developer</p>
-                        <p class="font-italic mb-1"><i class="fa fa-graduation-cap">&nbsp;</i>Lives in New York</p>
-                      </div>
-                    </div>
-                    <div class="mb-3">
-                      <p class="lead fw-normal mb-1">Experience professionnelle </p>
-                      <div class="p-4" style="background-color: #f8f9fa">
-                        <p class="font-italic mb-1"><i class="fa fa-handshake-o">&nbsp;</i>Web Developer</p>
-                        <p class="font-italic mb-1"><i class="fa fa-handshake-o">&nbsp;</i>Lives in New York</p>
-                      </div>
-                    </div>
-                    <div class="mb-3">
-                      <p class="lead fw-normal mb-1">Langue </p>
-                      <div class="p-4" style="background-color: #f8f9fa">
-                        <p class="font-italic mb-1"><i class="fa fa-assistive-listening-systems">&nbsp;</i>Web Developer</p>
-                        <p class="font-italic mb-1"><i class="fa fa-assistive-listening-systems">&nbsp;</i>Lives in New York</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+          <div class="row" style="margin-top: 10%;">
+            <div class="col-6">
+              <h5 style="margin: 0px;">{{detailcandidat.nom}} {{detailcandidat.prenom}}</h5>
+              <h6>{{detailcandidat.fonction}} ({{detailcandidat.nbreanneeexp}} ans d'experience)</h6>
+            </div>
+            <div class="col-6 d-flex justify-content-end text-center py-1">
+              <div>
+                <p class="small text-muted mb-1">Age</p>
+                <p class="mb-0">{{CalculateAge(detailcandidat.datenaissance)}}</p>
               </div>
+              <div class="px-3">
+                <p class="small text-muted mb-1">Pays</p>
+                <p class="mb-0">{{detailcandidat.pays}}</p>
+              </div>
+              <div>
+                <p class="small text-muted mb-1">Ville</p>
+                <p class="mb-0">{{detailcandidat.ville}}</p>
+              </div>
+
             </div>
           </div>
         </div>
       </div>
+      <div class="row mt-1" style="margin-left: 17%; font-style: italic;">
+        <p>{{detailcandidat.objectif}}</p>
+      </div>
+      <div class="row mt-1 m-1">
+        <div class="col text-bg-success" style="background-color: #03224c;"> Competences</div>
+        <div class="row">
+          <table class="table table-sm">
+            <thead>
+              <!-- <tr>
+                                                  <th scope="col">Domaine</th>
+                                                  <th scope="col">Detail</th>
+                                                </tr> -->
+            </thead>
+            <tbody *ngIf="detailcandidat">
+              <tr *ngFor="let c of detailcandidat.competence; let i = index;">
+                <td>{{c.domaine}}</td>
+                <td>
+                  <h6 *ngFor="let d of ChaineVersArray(c.detail); let j = index;" style="margin: 0px;"><i
+                      class="fa fa-hand-o-right" style="color: green">&nbsp;</i>{{d}}</h6>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="row m-1">
+        <div class="col text-bg-success" style="background-color: #03224c;">Experience professionnelle</div>
+        <div class="row ">
+          <table class="table ">
+            <thead>
+              <tr>
+                <th scope="col">Début</th>
+                <th scope="col">Fin</th>
+                <th scope="col">Etablissenement</th>
+                <th scope="col">Domaine</th>
+                <th scope="col">Specialité</th>
+                <th scope="col">Niveau</th>
+                <th scope="col">Pays</th>
+                <th scope="col">Ville</th>
+              </tr>
+            </thead>
+            <tbody *ngIf="detailcandidat">
+              <tr *ngFor="let s of detailcandidat.scolarite; let i = index;">
+                <td>{{s.datedebut}}</td>
+                <td>{{s.datefin}}</td>
+                <td>{{s.etablissement}}</td>
+                <td>{{s.domaine}}</td>
+                <td>{{s.specialite}}</td>
+                <td>{{s.niveau}}</td>
+                <td>{{s.pays}}</td>
+                <td>{{s.ville}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="row m-1">
+        <div class="col text-bg-success" style="background-color: #03224c;">Cursus academique</div>
+        <div class="row ">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Periode</th>
+                <th scope="col">Entreprise</th>
+                <th scope="col">Poste</th>
+                <th scope="col">Tâche</th>
+                <th scope="col">Pays</th>
+                <th scope="col">Ville</th>
+              </tr>
+            </thead>
+            <tbody *ngIf="detailcandidat">
+              <tr *ngFor="let s of detailcandidat.experience; let i = index;">
+                <td>{{s.datedebut}} Au {{s.datefin}} / ({{s.duree}}M)</td>
+                <td>{{s.entreprise}}</td>
+                <td>{{s.poste}}</td>
+                <td>
+                  <p *ngFor="let t of ChaineVersArray(s.tache); let k = index;" style="margin: 0px;">
+                    <i class="fa fa-hand-o-right" style="color: green">&nbsp;</i>
+                    {{t}}
+                  </p>
+                </td>
+                <td>{{s.pays}}</td>
+                <td>{{s.ville}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="row m-1">
+        <div class="col text-bg-success" style="background-color: #03224c;">Langue</div>
+        <div class="row ">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Langue</th>
+                <th scope="col">Niveau écrit</th>
+                <th scope="col">Niveau parlée</th>
+                <th scope="col">Niveau lu</th>
+              </tr>
+            </thead>
+            <tbody *ngIf="detailcandidat">
+              <tr *ngFor="let l of detailcandidat.langue; let i = index;">
+                <td>{{l.langue}}</td>
+                <td>{{l.ecrit}}</td>
+                <td>{{l.parle}}</td>
+                <td>{{l.lue}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="row m-1">
+        <div class="col text-bg-success" style="background-color: #03224c;">Loisir</div>
+        <div class="row border m-1">
+          <p>{{detailcandidat.loisir.loisir}}</p>
+        </div>
+      </div>
+      <div class="row m-1 justify-content-center">
+        <div class="row col-4">
+          <button id="val" type="submit" class="btn btn-primary btn-sm mt-2"
+            style="background-color: #03224c; border-color: #03224c;">Chopper</button>
+        </div>
+      </div>
     </div>
-    <div class="mt-1"></div>
-  </section>
-  <!-- End About Section -->
-</main>
+  </div>
+</div>

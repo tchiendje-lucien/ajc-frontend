@@ -1,7 +1,8 @@
-import { HttpBackend, HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpBackend, HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from "@auth0/angular-jwt";
-import { AppComponent } from 'src/app/app.component';
+
+
 
 @Injectable({
   providedIn: 'root'
@@ -35,15 +36,31 @@ export class RegisterService {
   }
 
   load_candidat(){
-    console.log(this.tokenType+' '+this.getToken())
+    //console.log(this.tokenType+' '+this.getToken())
     return this.http.get(this.host+"/load_candidat")
   }
 
   connexion_candidat(user){
-    return this.http.post(this.host+"/login",user,{observe:'response'})
-
+    return this.http.post(this.host+"/login",user,{observe:'response'})     
   }
 
+  detail_one_candidat(oidcandidat){
+    return this.http.get(this.host+"/detail_one_candidat/"+oidcandidat)
+  }
+
+
+  uploadFileCv( dataform) {
+   console.log(dataform);
+  return this.http.post(this.host+'/upload_cv', dataform, { observe: 'response' })
+  }
+
+  deleteFileCv( filename) {
+   console.log(filename);
+   let params = new HttpParams();
+   params = params.set('filename', filename);
+    return this.http.post(this.host+'/delete_cv', params, { observe: 'response' })
+  }
+ 
 
 
   add_competence(competence){
@@ -108,12 +125,10 @@ export class RegisterService {
   }
 
 
-  list_countrie(){
+
+  list_countrie(){    
     return this.customHttpClient.get(this.host+"/list_pays")
   }
-
-
-
 
 
 
@@ -138,10 +153,12 @@ export class RegisterService {
   loadToken(){
 
      this.jwt = localStorage.getItem('token')
-    // console.log(this.jwt)
-     if(this.jwt != null){
-          this.parseJWT()
-     }
+     console.log(this.jwt)
+     if((this.tokenExpired(this.jwt)===true) || (this.jwt === null)){
+         this.initParam();
+     }else{
+        this.parseJWT()
+     } 
   }
 
   isAdmin(){
@@ -180,10 +197,10 @@ export class RegisterService {
       let statuttoken : Boolean
        let jwtHelper=new JwtHelperService();
        if (jwtHelper.isTokenExpired(token)) {
-          console.log("Token est expirer")
+         // console.log("Token est expirer") 
           statuttoken = true
        } else {
-         console.log("Token pas expirer")
+         //console.log("Token pas expirer") 
           statuttoken = false
        }
 
